@@ -3,7 +3,7 @@ import re
 root=Path(__file__).resolve().parents[1]
 out=root/'supabase/functions/_shared'
 out.mkdir(exist_ok=True)
-for name in ['level-state','scrolls','audit','spell-dc','mounts','casting-sources','grant-resources','character-access','caster-level','decimal','bonuses','hp','character-model','calculator','mechanics','rule-expression','rule-types','rule-schema','rule-engine','resource-engine','shared-effects','defenses','skills','skill-engine','skill-values','skill-synergies','conditions','condition-effects','equipment','weapon-damage','module-effects','damage-dice','armor','note-text','spell-preparation']:
+for name in ['party-overview','level-state','scrolls','audit','spell-dc','mounts','casting-sources','grant-resources','character-access','caster-level','decimal','bonuses','hp','character-model','calculator','mechanics','rule-expression','rule-types','rule-schema','rule-engine','resource-engine','shared-effects','defenses','skills','skill-engine','skill-values','skill-synergies','conditions','condition-effects','equipment','weapon-damage','module-effects','damage-dice','armor','note-text','spell-preparation']:
     source=(root/'src'/f'{name}.ts').read_text()
     source=re.sub(r"from '(\./[^']+)'",lambda m:"from '"+m[1]+".ts'",source)
     source=re.sub(r"import\('([.]\/[^']+)'\)",lambda m:"import('"+m[1]+".ts')",source)

@@ -1,3 +1,4 @@
+import {partyOverview} from '../_shared/party-overview.ts';
 import {scrollProfile,scrollUmdRows} from '../_shared/scrolls.ts';
 import {performScrollCast} from '../_shared/resource-engine.ts';
 import {auditChanges} from '../_shared/audit.ts';
@@ -40,7 +41,8 @@ Deno.serve(async(req:Request)=>{
   const [characters,configs]=await Promise.all([api('/rest/v1/characters?select=*',{},true),api('/rest/v1/mechanics_config?id=eq.campaign&select=config')]);
   if(!configs[0]?.config)throw Error('规则配置不存在');
   const allowed=new Set<string>(characters.filter((c:{id:string;owner_id:string;master_id?:string|null})=>canControlCharacter(c,characters,user.id,profiles[0].role==='gm')).map((c:{id:string})=>c.id));
-  return reply(buildEffectContext(characters,configs[0].config,allowed));
+  const visible=new Set<string>([...allowed,...characters.filter((c:{master_id?:string|null})=>!c.master_id).map((c:{id:string})=>c.id)]),context=buildEffectContext(characters,configs[0].config,visible);
+  return reply({...context,incoming:Object.fromEntries(Object.entries(context.incoming).filter(([id])=>allowed.has(id))),overview:partyOverview(characters,context)});
  }
 
  if(typeof body.characterId!=='string'||!/^[0-9a-f-]{36}$/i.test(body.characterId)||!Number.isInteger(body.version)||!body.patch||typeof body.patch!=='object'||Array.isArray(body.patch))throw Error('保存格式错误');

@@ -3,7 +3,7 @@ const {defaultMechanics}=await loadTs('./mechanics.ts'),{performResourceAction}=
 const config=defaultMechanics(),z={strength:0,dexterity:0,constitution:0,intelligence:0,wisdom:0,charisma:0};
 const c={hp:5,race:'人类',strength:10,dexterity:10,constitution:10,intelligence:10,wisdom:10,charisma:10,ability_permanent:z,ability_temporary:z,class_levels:Array(8).fill('cleric'),editable_fields:['hp','resources'],rule_state:{instances:[],weapon:{},temporaryHp:999999,potentialPoints:9}};
 const use=(character,n)=>performResourceAction(character,config,{event:'potential',instanceId:'',actionId:String(n)},false);
-assert.equal(use(c,2).rule_state.potentialPoints,7);assert.throws(()=>use(c,3));assert.throws(()=>use({...c,master_id:'owner'},1));assert.throws(()=>use({...c,rule_state:{...c.rule_state,potentialPoints:0}},1));
+assert.equal(use(c,2).rule_state.potentialPoints,7);const locked={...c,editable_fields:['hp']};assert.equal(use(locked,2).rule_state.potentialPoints,7);assert.throws(()=>validateRuleStateChange(locked,config,{...locked.rule_state,potentialPoints:8},false),/资源未开放/);assert.throws(()=>use(c,3));assert.throws(()=>use({...c,master_id:'owner'},1));assert.throws(()=>use({...c,rule_state:{...c.rule_state,potentialPoints:0}},1));
 for(const [level,n] of [[1,1],[8,2],[15,3]])assert.equal(use({...c,class_levels:Array(level).fill('cleric'),rule_state:{...c.rule_state,potentialPoints:5}},n).rule_state.potentialPoints,5-n);
 validateRuleStateChange(c,config,c.rule_state,false);assert.throws(()=>validateRuleStateChange(c,config,{...c.rule_state,temporaryHp:-1},false));
 assert(prepareModules(c,config).notes.some(n=>n.instanceId==='builtin:potential'));assert(!prepareModules({...c,master_id:'owner'},config).notes.some(n=>n.instanceId==='builtin:potential'));
