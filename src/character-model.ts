@@ -1,0 +1,26 @@
+// Stable identifiers separate character data from future class definition imports.
+export interface ClassDefinition { id:string; name:string }
+export interface ClassDefinitionImport { schemaVersion:1; classes:ClassDefinition[] }
+export const classes:readonly ClassDefinition[]=[
+ {id:'artificer',name:'机关术师'},{id:'crusader',name:'十字军'},
+ {id:'shrine-maiden',name:'巫女'},{id:'warblade',name:'战刃'},
+ {id:'cavalier',name:'重骑兵'},{id:'cleric',name:'牧师'}
+];
+export type AbilityKey='strength'|'dexterity'|'constitution'|'intelligence'|'wisdom'|'charisma';
+export type Adjustments=Record<AbilityKey,number>;
+export const defaultAdjustments:Adjustments={strength:0,dexterity:0,constitution:0,intelligence:0,wisdom:0,charisma:0};
+export function classSummary(levels:readonly string[],catalog:readonly ClassDefinition[]=classes){
+ const counts=new Map<string,number>();for(const id of levels)counts.set(id,(counts.get(id)||0)+1);
+ return [...counts].map(([id,count])=>`${catalog.find(x=>x.id===id)?.name||id} ${count}`).join(' / ')||'职业待分配';
+}
+export function levelRanges(levels:readonly string[]){
+ const ranges:{start:number;end:number;classId:string}[]=[];
+ levels.forEach((classId,index)=>{const last=ranges.at(-1);if(last?.classId===classId)last.end=index+1;else ranges.push({start:index+1,end:index+1,classId})});return ranges;
+}
+// Migrate old local demo records without deleting any legacy fields.
+export function normalizeCharacter<T extends {class_name:string;level:number;race?:string;class_levels?:string[];ability_permanent?:Adjustments;ability_temporary?:Adjustments;id?:string;resources?:{name:string}[]}>(c:T){
+ const oldClass=classes.find(x=>x.name===c.class_name);
+ const obsolete=c.id==='demo-1'?['星火','生命骰']:c.id==='demo-2'?['行动如潮']:[];
+ const cleaned=c.resources?{...c,resources:c.resources.filter(r=>!obsolete.includes(r.name))}:c;
+ return {...cleaned,race:c.race??'',class_levels:c.class_levels??(oldClass?Array(Math.max(0,Math.min(c.level,100))).fill(oldClass.id):[]),ability_permanent:{...defaultAdjustments,...c.ability_permanent},ability_temporary:{...defaultAdjustments,...c.ability_temporary}};
+}

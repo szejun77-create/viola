@@ -1,0 +1,23 @@
+{
+  "id": "warhammer",
+  "name": "战锤",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "weapon",
+  "tags": [
+    "melee",
+    "one_handed"
+  ],
+  "parameters": {},
+  "outputs": [],
+  "weapon": {
+    "type": "warhammer",
+    "baseDamage": "1d8",
+    "sizeDamage": "1d8",
+    "damage": "1d8",
+    "size": "中型",
+    "criticalWidth": 1,
+    "criticalMultiplier": 3,
+    "enhancement": 0
+  }
+}

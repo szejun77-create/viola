@@ -1,0 +1,14 @@
+{
+  "id": "craft_magic_arms_armor",
+  "name": "制造魔法武器和防具",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以制造满足条件的魔法武器和防具，并且给它们附魔。",
+      "category": "noncombat"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "brew_potion",
+  "name": "调制药水",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以调制你所知晓的法术的药水。",
+      "category": "noncombat"
+    }
+  ]
+}

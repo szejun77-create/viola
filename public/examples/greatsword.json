@@ -1,0 +1,92 @@
+{
+  "id": "small_enchanted_greatsword",
+  "name": "小型＋2巨剑·猛击·警戒·笼手·剃刃·锯齿",
+  "category": "item",
+  "equipmentSlot": "weapon",
+  "mode": "passive",
+  "description": "＋2增强、警戒、剃刃、猛击已接入；笼手效果待配置。锯齿通过持续备忘手动登记目标和轮数。",
+  "tags": [
+    "two_handed",
+    "melee",
+    "magic_weapon"
+  ],
+  "weapon": {
+    "type": "greatsword",
+    "baseDamage": "1d10",
+    "sizeDamage": "1d10",
+    "damage": "1d10",
+    "damageNote": "小型武器起始1d10；体型及武器等效体型变化按房规档位计算。",
+    "size": "小型",
+    "criticalWidth": 2,
+    "criticalMultiplier": 2,
+    "enhancement": 2
+  },
+  "parameters": {},
+  "resourceMaxModifiers": [
+    {
+      "tag": "smite",
+      "value": "1",
+      "bonusType": "unnamed"
+    }
+  ],
+  "outputs": [
+    {
+      "target": "ranged",
+      "scope": "weapon",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "value": "2"
+    },
+    {
+      "target": "melee",
+      "scope": "weapon",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "value": "2"
+    },
+    {
+      "target": "damage",
+      "scope": "weapon",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "value": "2"
+    },
+    {
+      "target": "initiative",
+      "duration": "short",
+      "bonusType": "insight",
+      "value": "5"
+    },
+    {
+      "target": "damage",
+      "scope": "weapon",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "1"
+    },
+    {
+      "target": "melee",
+      "scope": "weapon",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2",
+      "when": "tags.smite.active"
+    },
+    {
+      "target": "ranged",
+      "scope": "weapon",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2",
+      "when": "tags.smite.active"
+    },
+    {
+      "target": "damage",
+      "scope": "weapon",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2",
+      "when": "tags.smite.active"
+    }
+  ]
+}

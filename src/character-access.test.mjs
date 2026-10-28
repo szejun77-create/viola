@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {loadTs} from './test-module.mjs';
+const {canControlCharacter:can,validateMasterLink:link}=await loadTs('./character-access.ts');
+const master={id:'master',owner_id:'alice'},pet={id:'pet',owner_id:null,master_id:'master'},other={id:'other',owner_id:'bob'};const rows=[master,pet,other];
+assert.equal(can(pet,rows,'alice'),true);assert.equal(can(pet,rows,'bob'),false);
+assert.equal(can(pet,rows,null,true),false);assert.equal(can(pet,rows,'gm',true),true);
+assert.equal(can(pet,[{...master,owner_id:'bob'},pet],'alice'),false);assert.equal(can(pet,[{...master,owner_id:'bob'},pet],'bob'),true);
+assert.equal(can(pet,[{...master,owner_id:null},pet],'alice'),false);
+assert.equal(can({...pet,owner_id:'bob'},rows,'bob'),false);
+assert.equal(can({...pet,master_id:null},rows,'alice'),false);
+assert.equal(can(pet,[pet],'alice'),false);
+link(pet,'master',rows);link(pet,null,rows);
+assert.throws(()=>link(pet,'pet',rows),/自己/);assert.throws(()=>link(master,'pet',rows),/独立/);
+assert.throws(()=>link(master,'other',rows),/已有从属/);assert.throws(()=>link(pet,'missing',rows),/不存在/);
+console.log('Companion access: owner inheritance, transfer, unassignment, unlinking, stale ownership, missing master, GM and invalid links passed');

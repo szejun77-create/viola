@@ -1,0 +1,23 @@
+{
+  "id": "artificial_life_swim",
+  "name": "人工生命强化：游泳",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "speed",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "20",
+      "when": "conditions.swim"
+    }
+  ],
+  "notes": [
+    {
+      "text": "游泳状态：原速度×1/2后，再增加20尺。",
+      "category": "combat",
+      "when": "conditions.swim"
+    }
+  ]
+}

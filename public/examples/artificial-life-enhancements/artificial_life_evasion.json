@@ -1,0 +1,14 @@
+{
+  "id": "artificial_life_evasion",
+  "name": "人工生命强化：反射闪避",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "反射豁免成功后免疫伤害。",
+      "category": "combat"
+    }
+  ]
+}

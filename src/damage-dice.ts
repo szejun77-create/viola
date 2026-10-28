@@ -1,0 +1,9 @@
+export const damageDieFaces=[1,2,3,4,6,8,10,12] as const;
+export function validDieCount(value:number,die:number|undefined){return Number.isSafeInteger(value)&&value>=0&&value<=10000&&damageDieFaces.includes(die as typeof damageDieFaces[number])}
+export function mergeDamageDice(parts:string[]){const counts=new Map<number,number>();for(const part of parts){for(const term of part.replace(/\s/g,'').split('+')){const m=/^(\d+)d(\d+)$/.exec(term);if(!m||!validDieCount(Number(m[1]),Number(m[2])))throw Error(`伤害骰格式无效：${term}`);const die=Number(m[2]);counts.set(die,(counts.get(die)??0)+Number(m[1]))}}return [...counts].sort(([a],[b])=>a-b).filter(([,n])=>n>0).map(([die,n])=>`${n}d${die}`).join('+')||'0'}
+
+import type {RuleModule} from './rule-types';
+export const rapidAssault:RuleModule={id:'rapid_assault',name:'快速打击',category:'feat',description:'首次攻击一名新对手时，伤害额外增加1d6；适用时由玩家开启。',mode:'toggle',parameters:{},outputs:[{target:'damageDice',die:6,duration:'short',bonusType:'unnamed',value:'1'}]};
+
+export const damageTypeLabels:Record<string,string>={impact_charge:'冲击（仅骑冲）',sneak_attack:'仅偷袭',objects_only:'仅对物品',fire:'火焰',cold:'寒冷',acid:'强酸',electricity:'电击',sonic:'音波'};
+export function mergeTypedDamageDice(base:string,sources:{value:number;die?:number;damageType?:string}[]){const groups=new Map<string,string[]>();groups.set('',[base]);for(const e of sources){const key=e.damageType??'',rows=groups.get(key)??[];rows.push(`${e.value}d${e.die}`);groups.set(key,rows)}return [...groups].map(([key,rows])=>`${mergeDamageDice(rows)}${key?`（${damageTypeLabels[key]??key}）`:''}`).join('+')}

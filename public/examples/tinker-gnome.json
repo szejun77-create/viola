@@ -1,0 +1,75 @@
+{
+  "id": "tinker_gnome",
+  "name": "修补匠侏儒",
+  "category": "race",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "strength",
+      "duration": "long",
+      "bonusType": "racial",
+      "value": "-2"
+    },
+    {
+      "target": "dexterity",
+      "duration": "long",
+      "bonusType": "racial",
+      "value": "2"
+    },
+    {
+      "target": "intelligence",
+      "duration": "long",
+      "bonusType": "racial",
+      "value": "2"
+    },
+    {
+      "target": "wisdom",
+      "duration": "long",
+      "bonusType": "racial",
+      "value": "-2"
+    },
+    {
+      "target": "defenseCommon",
+      "duration": "long",
+      "bonusType": "size",
+      "value": "1"
+    },
+    {
+      "target": "melee",
+      "duration": "long",
+      "bonusType": "size",
+      "value": "1"
+    },
+    {
+      "target": "ranged",
+      "duration": "long",
+      "bonusType": "size",
+      "value": "1"
+    },
+    {
+      "target": "skill.hide",
+      "duration": "long",
+      "bonusType": "size",
+      "value": "4"
+    },
+    {
+      "target": "will",
+      "duration": "long",
+      "bonusType": "racial",
+      "value": "2"
+    },
+    {
+      "target": "skill.alchemy",
+      "duration": "long",
+      "bonusType": "racial",
+      "value": "2"
+    },
+    {
+      "target": "skill.craft_repair",
+      "duration": "long",
+      "bonusType": "racial",
+      "value": "2"
+    }
+  ]
+}

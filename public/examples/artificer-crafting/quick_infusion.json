@@ -1,0 +1,39 @@
+{
+  "id": "quick_infusion",
+  "name": "快捷机关术",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "一天一次，你可以在一轮内灌注一个机关术。",
+      "category": "noncombat",
+      "when": "resources.uses > 0"
+    }
+  ],
+  "resources": {
+    "uses": {
+      "label": "快捷机关术",
+      "initial": 1,
+      "min": "0",
+      "max": "1",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "actions": [
+    {
+      "id": "use",
+      "label": "使用快捷机关术",
+      "playerUsable": true,
+      "when": "resources.uses > 0",
+      "changes": [
+        {
+          "target": "resources.uses",
+          "value": "resources.uses - 1"
+        }
+      ]
+    }
+  ]
+}

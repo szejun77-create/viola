@@ -1,0 +1,14 @@
+{
+  "id": "element_specialization_fire",
+  "name": "专精五行：火",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以捕捉到{5 * classes.shrine_maiden.level}尺内的大火，即使两者之间有物品阻挡。你抄录带火或伤害关键词的法术时，开销减半。你可以将其他能量法术改为火能量法术。",
+      "category": "noncombat"
+    }
+  ]
+}

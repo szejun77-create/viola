@@ -1,0 +1,14 @@
+{
+  "id": "divine_child",
+  "name": "神稚儿",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你有15%的概率将增益法术的目标随机改写为敌军；由现场判断和处理。",
+      "category": "negative"
+    }
+  ]
+}

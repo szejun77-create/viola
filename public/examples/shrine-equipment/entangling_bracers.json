@@ -1,0 +1,48 @@
+{
+  "id": "entangling_bracers",
+  "name": "纠缠护腕",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "wrists",
+  "parameters": {},
+  "outputs": [],
+  "resources": {
+    "energy": {
+      "label": "纠缠能量",
+      "initial": 3,
+      "min": "0",
+      "max": "3",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "notes": [
+    {
+      "text": "消耗1格能量，使本次法术伤害先减半，再加上该法术的施法者等级；被命中的敌人进入纠缠状态1d3轮。点击使用后在自己这边生成计时备忘，默认3轮，由DM修改。",
+      "when": "resources.energy > 0",
+      "category": "combat"
+    }
+  ],
+  "actions": [
+    {
+      "id": "entangle",
+      "label": "消耗1格：纠缠敌人",
+      "playerUsable": true,
+      "usesCasterLevel": true,
+      "when": "resources.energy >= 1",
+      "changes": [
+        {
+          "target": "resources.energy",
+          "value": "resources.energy - 1"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "纠缠敌人",
+        "text": "本次法术伤害先减半再加{caster.level}；被命中的敌人进入纠缠1d3轮。此记录默认3轮，DM按实际掷骰结果修改。不对自己施加纠缠，也不自动扣敌人生命。",
+        "remaining": "3",
+        "category": "combat",
+        "independent": true
+      }
+    }
+  ]
+}

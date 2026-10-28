@@ -1,0 +1,38 @@
+{
+  "id": "masterwork_longsword",
+  "name": "精致长剑",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "weapon",
+  "tags": [
+    "melee",
+    "one_handed"
+  ],
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "melee",
+      "value": "1",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "scope": "weapon"
+    },
+    {
+      "target": "ranged",
+      "value": "1",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "scope": "weapon"
+    }
+  ],
+  "weapon": {
+    "type": "longsword",
+    "baseDamage": "1d8",
+    "sizeDamage": "1d8",
+    "damage": "1d8",
+    "size": "中型",
+    "criticalWidth": 2,
+    "criticalMultiplier": 2,
+    "enhancement": 0
+  }
+}

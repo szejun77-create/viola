@@ -1,0 +1,14 @@
+{
+  "id": "genius_crafter",
+  "name": "天才工匠",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "物品制造时间缩短25%。",
+      "category": "noncombat"
+    }
+  ]
+}

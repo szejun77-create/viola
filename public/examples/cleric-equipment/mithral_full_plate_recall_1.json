@@ -1,0 +1,33 @@
+{
+  "id": "mithral_full_plate_recall_1",
+  "name": "＋1召回秘银全身甲",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "armor",
+  "parameters": {},
+  "outputs": [],
+  "description": "中型秘银全身甲，按中甲处理。基础护甲8，增强+1，最大敏捷调整3，防具检定减值-3；初始速度20减5，30减10。召回：一个迅捷动作可将未装备的盔甲装备上。",
+  "tags": [
+    "mithral",
+    "medium_armor"
+  ],
+  "armor": {
+    "category": "medium",
+    "size": "中型",
+    "baseArmor": 8,
+    "enhancement": 1,
+    "dexCap": 3,
+    "checkPenalty": -3,
+    "speedPenalties": {
+      "20": -5,
+      "30": -10
+    }
+  },
+  "notes": [
+    {
+      "text": "召回：通过一个迅捷动作，将未装备的这件盔甲装备上。",
+      "category": "noncombat",
+      "whileOwned": true
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "divine_metamagic_quicken",
+  "name": "神圣超魔：法术瞬发",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "你可以用驱散次数代替法术瞬发超魔的环位消耗。仅备注；驱散次数及相应法术位由你手动调整，不自动减免超魔升环或扣驱散。",
+  "notes": [
+    {
+      "text": "你可以用驱散次数代替法术瞬发超魔的环位消耗，次数和法术位由你手动处理。",
+      "category": "combat"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import {loadTs} from './test-module.mjs';
+const {steelHeart,furiousCounterstrike}=await loadTs('./rule-types.ts');
+const {defaultMechanics}=await loadTs('./mechanics.ts');
+const {prepareModules,validateRuleStateChange}=await loadTs('./rule-engine.ts');
+const {validateCatalog}=await loadTs('./rule-schema.ts');
+const {stackGroups}=await loadTs('./bonuses.ts');
+const {calculateDerived}=await loadTs('./calculator.ts');
+const {actionPatch}=await loadTs('./resource-engine.ts');
+const config=defaultMechanics();config.modules={steel_heart:steelHeart,furious_counterstrike:furiousCounterstrike};config.classes.crusader.baseStats={attack:1};
+const zero={strength:0,dexterity:0,constitution:0,intelligence:0,wisdom:0,charisma:0};
+const c={hp:100,race:'人类',class_levels:['crusader'],strength:10,dexterity:10,constitution:10,intelligence:10,wisdom:10,charisma:10,ability_permanent:zero,ability_temporary:zero,editable_fields:[],rule_state:{instances:[{id:'steel',moduleId:'steel_heart',enabled:false,access:'gm',params:{}},{id:'rage',moduleId:'furious_counterstrike',enabled:false,access:'gm',params:{}}],weapon:{},resourceValues:{steel:{damage_buffer:0}}}};
+for(const [x,damage,hit]of [[0,0,0],[1,1,1],[9,1,1],[10,2,2],[30,6,6],[40,8,6]]){c.rule_state.resourceValues.steel.damage_buffer=x;const report=prepareModules(c,config);assert.deepEqual(report.errors,{});assert.equal(stackGroups(report.extras.damage?.long,report.extras.damage?.short).total,damage);assert.equal(calculateDerived(report.character,config).values.melee.total,1+hit);assert.equal(calculateDerived(report.character,config).values.ranged.total,1+hit)}
+const settled=actionPatch(c,config,'steel','settle_damage',false),after=prepareModules({...c,...settled},config);assert.deepEqual(after.errors,{});assert.equal(stackGroups(after.extras.damage?.long,after.extras.damage?.short).total,0);
+const missing=structuredClone(c);missing.rule_state.instances=missing.rule_state.instances.filter(i=>i.id!=='steel');assert.match(prepareModules(missing,config).errors.rage,/未获得/);
+const multi=structuredClone(c);multi.rule_state.instances.push({...multi.rule_state.instances[0],id:'steel2'});multi.rule_state.resourceValues.steel2={damage_buffer:10};assert.match(prepareModules(multi,config).errors.rage,/多个实例/);
+multi.rule_state.instances[1].references={steel_heart:'steel2'};let report=prepareModules(multi,config);assert.deepEqual(report.errors,{});assert.equal(stackGroups(report.extras.damage.long,report.extras.damage.short).total,2);
+const tampered=structuredClone(multi.rule_state);tampered.instances[1].references.steel_heart='steel';assert.throws(()=>validateRuleStateChange(multi,config,tampered,false),/GM 控制/);validateRuleStateChange(multi,config,tampered,true);
+const bad=structuredClone(config);bad.modules.furious_counterstrike.variables.buffer='modules.steel_heart.resources.typo';assert.throws(()=>validateCatalog({modules:bad.modules,weaponVariables:{}}),/引用不存在/);
+const cyclic=structuredClone(config);cyclic.modules.steel_heart.variables={loop:'modules.furious_counterstrike.vars.bonus'};cyclic.modules.furious_counterstrike.variables.buffer='modules.steel_heart.vars.loop';assert.throws(()=>validateCatalog({modules:cyclic.modules,weaponVariables:{}}),/循环/);
+const chained=structuredClone(config);chained.modules.steel_heart.parameters={factor:{label:'倍率',type:'number',default:2}};chained.modules.steel_heart.variables={doubled:'params.factor * resources.damage_buffer'};chained.modules.furious_counterstrike.variables.buffer='modules.steel_heart.vars.doubled';report=prepareModules(c,chained);assert.deepEqual(report.errors,{});assert.equal(stackGroups(report.extras.damage.long,report.extras.damage.short).total,16);
+const attributeCycle=structuredClone(chained);attributeCycle.modules.steel_heart.variables.doubled='mod.strength';attributeCycle.modules.furious_counterstrike.outputs=[{target:'strength',duration:'long',bonusType:'unnamed',value:'vars.buffer'}];assert.throws(()=>validateCatalog({modules:attributeCycle.modules,weaponVariables:{}}),/避免循环/);
+console.log('Cross-module references: formula boundaries, immediate recalculation, settlement reset, duplicate binding, GM permissions, typos, cycles and transitive variable context passed');

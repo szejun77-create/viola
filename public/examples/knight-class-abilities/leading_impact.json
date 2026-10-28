@@ -1,0 +1,39 @@
+{
+  "id": "leading_impact",
+  "name": "领导冲击",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "resources": {
+    "leading_attack": {
+      "label": "领导攻击",
+      "initial": 1,
+      "min": "0",
+      "max": "1",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "notes": [
+    {
+      "text": "你可以使用一次领导攻击，令队友对你的攻击目标发动一次全回合攻击；队友必须能够接触到该敌人。",
+      "category": "combat",
+      "when": "resources.leading_attack > 0"
+    }
+  ],
+  "actions": [
+    {
+      "id": "use",
+      "label": "使用领导攻击",
+      "playerUsable": true,
+      "when": "resources.leading_attack >= 1",
+      "changes": [
+        {
+          "target": "resources.leading_attack",
+          "value": "resources.leading_attack - 1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "spell_steadiness_charm_person",
+  "name": "法术稳健（魅惑人类）",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你的魅惑人类不需要姿势（动作）和言语（声音）成分。",
+      "category": "combat"
+    }
+  ]
+}

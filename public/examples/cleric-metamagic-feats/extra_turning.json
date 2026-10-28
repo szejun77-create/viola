@@ -1,0 +1,18 @@
+{
+  "id": "extra_turning",
+  "name": "额外驱散",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "若已有驱散资源，其上限和初始次数增加4。不会凭空授予驱散能力。已有存档中的当前剩余次数不自动回满，需要DM按实际情况手动加4；新初始化的资源会包含此加成。",
+  "resourceMaxModifiers": [
+    {
+      "tag": "turn_undead",
+      "resource": "turns",
+      "value": "4",
+      "bonusType": "unnamed",
+      "affectsInitial": true
+    }
+  ]
+}

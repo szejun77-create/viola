@@ -1,0 +1,21 @@
+{
+  "id": "weapon_specialization_lance",
+  "name": "武器专精：骑枪",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damage",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "scope": "weapon"
+    }
+  ],
+  "weaponRequirement": {
+    "type": "lance",
+    "name": "骑枪",
+    "effectText": "命中+0，伤害+2"
+  }
+}

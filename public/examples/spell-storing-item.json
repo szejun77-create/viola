@@ -1,0 +1,48 @@
+{
+  "id": "spell_storing_item",
+  "name": "物品储法",
+  "category": "spell",
+  "mode": "toggle",
+  "description": "物品储法（Spell Storing Item）\n变化系\n等级：机关术师1\n法术成分：姿势，经验值\n施法时间：1分钟\n距离：接触\n目标：接触到的物品\n持续时间：每等级1小时或直到散发（共{600 * caster.level}轮）\n\n角色能通过此机关术在物品中储存法术，并在此后按需要释放。就实际效果而言，相当于将物品转化成可以使用1次的魔杖。角色可以在物品中储存任何不高于4环的法术。角色的机关术师等级视为法术的施法者等级。\n角色必须首先通过使用魔法装置检定（DC20＋法术环数的3倍）模拟法术，并在物品中进行储存。如果角色的检定结果比DC低10点或更多，会发生严重失误，效果类似使用卷轴严重失误。DM可以决定严重失误的效果：法术或许没能储存在物品里，而是立即生效影响角色自身；或许法术能量突然爆发，对角色造成2d6点伤害。\n物品同时只能储存1道法术。角色必须在储存时提供目标法术所需的昂贵施法材料，或是消耗经验值。同时，在释放法术时，角色也必须提供目标法术所需的器材和法器。\n经验消耗：角色的施法者等级×法术等级。例如，储存灼热射线需要消耗的经验值等于角色施法者等级×2。\n本模块只发送储法物品备忘，检定、经验、物品与实际释放由现场处理。",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "artificer"
+    ],
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [],
+  "grant": {
+    "name": "储法物品",
+    "group": "ally",
+    "mode": "single",
+    "includeSelf": true,
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你得到了一个储法物品，你可以随时释放它（可使用1次）。储存的法术和具体物品由现场记录；使用后请通知DM结束这份持续记录。\n本次储存的施法者等级：{caster.level}。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放物品储法",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "物品储法",
+        "text": "已将一个储法物品交给指定角色；可使用1次。使用后手动结束本记录。",
+        "remaining": "600 * caster.level",
+        "expiresModule": true
+      }
+    }
+  ]
+}

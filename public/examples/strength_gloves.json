@@ -1,0 +1,16 @@
+{
+  "id": "strength_gloves",
+  "name": "力量手套",
+  "category": "item",
+  "equipmentSlot": "hands",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "strength",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "value": "2"
+    }
+  ]
+}

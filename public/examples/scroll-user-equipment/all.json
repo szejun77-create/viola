@@ -1,0 +1,148 @@
+[
+  {
+    "id": "endless_scrollcase",
+    "name": "无尽卷轴盒",
+    "category": "item",
+    "equipmentSlot": "weapon",
+    "mode": "passive",
+    "defaultAccess": "parameters",
+    "description": "占一个单手武器位置，可放主手或副手；没有攻击数据，不能用于攻击。穿戴时可用移动动作取出卷轴；按实际情况开启“密藏卷轴”。",
+    "parameters": {
+      "hidden_scrolls": {
+        "label": "密藏卷轴",
+        "type": "boolean",
+        "default": false,
+        "playerEditable": true
+      }
+    },
+    "outputs": [
+      {
+        "target": "skill.concentration",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "4",
+        "when": "params.hidden_scrolls"
+      }
+    ],
+    "notes": [
+      {
+        "text": "你只需要移动动作就能取出卷轴。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "thick_cloth_armor",
+    "name": "厚布甲",
+    "category": "item",
+    "equipmentSlot": "armor",
+    "mode": "passive",
+    "description": "护甲AC+1，最大敏捷调整值8，防具检定减值0。",
+    "parameters": {},
+    "outputs": [],
+    "armor": {
+      "category": "light",
+      "size": "按穿戴者体型",
+      "baseArmor": 1,
+      "enhancement": 0,
+      "dexCap": 8,
+      "checkPenalty": 0,
+      "speedPenalties": {}
+    }
+  },
+  {
+    "id": "spellsight_spectacles",
+    "name": "法术视觉镜片",
+    "category": "item",
+    "equipmentSlot": "face",
+    "mode": "passive",
+    "description": "法术视觉镜片（Spellsight Spectacles）：对象为卷轴时，使用魔法装置与辨识法术检定各+5表现加值。",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "skill.use_magic_device",
+        "duration": "short",
+        "bonusType": "competence",
+        "value": "5",
+        "context": "对象为卷轴"
+      },
+      {
+        "target": "skill.spellcraft",
+        "duration": "short",
+        "bonusType": "competence",
+        "value": "5",
+        "context": "对象为卷轴"
+      }
+    ]
+  },
+  {
+    "id": "circlet_of_persuasion",
+    "name": "劝诱头饰",
+    "category": "item",
+    "equipmentSlot": "head",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "skill.military_command",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "2"
+      },
+      {
+        "target": "skill.iaijutsu",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "2"
+      },
+      {
+        "target": "skill.bluff",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "2"
+      },
+      {
+        "target": "skill.handle_animal",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "2"
+      },
+      {
+        "target": "skill.intimidate",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "2"
+      },
+      {
+        "target": "skill.diplomacy",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "2"
+      },
+      {
+        "target": "skill.perform",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "2"
+      },
+      {
+        "target": "skill.disguise",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "2"
+      },
+      {
+        "target": "skill.use_magic_device",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "2"
+      },
+      {
+        "target": "skill.gather_information",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "2"
+      }
+    ]
+  }
+]

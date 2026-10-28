@@ -1,0 +1,466 @@
+[
+  {
+    "id": "righteous_speech",
+    "name": "义正词严",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "skill.diplomacy",
+        "value": "2",
+        "duration": "long",
+        "bonusType": "unnamed"
+      },
+      {
+        "target": "skill.sense_motive",
+        "value": "2",
+        "duration": "long",
+        "bonusType": "unnamed"
+      },
+      {
+        "target": "fortitude",
+        "value": "2",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "context": "面对恐惧"
+      },
+      {
+        "target": "reflex",
+        "value": "2",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "context": "面对恐惧"
+      },
+      {
+        "target": "will",
+        "value": "2",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "context": "面对恐惧"
+      }
+    ]
+  },
+  {
+    "id": "mounted_combat",
+    "name": "骑乘战斗",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你可以用一次骑术检定（1d20+{skills.ride.total}）代替坐骑的AC。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "improved_bull_rush",
+    "name": "精通冲撞",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "进行冲撞时，防御者无法对你发动借机攻击；撞开防御者的力量对抗检定获得+4加值。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "spirited_charge",
+    "name": "奋力冲刺",
+    "category": "feat",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "damageMultiplier",
+        "value": "2",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon",
+        "attackMode": "melee",
+        "when": "conditions.charge && conditions.mounted_charge"
+      },
+      {
+        "target": "damageMultiplier",
+        "value": "3",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon",
+        "attackMode": "melee",
+        "requiredWeaponTags": [
+          "长枪"
+        ],
+        "when": "conditions.charge && conditions.mounted_charge"
+      }
+    ],
+    "notes": [
+      {
+        "text": "同时开启冲锋、骑冲（骑马冲锋）及本能力时，近战武器全部伤害骰与固定加值×2；带“长枪”tag时改为×3。武器区已显示乘算后的结果，不要再次按骑冲备注手动翻倍。",
+        "category": "combat"
+      }
+    ],
+    "defaultAccess": "toggle",
+    "weaponRequirement": {
+      "tags": [
+        "melee"
+      ],
+      "name": "近战武器；长枪tag时三倍",
+      "effectText": "骑乘冲锋时全部伤害×2；长枪×3"
+    }
+  },
+  {
+    "id": "animal_affinity",
+    "name": "亲和动物",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "skill.handle_animal",
+        "value": "FLOOR(level / 2)",
+        "duration": "long",
+        "bonusType": "unnamed"
+      },
+      {
+        "target": "skill.ride",
+        "value": "FLOOR(level / 2)",
+        "duration": "long",
+        "bonusType": "unnamed"
+      }
+    ]
+  },
+  {
+    "id": "overfocused",
+    "name": "过度专注",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "skill.spot",
+        "value": "-2",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "context": "被偷袭"
+      }
+    ]
+  },
+  {
+    "id": "rage_feat",
+    "name": "狂暴（专长版）",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "消耗狂暴次数，获得开启前体质调整值+3轮的狂暴。力量、体质+4无名，意志+2士气，AC-2。结束后疲乏，直到手动解除。",
+        "category": "combat"
+      }
+    ],
+    "grantsModules": [
+      "rage_feat_buff"
+    ],
+    "resources": {
+      "uses": {
+        "label": "狂暴次数",
+        "initial": "1 + FLOOR(level / 4)",
+        "min": "0",
+        "max": "1 + FLOOR(level / 4)",
+        "integer": true,
+        "playerEditable": false
+      }
+    },
+    "actions": [
+      {
+        "id": "rage",
+        "label": "消耗1次：狂暴",
+        "playerUsable": true,
+        "when": "resources.uses >= 1 && !tags.rage_feat.active",
+        "changes": [
+          {
+            "target": "resources.uses",
+            "value": "resources.uses - 1"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "狂暴",
+          "text": "狂暴：力量、体质+4无名，意志+2士气，AC-2。不能使用除平衡、脱逃、威吓、骑术外的魅力、敏捷、智力技能，以及需要耐心或专注的技能和能力；不能使用指令触发魔法物品、寓守于攻、造物品专长或超魔专长。上述行为限制由现场判断。",
+          "remaining": "mod.constitution + 3",
+          "category": "combat",
+          "activateModule": "rage_feat_buff",
+          "onExpireConditions": [
+            "fatigued"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mounted_mobility",
+    "name": "骑乘灵活移动",
+    "category": "feat",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "defense",
+        "value": "4",
+        "duration": "short",
+        "bonusType": "dodge"
+      },
+      {
+        "target": "touchDefense",
+        "value": "4",
+        "duration": "short",
+        "bonusType": "dodge"
+      }
+    ],
+    "notes": [
+      {
+        "text": "你和坐骑因离开威胁范围而引发借机攻击时，获得+4闪避防御。符合条件时开启；坐骑数值由现场处理。",
+        "category": "combat"
+      }
+    ],
+    "defaultAccess": "toggle"
+  },
+  {
+    "id": "tunnel_fighting",
+    "name": "隧道战斗",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "挤进或通过狭窄空间时，你不受攻击骰或AC上的减值。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "special_mount_feat",
+    "name": "专用坐骑（专长版）",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "每天一次，可用一个整轮动作召唤一只狮鹫，持续{level * 2}小时。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "weapon_focus_lance",
+    "name": "专攻武器：骑枪",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "melee",
+        "value": "1",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      },
+      {
+        "target": "ranged",
+        "value": "1",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      }
+    ],
+    "weaponRequirement": {
+      "type": "lance",
+      "name": "骑枪",
+      "effectText": "命中+1，伤害+0"
+    }
+  },
+  {
+    "id": "weapon_specialization_lance",
+    "name": "武器专精：骑枪",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "damage",
+        "value": "2",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      }
+    ],
+    "weaponRequirement": {
+      "type": "lance",
+      "name": "骑枪",
+      "effectText": "命中+0，伤害+2"
+    }
+  },
+  {
+    "id": "greater_weapon_focus_lance",
+    "name": "高等专攻武器：骑枪",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "melee",
+        "value": "1",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      },
+      {
+        "target": "ranged",
+        "value": "1",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      }
+    ],
+    "weaponRequirement": {
+      "type": "lance",
+      "name": "骑枪",
+      "effectText": "命中+1，伤害+0"
+    }
+  },
+  {
+    "id": "close_weapon_familiarity_lance",
+    "name": "近程武器熟稔：骑枪",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "melee",
+        "value": "2",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      },
+      {
+        "target": "ranged",
+        "value": "2",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      },
+      {
+        "target": "damage",
+        "value": "2",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      }
+    ],
+    "weaponRequirement": {
+      "type": "lance",
+      "name": "骑枪",
+      "effectText": "命中+2，伤害+2"
+    }
+  },
+  {
+    "id": "improved_critical_lance",
+    "name": "精通重击：骑枪",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "criticalRangeMultiplier",
+        "value": "2",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      }
+    ],
+    "weaponRequirement": {
+      "type": "lance",
+      "name": "骑枪",
+      "effectText": "重击威胁范围×2"
+    }
+  },
+  {
+    "id": "comet_strike",
+    "name": "彗星撞击",
+    "category": "feat",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "melee",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "unnamed"
+      },
+      {
+        "target": "ranged",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "unnamed"
+      },
+      {
+        "target": "damage",
+        "value": "4",
+        "duration": "short",
+        "bonusType": "unnamed"
+      }
+    ],
+    "notes": [
+      {
+        "text": "你可以提前计划冲锋你的敌人，并获得彗星撞击的加强效果；实际攻击符合条件时开启。",
+        "category": "combat",
+        "whileOwned": true
+      }
+    ],
+    "defaultAccess": "toggle"
+  },
+  {
+    "id": "rage_feat_buff",
+    "name": "狂暴效果",
+    "category": "other",
+    "mode": "toggle",
+    "timedOnly": true,
+    "requiresOwnedModule": "rage_feat",
+    "tags": [
+      "rage_feat"
+    ],
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "strength",
+        "value": "4",
+        "duration": "short",
+        "bonusType": "unnamed"
+      },
+      {
+        "target": "constitution",
+        "value": "4",
+        "duration": "short",
+        "bonusType": "unnamed"
+      },
+      {
+        "target": "will",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "morale"
+      },
+      {
+        "target": "defenseCommon",
+        "value": "-2",
+        "duration": "short",
+        "bonusType": "unnamed"
+      }
+    ]
+  }
+]

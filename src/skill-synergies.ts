@@ -1,0 +1,49 @@
+import {allSkills} from './skills';
+import type {RuleState} from './rule-types';
+import type {EffectGroup} from './calculator';
+export interface SkillSynergy {id:string;source:string;target:string;context?:string}
+const rows:[string,string,string?][]=[
+ ['bluff','diplomacy'],['bluff','disguise'],['bluff','intimidate'],['bluff','sleight_of_hand'],
+ ['art','appraise','目标为工艺品的时候'],
+ ['decipher_documents','use_magic_device','目标为卷轴的时候'],
+ ['escape_artist','use_rope','捆绑他人的时候'],
+ ['handle_animal','ride'],['jump','tumble'],['knowledge_arcana','spellcraft'],
+ ['knowledge_architecture','search','对象为密门或密室'],
+ ['knowledge_dungeoneering','survival','环境在地下城'],
+ ['knowledge_geography','survival','野外避免迷路和避开自然危险'],
+ ['knowledge_local','gather_information'],
+ ['knowledge_nature','survival','处于自然环境'],
+ ['knowledge_nobility','diplomacy'],
+ ['search','survival','在追踪足迹的时候'],
+ ['sense_motive','diplomacy'],
+ ['spellcraft','use_magic_device','目标为卷轴的时候'],
+ ['survival','knowledge_nature'],['tumble','balance'],['tumble','jump'],
+ ['use_magic_device','spellcraft','阅读卷轴的时候'],
+ ['use_rope','escape_artist','被绳索捆绑的时候'],
+ ['use_rope','climb','在有绳索辅助攀爬的时候'],
+ ['use_rope','heavy_equipment','在重型器具需要通过绳索拖拽的时候'],
+ ['use_rope','siege_weapons','在攻城武器需要绳索操纵的时候'],
+ ['heavy_equipment','siege_weapons'],
+ ['heavy_equipment','disable_device','装置尺寸很大的时候'],
+ ['heavy_equipment','craft_repair','维修巨大物品的时候'],
+ ['accounting','mathematics'],['decipher_documents','law'],['knowledge_nobility','law'],
+ ['bluff','law','在通过欺骗玩弄法律的时候'],
+ ['diplomacy','law','在通过法律说服别人的时候'],
+ ['intimidate','law','通过法律恐吓别人的时候'],
+ ['alchemy','heal'],['mathematics','siege_weapons'],['mathematics','accounting'],
+ ['mathematics','knowledge_arcana'],['mathematics','astrology'],['mathematics','cipher'],
+ ['concentration','hypnosis','催眠对象为自己的时候'],
+ ['sense_motive','hypnosis','催眠对象为别人的时候'],
+ ['art','forgery'],['art','knowledge_architecture'],
+ ['art','knowledge_geography','绘制当地地图以让别人了解情况的时候'],
+ ['survival','cooking','在非厨房环境的时候'],
+ ['survival','navigation'],['knowledge_geography','navigation'],['navigation','swim'],
+ ['diplomacy','military_command'],['sleight_of_hand','iaijutsu'],['bluff','iaijutsu']
+];
+export const defaultSkillSynergies:SkillSynergy[]=rows.map(([source,target,context])=>({id:`${source}__${target}`,source,target,...(context?{context}:{})}));
+export function validateSynergies(rules:SkillSynergy[]){if(!Array.isArray(rules)||rules.length>1000)throw Error('技能共效表需为数组，最多1000条');const seen=new Set<string>(),pairs=new Set<string>();for(const rule of rules){if(!rule||typeof rule.id!=='string'||!rule.id||rule.id.length>160||seen.has(rule.id)||!allSkills.some(s=>s.id===rule.source)||!allSkills.some(s=>s.id===rule.target)||rule.context!==undefined&&(typeof rule.context!=='string'||!rule.context.trim()||rule.context.length>200))throw Error('共效规则的标识、技能或情境错误');const pair=JSON.stringify([rule.source,rule.target,rule.context??'']);if(pairs.has(pair))throw Error('同一来源、目标和情境的共效不能重复');pairs.add(pair);seen.add(rule.id)}}
+export function withSkillSynergies(state:RuleState,definitions:SkillSynergy[]=defaultSkillSynergies,previous:Record<string,EffectGroup>={}):Record<string,EffectGroup>{
+ validateSynergies(definitions);const effects:Record<string,EffectGroup>=Object.fromEntries(Object.entries(previous).map(([id,g])=>[id,{long:g.long.filter(e=>e.origin!=='skill-synergy'),short:g.short.filter(e=>e.origin!=='skill-synergy')} ]));
+ for(const rule of definitions){const ranks=state.skills?.[rule.source],invested=(ranks?.class??0)+(ranks?.cross??0);if(invested<5)continue;const source=allSkills.find(s=>s.id===rule.source)!;const group=effects[rule.target]??{long:[],short:[]};group.long.push({id:`synergy:${rule.id}`,name:`${source.name}共效`,value:2,bonusType:'unnamed',enabled:true,origin:'skill-synergy',context:rule.context});effects[rule.target]=group}
+ return effects;
+}

@@ -1,0 +1,42 @@
+{
+  "id": "righteous_speech",
+  "name": "义正词严",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "skill.diplomacy",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "skill.sense_motive",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "fortitude",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "context": "面对恐惧"
+    },
+    {
+      "target": "reflex",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "context": "面对恐惧"
+    },
+    {
+      "target": "will",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "context": "面对恐惧"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": "iron_heart_surge",
+  "name": "铁心之力",
+  "category": "spell",
+  "description": "Iron heart surge：1回合内命中和伤害各＋2士气加值。须移除一个负面效果才能生效。",
+  "mode": "toggle",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "warblade"
+    ],
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "melee",
+      "duration": "short",
+      "bonusType": "morale",
+      "value": "2"
+    },
+    {
+      "target": "ranged",
+      "duration": "short",
+      "bonusType": "morale",
+      "value": "2"
+    },
+    {
+      "target": "damage",
+      "duration": "short",
+      "bonusType": "morale",
+      "value": "2"
+    }
+  ],
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放铁心之力",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "铁心之力",
+        "text": "1回合内命中和伤害各＋2士气加值。须移除一个负面效果才能生效。",
+        "remaining": "1",
+        "expiresModule": true
+      }
+    }
+  ],
+  "notes": [
+    {
+      "text": "你需要移除一个负面效果，使此武术生效。",
+      "category": "combat"
+    }
+  ]
+}

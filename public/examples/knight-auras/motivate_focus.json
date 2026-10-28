@@ -1,0 +1,25 @@
+{
+  "id": "motivate_focus",
+  "name": "激发专注",
+  "category": "spell",
+  "equipmentSlot": "stance",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "主要光环：全体友军（含自身）普通、接触及措手不及防御获得+{IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))}环境加值；等级按光环持有者角色总等级。",
+  "grant": {
+    "name": "激发专注",
+    "group": "ally",
+    "mode": "all",
+    "includeSelf": true,
+    "defaultAccepted": true,
+    "outputs": [
+      {
+        "target": "defenseCommon",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))"
+      }
+    ]
+  }
+}

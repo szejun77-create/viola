@@ -1,0 +1,79 @@
+{
+  "id": "motivate_dexterity",
+  "name": "激发敏捷",
+  "category": "spell",
+  "equipmentSlot": "secondary_stance",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "次要光环：全体友军（含自身）的先攻及平衡、解除装置、开锁、骑术、手上功夫、脱逃、躲藏、翻滚、绳技获得{mod.charisma}环境加值；读取光环持有者的魅力调整值。",
+  "grant": {
+    "name": "激发敏捷",
+    "group": "ally",
+    "mode": "all",
+    "includeSelf": true,
+    "defaultAccepted": true,
+    "outputs": [
+      {
+        "target": "initiative",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      },
+      {
+        "target": "skill.balance",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      },
+      {
+        "target": "skill.disable_device",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      },
+      {
+        "target": "skill.open_lock",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      },
+      {
+        "target": "skill.ride",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      },
+      {
+        "target": "skill.sleight_of_hand",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      },
+      {
+        "target": "skill.escape_artist",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      },
+      {
+        "target": "skill.hide",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      },
+      {
+        "target": "skill.tumble",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      },
+      {
+        "target": "skill.use_rope",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "critical_specialization_greatsword",
+  "name": "专攻重击：巨剑",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "weaponRequirement": {
+    "type": "greatsword",
+    "name": "巨剑",
+    "effectText": "巨剑重击倍率＋1"
+  },
+  "outputs": [
+    {
+      "scope": "weapon",
+      "target": "criticalMultiplierBonus",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "1"
+    }
+  ]
+}

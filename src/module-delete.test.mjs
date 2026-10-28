@@ -1,0 +1,7 @@
+import assert from 'node:assert/strict';import {loadTs} from './test-module.mjs';
+const {defaultMechanics}=await loadTs('./mechanics.ts'),{moduleDeletionInfo,deleteModuleDefinition}=await loadTs('./module-delete.ts');
+const config=defaultMechanics(),item={id:'magic_stone',name:'魔石术的石头',category:'item',equipmentSlot:'weapon',parameters:{},outputs:[]};config.modules={magic_stone:item};const original=JSON.stringify(config),user={id:'pc',name:'使用者',rule_state:{weapon:{},instances:[{id:'stone',moduleId:'magic_stone',enabled:false,access:'gm',params:{}}]}};
+assert.equal(moduleDeletionInfo(config,'magic_stone',[user]).users[0].name,'使用者');assert.throws(()=>deleteModuleDefinition(config,'magic_stone',[user]),/角色/);assert.equal(JSON.stringify(config),original);
+const ref={id:'dependent',name:'引用模块',category:'feat',parameters:{},outputs:[],notes:[{text:'{modules.magic_stone.vars.x}'}]};const linked={...config,modules:{...config.modules,dependent:ref}};assert.equal(moduleDeletionInfo(linked,'magic_stone',[]).references[0].id,'dependent');assert.throws(()=>deleteModuleDefinition(linked,'magic_stone',[]),/引用/);
+const next=deleteModuleDefinition(config,'magic_stone',[]);assert.deepEqual(next.modules,{});assert.equal(JSON.stringify(config),original);assert.throws(()=>deleteModuleDefinition(next,'magic_stone',[]),/不存在/);
+console.log('Module deletion: character usage/reference blockers, unused deletion, empty-library persistence and immutable input passed');

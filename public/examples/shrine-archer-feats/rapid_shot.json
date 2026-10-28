@@ -1,0 +1,33 @@
+{
+  "id": "rapid_shot",
+  "name": "快速射击",
+  "category": "feat",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "attackCount",
+      "value": "1",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "scope": "weapon",
+      "attackMode": "ranged"
+    },
+    {
+      "target": "ranged",
+      "value": "-2",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "scope": "weapon"
+    }
+  ],
+  "defaultAccess": "toggle",
+  "weaponRequirement": {
+    "tags": [
+      "ranged"
+    ],
+    "effectText": "仅限远程攻击；适用条件由玩家现场判断。"
+  },
+  "description": "7级获得。开启后远程攻击次数+1，远程命中-2。",
+  "defaultAcquiredLevel": 7
+}

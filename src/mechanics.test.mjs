@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {loadTs} from './test-module.mjs';
+const {defaultMechanics,validateMechanics,calculateBasics,classCatalog,upgradeMechanicsRecord}=await loadTs('./mechanics.ts');
+const c=defaultMechanics(),seq=[...Array(5).fill('crusader'),...Array(3).fill('warblade'),'crusader'];
+assert(validateMechanics(c));assert.equal(calculateBasics(seq,'人类',c).values.hp.value,null);
+c.classes.crusader.hpPerLevel=10;c.classes.warblade.hpPerLevel=4;
+let result=calculateBasics(seq,'人类',c);assert.equal(result.values.hp.value,72);assert.equal(result.values.hp.parts.length,2);assert.match(result.values.hp.parts[0].label,/6 级 × 10/);
+assert.equal(result.values.attack.value,null);
+c.classes.warblade.hpPerLevel=0;assert.equal(calculateBasics(seq,'人类',c).values.hp.value,60);
+c.classes['custom-test']={name:'测试新增职业',hpPerLevel:7,primary:'intelligence'};assert(validateMechanics(c));assert.equal(classCatalog(c).length,7);assert.equal(calculateBasics(['custom-test','crusader'],'人类',c).values.hp.value,17);
+c.classes['custom-test'].name='改名职业';assert.match(classCatalog(c).at(-1).name,/改名/);assert.equal(calculateBasics(['custom-test'],'人类',c).values.hp.value,7);
+assert.equal(calculateBasics([],'人类',c).values.hp.value,null);assert.equal(calculateBasics(['unknown'],'人类',c).values.hp.value,null);
+c.races['人类']={size:'测试体型',speed:0,unit:'米'};assert.equal(calculateBasics(seq,'人类',c).race.speed,0);
+const invalid=structuredClone(c);invalid.classes.crusader.hpPerLevel=-1;assert.equal(validateMechanics(invalid),false);
+invalid.classes.crusader.hpPerLevel=1;invalid.classes['custom-test'].name=invalid.classes.crusader.name;assert.equal(validateMechanics(invalid),false);
+const old=structuredClone(c);old.schemaVersion=1;old.classes.crusader.levels=[{hp:55}];const migrated=upgradeMechanicsRecord({id:'campaign',config:old,version:2});assert.equal(migrated.config.classes.crusader.hpPerLevel,null);assert.deepEqual(migrated.config.classes.crusader.levels,[{hp:55}]);assert.equal(migrated.config.races['人类'].speed,0);
+console.log('12 simple HP, catalog and upgrade scenarios passed');

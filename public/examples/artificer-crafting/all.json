@@ -1,0 +1,209 @@
+[
+  {
+    "id": "genius_crafter",
+    "name": "天才工匠",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "物品制造时间缩短25%。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "extraordinary_crafter",
+    "name": "非凡工匠",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "物品制造金钱花费减少25%。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "quick_infusion",
+    "name": "快捷机关术",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "一天一次，你可以在一轮内灌注一个机关术。",
+        "category": "noncombat",
+        "when": "resources.uses > 0"
+      }
+    ],
+    "resources": {
+      "uses": {
+        "label": "快捷机关术",
+        "initial": 1,
+        "min": "0",
+        "max": "1",
+        "integer": true,
+        "playerEditable": false
+      }
+    },
+    "actions": [
+      {
+        "id": "use",
+        "label": "使用快捷机关术",
+        "playerUsable": true,
+        "when": "resources.uses > 0",
+        "changes": [
+          {
+            "target": "resources.uses",
+            "value": "resources.uses - 1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "inscribe_infusion",
+    "name": "刻印法纹",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你可以制造蕴含一个机关术的刻印法纹。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "legendary_crafter",
+    "name": "传奇工匠",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "物品制造花费经验减少25%。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "ingenious_crafter",
+    "name": "独具匠心",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你可以在单一物品上附加至多{{FLOOR(skills.craft_repair.ranks / 3)}}条特殊能力。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "masterwork_crafter",
+    "name": "大师之作",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你可以为物品附加更强的精制效果。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "scribe_scroll",
+    "name": "抄录卷轴",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你可以抄录魔法卷轴。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "brew_potion",
+    "name": "调制药水",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你可以调制你所知晓的法术的药水。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "craft_wondrous_item",
+    "name": "制造奇物",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你可以制造满足条件的奇物。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "craft_magic_arms_armor",
+    "name": "制造魔法武器和防具",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你可以制造满足条件的魔法武器和防具，并且给它们附魔。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "craft_wand",
+    "name": "制造魔杖",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你可以制造法术等级低于四级的魔法的魔杖。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "craft_rod",
+    "name": "制造权杖",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你可以制造权杖。",
+        "category": "noncombat"
+      }
+    ]
+  }
+]

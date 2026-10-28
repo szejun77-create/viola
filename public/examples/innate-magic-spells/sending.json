@@ -1,0 +1,37 @@
+{
+  "id": "sending",
+  "name": "短讯术",
+  "category": "spell",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [],
+  "description": "短讯术（Sending）\n塑能系\n等级：牧师4，天生魔力4，巫女5\n法术成分：言语，姿势，材料/法器\n施法时间：10分钟\n距离：见正文\n目标：一个生物\n持续时间：1轮；见正文\n豁免检定：无\n法术抗力：不可\n向熟识的生物发送不超过25字的信息。如果对方认识你，会认出你，并可立即回复类似长度的信息。智力低至1的生物也能理解，但反应受其智力限制。受术者没有义务依信息行动。\n奥术施法材料：一小段细铜线。",
+  "spell": {
+    "classLevels": {
+      "cleric": 4,
+      "innate-magic": 4,
+      "shrine-maiden": 5
+    },
+    "castAction": "cast"
+  },
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放短讯术",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "短讯术",
+        "text": "短讯术：向熟识生物发送不超过25字的信息，对方可立即回复。",
+        "remaining": "1",
+        "category": "combat",
+        "expiresModule": true
+      }
+    }
+  ]
+}

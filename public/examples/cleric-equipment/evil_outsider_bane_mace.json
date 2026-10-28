@@ -1,0 +1,58 @@
+{
+  "id": "evil_outsider_bane_mace",
+  "name": "＋1破敌（邪恶异界）钉头锤",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "weapon",
+  "parameters": {
+    "evil_outsider": {
+      "label": "目标是邪恶异界敌人",
+      "type": "boolean",
+      "default": false,
+      "playerEditable": true
+    }
+  },
+  "outputs": [
+    {
+      "target": "melee",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "value": "IF(params.evil_outsider,3,1)",
+      "scope": "weapon"
+    },
+    {
+      "target": "damage",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "value": "IF(params.evil_outsider,3,1)",
+      "scope": "weapon"
+    },
+    {
+      "target": "damageDice",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2",
+      "scope": "weapon",
+      "die": 6,
+      "attackMode": "melee",
+      "when": "params.evil_outsider"
+    }
+  ],
+  "description": "中型单手近战武器，基础伤害1d6，重击20／×2。通常命中与伤害各+1增强。目标是邪恶异界敌人时，开启条件参数，使本武器命中与伤害的增强加值改为+3，并获得2d6额外伤害。不是把+1和+2增强分别取高。",
+  "tags": [
+    "one_handed",
+    "melee",
+    "magic_weapon"
+  ],
+  "defaultAccess": "parameters",
+  "weapon": {
+    "type": "mace",
+    "baseDamage": "1d6",
+    "sizeDamage": "1d6",
+    "damage": "1d6",
+    "size": "中型",
+    "criticalWidth": 1,
+    "criticalMultiplier": 2,
+    "enhancement": 1
+  }
+}

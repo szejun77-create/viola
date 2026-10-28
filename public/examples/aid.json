@@ -1,0 +1,29 @@
+{
+  "id": "aid",
+  "name": "援护",
+  "category": "class",
+  "mode": "toggle",
+  "description": "攻击范围内的友军可接受援护。范围与接受条件由跑团现场判断。",
+  "parameters": {},
+  "outputs": [],
+  "grant": {
+    "name": "被援护",
+    "group": "ally",
+    "mode": "all",
+    "includeSelf": false,
+    "outputs": [
+      {
+        "target": "defenseCommon",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "4"
+      },
+      {
+        "target": "reflex",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "4"
+      }
+    ]
+  }
+}

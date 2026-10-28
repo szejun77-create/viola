@@ -1,0 +1,480 @@
+{
+  "id": "artificial_life_skill",
+  "name": "人工生命强化：技能",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {
+    "skill": {
+      "label": "强化的技能（DM）",
+      "type": "choice",
+      "default": "重型器具",
+      "options": [
+        "重型器具",
+        "攻城武器",
+        "攀爬",
+        "跳跃",
+        "游泳",
+        "平衡",
+        "解除装置",
+        "开锁",
+        "骑术",
+        "手上功夫",
+        "脱逃",
+        "躲藏",
+        "翻滚",
+        "绳技",
+        "专注",
+        "会计",
+        "法律",
+        "炼金",
+        "数学",
+        "制造/维修物品",
+        "估价",
+        "文件解读",
+        "搜索",
+        "伪造文书",
+        "知识（神秘）",
+        "知识（建筑）",
+        "知识（地城）",
+        "知识（地方）",
+        "知识（自然）",
+        "知识（贵族）",
+        "知识（宗教）",
+        "知识（位面）",
+        "知识（地理）",
+        "知识（历史）",
+        "语言",
+        "辨识法术",
+        "催眠",
+        "美术",
+        "厨艺",
+        "航海",
+        "占星术",
+        "密文",
+        "医疗",
+        "察言观色",
+        "聆听",
+        "侦察",
+        "生存",
+        "军事指挥",
+        "拔刀术",
+        "哄骗",
+        "驯养动物",
+        "威吓",
+        "交涉",
+        "表演",
+        "易容",
+        "UMD",
+        "搜集信息"
+      ],
+      "playerEditable": false
+    }
+  },
+  "outputs": [
+    {
+      "target": "skill.heavy_equipment",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"重型器具\""
+    },
+    {
+      "target": "skill.siege_weapons",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"攻城武器\""
+    },
+    {
+      "target": "skill.climb",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"攀爬\""
+    },
+    {
+      "target": "skill.jump",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"跳跃\""
+    },
+    {
+      "target": "skill.swim",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"游泳\""
+    },
+    {
+      "target": "skill.balance",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"平衡\""
+    },
+    {
+      "target": "skill.disable_device",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"解除装置\""
+    },
+    {
+      "target": "skill.open_lock",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"开锁\""
+    },
+    {
+      "target": "skill.ride",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"骑术\""
+    },
+    {
+      "target": "skill.sleight_of_hand",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"手上功夫\""
+    },
+    {
+      "target": "skill.escape_artist",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"脱逃\""
+    },
+    {
+      "target": "skill.hide",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"躲藏\""
+    },
+    {
+      "target": "skill.tumble",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"翻滚\""
+    },
+    {
+      "target": "skill.use_rope",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"绳技\""
+    },
+    {
+      "target": "skill.concentration",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"专注\""
+    },
+    {
+      "target": "skill.accounting",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"会计\""
+    },
+    {
+      "target": "skill.law",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"法律\""
+    },
+    {
+      "target": "skill.alchemy",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"炼金\""
+    },
+    {
+      "target": "skill.mathematics",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"数学\""
+    },
+    {
+      "target": "skill.craft_repair",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"制造/维修物品\""
+    },
+    {
+      "target": "skill.appraise",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"估价\""
+    },
+    {
+      "target": "skill.decipher_documents",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"文件解读\""
+    },
+    {
+      "target": "skill.search",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"搜索\""
+    },
+    {
+      "target": "skill.forgery",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"伪造文书\""
+    },
+    {
+      "target": "skill.knowledge_arcana",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"知识（神秘）\""
+    },
+    {
+      "target": "skill.knowledge_architecture",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"知识（建筑）\""
+    },
+    {
+      "target": "skill.knowledge_dungeoneering",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"知识（地城）\""
+    },
+    {
+      "target": "skill.knowledge_local",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"知识（地方）\""
+    },
+    {
+      "target": "skill.knowledge_nature",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"知识（自然）\""
+    },
+    {
+      "target": "skill.knowledge_nobility",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"知识（贵族）\""
+    },
+    {
+      "target": "skill.knowledge_religion",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"知识（宗教）\""
+    },
+    {
+      "target": "skill.knowledge_planes",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"知识（位面）\""
+    },
+    {
+      "target": "skill.knowledge_geography",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"知识（地理）\""
+    },
+    {
+      "target": "skill.knowledge_history",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"知识（历史）\""
+    },
+    {
+      "target": "skill.language",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"语言\""
+    },
+    {
+      "target": "skill.spellcraft",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"辨识法术\""
+    },
+    {
+      "target": "skill.hypnosis",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"催眠\""
+    },
+    {
+      "target": "skill.art",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"美术\""
+    },
+    {
+      "target": "skill.cooking",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"厨艺\""
+    },
+    {
+      "target": "skill.navigation",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"航海\""
+    },
+    {
+      "target": "skill.astrology",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"占星术\""
+    },
+    {
+      "target": "skill.cipher",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"密文\""
+    },
+    {
+      "target": "skill.heal",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"医疗\""
+    },
+    {
+      "target": "skill.sense_motive",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"察言观色\""
+    },
+    {
+      "target": "skill.listen",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"聆听\""
+    },
+    {
+      "target": "skill.spot",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"侦察\""
+    },
+    {
+      "target": "skill.survival",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"生存\""
+    },
+    {
+      "target": "skill.military_command",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"军事指挥\""
+    },
+    {
+      "target": "skill.iaijutsu",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"拔刀术\""
+    },
+    {
+      "target": "skill.bluff",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"哄骗\""
+    },
+    {
+      "target": "skill.handle_animal",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"驯养动物\""
+    },
+    {
+      "target": "skill.intimidate",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"威吓\""
+    },
+    {
+      "target": "skill.diplomacy",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"交涉\""
+    },
+    {
+      "target": "skill.perform",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"表演\""
+    },
+    {
+      "target": "skill.disguise",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"易容\""
+    },
+    {
+      "target": "skill.use_magic_device",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"UMD\""
+    },
+    {
+      "target": "skill.gather_information",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "3",
+      "when": "params.skill = \"搜集信息\""
+    }
+  ],
+  "notes": [
+    {
+      "text": "所选技能：{params.skill}，获得+3无名加值；可重复分配，每份独立选择并叠加。",
+      "category": "noncombat"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "craft_wand",
+  "name": "制造魔杖",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以制造法术等级低于四级的魔法的魔杖。",
+      "category": "noncombat"
+    }
+  ]
+}

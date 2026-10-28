@@ -1,0 +1,12 @@
+{
+  "id": "quicken_spell",
+  "name": "法术瞬发",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "搭配本专长时，施展法术视为即时动作。同轮可进行另一个行动，甚至施展另一个法术；每轮只能施展一个瞬发法术。施法时间超过一整轮的法术不可搭配。瞬发施法不引发借机攻击。占用高4环的法术位。系统仅计算超魔+4环，其余由现场判断。",
+  "metamagic": {
+    "slotIncrease": 4
+  }
+}

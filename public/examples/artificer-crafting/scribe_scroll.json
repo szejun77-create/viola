@@ -1,0 +1,14 @@
+{
+  "id": "scribe_scroll",
+  "name": "抄录卷轴",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以抄录魔法卷轴。",
+      "category": "noncombat"
+    }
+  ]
+}

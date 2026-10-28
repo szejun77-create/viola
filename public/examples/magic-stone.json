@@ -1,0 +1,70 @@
+{
+  "id": "magic_stone",
+  "name": "魔石术的石头",
+  "category": "item",
+  "equipmentSlot": "weapon",
+  "mode": "passive",
+  "description": "轻型、投掷、远程魔法武器。射程20尺；使用投石索时50尺。对不死生物时手动勾选对应参数，额外获得1d6伤害，命中与伤害增强加值变为＋2。",
+  "tags": [
+    "light",
+    "thrown",
+    "ranged",
+    "magic_weapon"
+  ],
+  "weapon": {
+    "type": "magic_stone",
+    "baseDamage": "1d6",
+    "sizeDamage": "1d6",
+    "damage": "1d6",
+    "size": "中型",
+    "criticalWidth": 1,
+    "criticalMultiplier": 2,
+    "enhancement": 1,
+    "damageNote": "射程20尺／50尺（使用投石索）。对不死生物的额外效果由手动参数开启。"
+  },
+  "parameters": {
+    "undead": {
+      "label": "目标为不死生物",
+      "type": "boolean",
+      "default": false,
+      "playerEditable": true
+    }
+  },
+  "outputs": [
+    {
+      "scope": "weapon",
+      "target": "ranged",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "value": "IF(params.undead, 2, 1)"
+    },
+    {
+      "scope": "weapon",
+      "target": "damage",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "value": "IF(params.undead, 2, 1)"
+    },
+    {
+      "scope": "weapon",
+      "target": "damageDice",
+      "die": 6,
+      "attackMode": "ranged",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "1",
+      "when": "params.undead"
+    }
+  ],
+  "notes": [
+    {
+      "text": "魔石术的石头：射程20尺；使用投石索时50尺。",
+      "category": "combat"
+    },
+    {
+      "text": "本次目标为不死生物：额外＋1d6伤害，命中和伤害的增强加值各为＋2。",
+      "category": "combat",
+      "when": "params.undead"
+    }
+  ]
+}

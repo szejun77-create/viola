@@ -1,0 +1,23 @@
+{
+  "id": "natural_armor_ring_2",
+  "name": "天生防御戒指＋2",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "ring",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "defense",
+      "duration": "short",
+      "bonusType": "natural_armor",
+      "value": "2"
+    },
+    {
+      "target": "flatDefense",
+      "duration": "short",
+      "bonusType": "natural_armor",
+      "value": "2"
+    }
+  ],
+  "description": "普通和措手不及防御获得+2天生防御，不适用于接触防御。"
+}

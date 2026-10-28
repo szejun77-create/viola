@@ -1,0 +1,41 @@
+{
+  "id": "rod_of_extend_spell",
+  "name": "法术延时权杖",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "special",
+  "parameters": {},
+  "outputs": [],
+  "description": "拥有3点使用次数。可用它为一项法术应用延时超魔；按本团要求不在战场使用。这里只记录次数与提示，法术持续时间由你手动处理，不自动增加法术环位。",
+  "resources": {
+    "uses": {
+      "label": "延时权杖",
+      "initial": 3,
+      "min": "0",
+      "max": "3",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "actions": [
+    {
+      "id": "use",
+      "label": "使用延时权杖",
+      "playerUsable": true,
+      "when": "resources.uses > 0",
+      "changes": [
+        {
+          "target": "resources.uses",
+          "value": "resources.uses - 1"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "text": "你可以用延时权杖为一项法术应用延时超魔；不在战场使用，使用后消耗1点，持续时间手动处理。",
+      "category": "combat",
+      "when": "resources.uses > 0"
+    }
+  ]
+}

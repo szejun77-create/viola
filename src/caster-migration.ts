@@ -1,0 +1,6 @@
+import type {Mechanics} from './mechanics';
+import type {RuleModule} from './rule-types';
+import {ruleCatalog,validateCatalog} from './rule-schema';
+import {validateSpellConfiguration} from './spell-preparation';
+export function migrateSpellCasterModule(module:RuleModule){if(module.category!=='spell'||(module.equipmentSlot==='stance'||module.equipmentSlot==='secondary_stance'))return {module,changes:0};let changes=0;function walk(value:unknown):unknown{if(typeof value==='string')return value.replace(/\b(?:classes\.artificer\.level|cast\.level)\b/g,()=>{changes++;return 'caster.level'});if(Array.isArray(value))return value.map(walk);if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,walk(v)]));return value}return {module:walk(module) as RuleModule,get changes(){return changes}}}
+export function planCasterMigration(config:Mechanics){const changed:{id:string;name:string;changes:number}[]=[],modules=Object.fromEntries(Object.values(ruleCatalog(config).modules).map(m=>{const result=migrateSpellCasterModule(m);if(result.changes)changed.push({id:m.id,name:m.name,changes:result.changes});return [m.id,result.module]}));const next={...config,modules};validateCatalog(ruleCatalog(next));validateSpellConfiguration(next);return {next,changed}}

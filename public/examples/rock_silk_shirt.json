@@ -1,0 +1,23 @@
+{
+  "id": "rock_silk_shirt",
+  "name": "岩丝衬衣",
+  "category": "item",
+  "equipmentSlot": "torso",
+  "mode": "toggle",
+  "description": "按实际条件开启或关闭伤害减免。",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damageReduction",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "1"
+    }
+  ],
+  "notes": [
+    {
+      "text": "伤害减免1；挥砍／钝击。适用与否由玩家现场判断并启停。",
+      "category": "combat"
+    }
+  ]
+}

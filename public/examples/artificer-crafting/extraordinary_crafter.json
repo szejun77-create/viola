@@ -1,0 +1,14 @@
+{
+  "id": "extraordinary_crafter",
+  "name": "非凡工匠",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "物品制造金钱花费减少25%。",
+      "category": "noncombat"
+    }
+  ]
+}

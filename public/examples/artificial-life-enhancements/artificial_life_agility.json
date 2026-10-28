@@ -1,0 +1,15 @@
+{
+  "id": "artificial_life_agility",
+  "name": "人工生命强化：机敏",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "dexterity",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "2"
+    }
+  ]
+}

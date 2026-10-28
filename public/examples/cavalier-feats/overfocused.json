@@ -1,0 +1,16 @@
+{
+  "id": "overfocused",
+  "name": "过度专注",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "skill.spot",
+      "value": "-2",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "context": "被偷袭"
+    }
+  ]
+}

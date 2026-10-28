@@ -1,0 +1,20 @@
+import type {AbilityKey} from './character-model';
+export interface SkillDefinition {id:string;name:string}
+export const skillGroups:{ability:AbilityKey;name:string;skills:SkillDefinition[]}[]=[
+ {ability:'strength',name:'力量',skills:[{id:'heavy_equipment',name:'重型器具'},{id:'siege_weapons',name:'攻城武器'},{id:'climb',name:'攀爬'},{id:'jump',name:'跳跃'},{id:'swim',name:'游泳'}]},
+ {ability:'dexterity',name:'敏捷',skills:[{id:'balance',name:'平衡'},{id:'disable_device',name:'解除装置'},{id:'open_lock',name:'开锁'},{id:'ride',name:'骑术'},{id:'sleight_of_hand',name:'手上功夫'},{id:'escape_artist',name:'脱逃'},{id:'hide',name:'躲藏'},{id:'tumble',name:'翻滚'},{id:'use_rope',name:'绳技'}]},
+ {ability:'constitution',name:'体质',skills:[{id:'concentration',name:'专注'}]},
+ {ability:'intelligence',name:'智力',skills:[{id:'accounting',name:'会计'},{id:'law',name:'法律'},{id:'alchemy',name:'炼金'},{id:'mathematics',name:'数学'},{id:'craft_repair',name:'制造/维修物品'},{id:'appraise',name:'估价'},{id:'decipher_documents',name:'文件解读'},{id:'search',name:'搜索'},{id:'forgery',name:'伪造文书'},{id:'knowledge_arcana',name:'知识（神秘）'},{id:'knowledge_architecture',name:'知识（建筑）'},{id:'knowledge_dungeoneering',name:'知识（地城）'},{id:'knowledge_local',name:'知识（地方）'},{id:'knowledge_nature',name:'知识（自然）'},{id:'knowledge_nobility',name:'知识（贵族）'},{id:'knowledge_religion',name:'知识（宗教）'},{id:'knowledge_planes',name:'知识（位面）'},{id:'knowledge_geography',name:'知识（地理）'},{id:'knowledge_history',name:'知识（历史）'},{id:'language',name:'语言'},{id:'spellcraft',name:'辨识法术'}]},
+ {ability:'wisdom',name:'感知',skills:[{id:'hypnosis',name:'催眠'},{id:'art',name:'美术'},{id:'cooking',name:'厨艺'},{id:'navigation',name:'航海'},{id:'astrology',name:'占星术'},{id:'cipher',name:'密文'},{id:'heal',name:'医疗'},{id:'sense_motive',name:'察言观色'},{id:'listen',name:'聆听'},{id:'spot',name:'侦察'},{id:'survival',name:'生存'}]},
+ {ability:'charisma',name:'魅力',skills:[{id:'military_command',name:'军事指挥'},{id:'iaijutsu',name:'拔刀术'},{id:'bluff',name:'哄骗'},{id:'handle_animal',name:'驯养动物'},{id:'intimidate',name:'威吓'},{id:'diplomacy',name:'交涉'},{id:'perform',name:'表演'},{id:'disguise',name:'易容'},{id:'use_magic_device',name:'UMD'},{id:'gather_information',name:'搜集信息'}]}
+];
+export const allSkills=skillGroups.flatMap(group=>group.skills.map(skill=>({...skill,ability:group.ability,abilityName:group.name})));
+export const defaultClassSkills:Record<string,string[]>={
+ artificer:['appraise','concentration','craft_repair','disable_device','knowledge_arcana','knowledge_architecture','knowledge_planes','open_lock','art','search','use_magic_device','spellcraft','mathematics','siege_weapons','alchemy'],
+ crusader:['siege_weapons','navigation','military_command','spot','law','decipher_documents','balance','concentration','craft_repair','diplomacy','intimidate','jump','knowledge_history','knowledge_religion','ride'],
+ warblade:['balance','climb','concentration','craft_repair','diplomacy','intimidate','jump','knowledge_history','knowledge_local','swim','tumble','heavy_equipment','siege_weapons','iaijutsu'],
+ cavalier:['heavy_equipment','siege_weapons','navigation','military_command','iaijutsu','climb','craft_repair','handle_animal','intimidate','jump','ride','swim'],
+ 'shrine-maiden':['decipher_documents','search','perform','sense_motive','heal','art','craft_repair','spellcraft',...allSkills.filter(skill=>skill.id.startsWith('knowledge_')).map(skill=>skill.id)],
+ cleric:['concentration','art','diplomacy','heal','knowledge_arcana','knowledge_history','knowledge_religion','knowledge_planes','craft_repair','spellcraft','hypnosis','sense_motive','decipher_documents','cipher']
+};
+export function classSkillsFor(config:{classes:Record<string,{classSkills?:string[]}>},id:string){return config.classes[id]?.classSkills??defaultClassSkills[id]??[]}

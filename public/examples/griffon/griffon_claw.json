@@ -1,0 +1,40 @@
+{
+  "id": "griffon_claw",
+  "name": "狮鹫的爪",
+  "category": "item",
+  "equipmentSlot": "weapon",
+  "mode": "passive",
+  "description": "大型起点，轻型近战天生武器，伤害1d4，重击20／×2。放在副武器位置；仅本武器额外获得一次攻击，且命中-3。",
+  "tags": [
+    "melee",
+    "natural_weapon",
+    "light"
+  ],
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "attackCount",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "1",
+      "scope": "weapon"
+    },
+    {
+      "target": "melee",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "-3",
+      "scope": "weapon"
+    }
+  ],
+  "weapon": {
+    "type": "griffon_claw",
+    "baseDamage": "1d4",
+    "sizeDamage": "1d4",
+    "damage": "1d4",
+    "size": "大型",
+    "criticalWidth": 1,
+    "criticalMultiplier": 2,
+    "enhancement": 0
+  }
+}

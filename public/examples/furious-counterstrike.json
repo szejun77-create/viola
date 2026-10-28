@@ -1,0 +1,32 @@
+{
+  "id": "furious_counterstrike",
+  "name": "狂怒反击",
+  "category": "class",
+  "mode": "passive",
+  "description": "读取心似钢铁伤害缓冲池：非零时伤害至少+1，命中至少+1且至多+6；清池后加值归零。命中示例同时用于近战与远程，可按房规修改输出。",
+  "parameters": {},
+  "variables": {
+    "buffer": "modules.steel_heart.resources.damage_buffer",
+    "bonus": "IF(vars.buffer = 0, 0, MAX(1, FLOOR(vars.buffer / 5)))"
+  },
+  "outputs": [
+    {
+      "target": "damage",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "vars.bonus"
+    },
+    {
+      "target": "melee",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "MIN(6, vars.bonus)"
+    },
+    {
+      "target": "ranged",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "MIN(6, vars.bonus)"
+    }
+  ]
+}

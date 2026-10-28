@@ -1,0 +1,42 @@
+{
+  "id": "dancing_mongoose",
+  "name": "猫鼬之舞",
+  "category": "spell",
+  "description": "Dancing mongoose：1回合内，你的武器额外获得一次攻击。",
+  "mode": "toggle",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "warblade"
+    ],
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "attackCount",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "1"
+    }
+  ],
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放猫鼬之舞",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "猫鼬之舞",
+        "text": "1回合内，你的武器额外获得一次攻击。",
+        "remaining": "1",
+        "expiresModule": true
+      }
+    }
+  ]
+}

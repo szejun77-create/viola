@@ -1,0 +1,14 @@
+{
+  "id": "legendary_crafter",
+  "name": "传奇工匠",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "物品制造花费经验减少25%。",
+      "category": "noncombat"
+    }
+  ]
+}

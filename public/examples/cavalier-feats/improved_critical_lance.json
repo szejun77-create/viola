@@ -1,0 +1,21 @@
+{
+  "id": "improved_critical_lance",
+  "name": "精通重击：骑枪",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "criticalRangeMultiplier",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "scope": "weapon"
+    }
+  ],
+  "weaponRequirement": {
+    "type": "lance",
+    "name": "骑枪",
+    "effectText": "重击威胁范围×2"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "bonesplitter",
+  "name": "碎骨者",
+  "category": "spell",
+  "description": "1回合内获得额外4d6伤害；目标强韧豁免失败时，你的重击确认命中额外＋10。",
+  "mode": "toggle",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "crusader"
+    ],
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damageDice",
+      "value": "4",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "die": 6
+    }
+  ],
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放碎骨者",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "碎骨者",
+        "text": "1回合内获得额外4d6伤害；目标强韧豁免失败时，你的重击确认命中额外＋10。",
+        "remaining": "1",
+        "expiresModule": true
+      }
+    }
+  ],
+  "notes": [
+    {
+      "text": "若对方在DC {{13 + mod.strength}}的强韧豁免中失败，你的重击确认命中额外＋10。",
+      "category": "combat"
+    }
+  ]
+}

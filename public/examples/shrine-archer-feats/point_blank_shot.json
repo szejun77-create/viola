@@ -1,0 +1,37 @@
+{
+  "id": "point_blank_shot",
+  "name": "近程射击",
+  "category": "feat",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "ranged",
+      "value": "1",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "scope": "weapon"
+    },
+    {
+      "target": "damage",
+      "value": "1",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "scope": "weapon",
+      "attackMode": "ranged"
+    }
+  ],
+  "defaultAccess": "toggle",
+  "weaponRequirement": {
+    "tags": [
+      "ranged"
+    ],
+    "effectText": "仅限远程攻击；适用条件由玩家现场判断。"
+  },
+  "notes": [
+    {
+      "text": "使用远程武器攻击30尺内敌人时，命中、伤害各+1。符合距离条件时开启。",
+      "category": "combat"
+    }
+  ]
+}

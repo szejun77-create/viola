@@ -1,0 +1,32 @@
+{
+  "id": "endless_scrollcase",
+  "name": "无尽卷轴盒",
+  "category": "item",
+  "equipmentSlot": "weapon",
+  "mode": "passive",
+  "defaultAccess": "parameters",
+  "description": "占一个单手武器位置，可放主手或副手；没有攻击数据，不能用于攻击。穿戴时可用移动动作取出卷轴；按实际情况开启“密藏卷轴”。",
+  "parameters": {
+    "hidden_scrolls": {
+      "label": "密藏卷轴",
+      "type": "boolean",
+      "default": false,
+      "playerEditable": true
+    }
+  },
+  "outputs": [
+    {
+      "target": "skill.concentration",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "4",
+      "when": "params.hidden_scrolls"
+    }
+  ],
+  "notes": [
+    {
+      "text": "你只需要移动动作就能取出卷轴。",
+      "category": "noncombat"
+    }
+  ]
+}

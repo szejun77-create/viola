@@ -1,0 +1,18 @@
+{
+  "id": "extend_spell",
+  "name": "法术延时",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "metamagic": {
+    "slotIncrease": 1,
+    "durationMultiplier": 2
+  },
+  "notes": [
+    {
+      "text": "法术延时：施法时开启对应超魔按钮，消耗高1环的法术位，持续时间翻倍。立即、专注、永久法术不延长。冻寒／灼热金属只延长总时间，开始阶段保持2轮。",
+      "category": "combat"
+    }
+  ]
+}

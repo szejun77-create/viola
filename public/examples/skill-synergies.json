@@ -1,0 +1,295 @@
+[
+  {
+    "id": "bluff__diplomacy",
+    "source": "bluff",
+    "target": "diplomacy"
+  },
+  {
+    "id": "bluff__disguise",
+    "source": "bluff",
+    "target": "disguise"
+  },
+  {
+    "id": "bluff__intimidate",
+    "source": "bluff",
+    "target": "intimidate"
+  },
+  {
+    "id": "bluff__sleight_of_hand",
+    "source": "bluff",
+    "target": "sleight_of_hand"
+  },
+  {
+    "id": "art__appraise",
+    "source": "art",
+    "target": "appraise",
+    "context": "目标为工艺品的时候"
+  },
+  {
+    "id": "decipher_documents__use_magic_device",
+    "source": "decipher_documents",
+    "target": "use_magic_device",
+    "context": "目标为卷轴的时候"
+  },
+  {
+    "id": "escape_artist__use_rope",
+    "source": "escape_artist",
+    "target": "use_rope",
+    "context": "捆绑他人的时候"
+  },
+  {
+    "id": "handle_animal__ride",
+    "source": "handle_animal",
+    "target": "ride"
+  },
+  {
+    "id": "jump__tumble",
+    "source": "jump",
+    "target": "tumble"
+  },
+  {
+    "id": "knowledge_arcana__spellcraft",
+    "source": "knowledge_arcana",
+    "target": "spellcraft"
+  },
+  {
+    "id": "knowledge_architecture__search",
+    "source": "knowledge_architecture",
+    "target": "search",
+    "context": "对象为密门或密室"
+  },
+  {
+    "id": "knowledge_dungeoneering__survival",
+    "source": "knowledge_dungeoneering",
+    "target": "survival",
+    "context": "环境在地下城"
+  },
+  {
+    "id": "knowledge_geography__survival",
+    "source": "knowledge_geography",
+    "target": "survival",
+    "context": "野外避免迷路和避开自然危险"
+  },
+  {
+    "id": "knowledge_local__gather_information",
+    "source": "knowledge_local",
+    "target": "gather_information"
+  },
+  {
+    "id": "knowledge_nature__survival",
+    "source": "knowledge_nature",
+    "target": "survival",
+    "context": "处于自然环境"
+  },
+  {
+    "id": "knowledge_nobility__diplomacy",
+    "source": "knowledge_nobility",
+    "target": "diplomacy"
+  },
+  {
+    "id": "search__survival",
+    "source": "search",
+    "target": "survival",
+    "context": "在追踪足迹的时候"
+  },
+  {
+    "id": "sense_motive__diplomacy",
+    "source": "sense_motive",
+    "target": "diplomacy"
+  },
+  {
+    "id": "spellcraft__use_magic_device",
+    "source": "spellcraft",
+    "target": "use_magic_device",
+    "context": "目标为卷轴的时候"
+  },
+  {
+    "id": "survival__knowledge_nature",
+    "source": "survival",
+    "target": "knowledge_nature"
+  },
+  {
+    "id": "tumble__balance",
+    "source": "tumble",
+    "target": "balance"
+  },
+  {
+    "id": "tumble__jump",
+    "source": "tumble",
+    "target": "jump"
+  },
+  {
+    "id": "use_magic_device__spellcraft",
+    "source": "use_magic_device",
+    "target": "spellcraft",
+    "context": "阅读卷轴的时候"
+  },
+  {
+    "id": "use_rope__escape_artist",
+    "source": "use_rope",
+    "target": "escape_artist",
+    "context": "被绳索捆绑的时候"
+  },
+  {
+    "id": "use_rope__climb",
+    "source": "use_rope",
+    "target": "climb",
+    "context": "在有绳索辅助攀爬的时候"
+  },
+  {
+    "id": "use_rope__heavy_equipment",
+    "source": "use_rope",
+    "target": "heavy_equipment",
+    "context": "在重型器具需要通过绳索拖拽的时候"
+  },
+  {
+    "id": "use_rope__siege_weapons",
+    "source": "use_rope",
+    "target": "siege_weapons",
+    "context": "在攻城武器需要绳索操纵的时候"
+  },
+  {
+    "id": "heavy_equipment__siege_weapons",
+    "source": "heavy_equipment",
+    "target": "siege_weapons"
+  },
+  {
+    "id": "heavy_equipment__disable_device",
+    "source": "heavy_equipment",
+    "target": "disable_device",
+    "context": "装置尺寸很大的时候"
+  },
+  {
+    "id": "heavy_equipment__craft_repair",
+    "source": "heavy_equipment",
+    "target": "craft_repair",
+    "context": "维修巨大物品的时候"
+  },
+  {
+    "id": "accounting__mathematics",
+    "source": "accounting",
+    "target": "mathematics"
+  },
+  {
+    "id": "decipher_documents__law",
+    "source": "decipher_documents",
+    "target": "law"
+  },
+  {
+    "id": "knowledge_nobility__law",
+    "source": "knowledge_nobility",
+    "target": "law"
+  },
+  {
+    "id": "bluff__law",
+    "source": "bluff",
+    "target": "law",
+    "context": "在通过欺骗玩弄法律的时候"
+  },
+  {
+    "id": "diplomacy__law",
+    "source": "diplomacy",
+    "target": "law",
+    "context": "在通过法律说服别人的时候"
+  },
+  {
+    "id": "intimidate__law",
+    "source": "intimidate",
+    "target": "law",
+    "context": "通过法律恐吓别人的时候"
+  },
+  {
+    "id": "alchemy__heal",
+    "source": "alchemy",
+    "target": "heal"
+  },
+  {
+    "id": "mathematics__siege_weapons",
+    "source": "mathematics",
+    "target": "siege_weapons"
+  },
+  {
+    "id": "mathematics__accounting",
+    "source": "mathematics",
+    "target": "accounting"
+  },
+  {
+    "id": "mathematics__knowledge_arcana",
+    "source": "mathematics",
+    "target": "knowledge_arcana"
+  },
+  {
+    "id": "mathematics__astrology",
+    "source": "mathematics",
+    "target": "astrology"
+  },
+  {
+    "id": "mathematics__cipher",
+    "source": "mathematics",
+    "target": "cipher"
+  },
+  {
+    "id": "concentration__hypnosis",
+    "source": "concentration",
+    "target": "hypnosis",
+    "context": "催眠对象为自己的时候"
+  },
+  {
+    "id": "sense_motive__hypnosis",
+    "source": "sense_motive",
+    "target": "hypnosis",
+    "context": "催眠对象为别人的时候"
+  },
+  {
+    "id": "art__forgery",
+    "source": "art",
+    "target": "forgery"
+  },
+  {
+    "id": "art__knowledge_architecture",
+    "source": "art",
+    "target": "knowledge_architecture"
+  },
+  {
+    "id": "art__knowledge_geography",
+    "source": "art",
+    "target": "knowledge_geography",
+    "context": "绘制当地地图以让别人了解情况的时候"
+  },
+  {
+    "id": "survival__cooking",
+    "source": "survival",
+    "target": "cooking",
+    "context": "在非厨房环境的时候"
+  },
+  {
+    "id": "survival__navigation",
+    "source": "survival",
+    "target": "navigation"
+  },
+  {
+    "id": "knowledge_geography__navigation",
+    "source": "knowledge_geography",
+    "target": "navigation"
+  },
+  {
+    "id": "navigation__swim",
+    "source": "navigation",
+    "target": "swim"
+  },
+  {
+    "id": "diplomacy__military_command",
+    "source": "diplomacy",
+    "target": "military_command"
+  },
+  {
+    "id": "sleight_of_hand__iaijutsu",
+    "source": "sleight_of_hand",
+    "target": "iaijutsu"
+  },
+  {
+    "id": "bluff__iaijutsu",
+    "source": "bluff",
+    "target": "iaijutsu"
+  }
+]

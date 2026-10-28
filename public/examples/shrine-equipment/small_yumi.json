@@ -1,0 +1,30 @@
+{
+  "id": "small_yumi",
+  "name": "和弓",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "weapon",
+  "parameters": {},
+  "outputs": [],
+  "tags": [
+    "ranged",
+    "two_handed",
+    "no_strength_damage"
+  ],
+  "weapon": {
+    "type": "yumi",
+    "baseDamage": "1d8",
+    "sizeDamage": "1d8",
+    "damage": "1d8",
+    "size": "小型",
+    "criticalWidth": 1,
+    "criticalMultiplier": 3,
+    "enhancement": 0
+  },
+  "notes": [
+    {
+      "text": "中型体型可以正常将它当作长弓使用。伤害始终忽略力量调整，无论正负。",
+      "category": "combat"
+    }
+  ]
+}

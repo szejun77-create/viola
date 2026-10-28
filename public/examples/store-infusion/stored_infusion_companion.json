@@ -1,0 +1,20 @@
+{
+  "id": "stored_infusion_companion",
+  "name": "储存机关术（部属）",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "grantsCasting": {
+    "id": "stored-infusion",
+    "name": "储存机关术",
+    "spellClass": "artificer",
+    "spellcastingMode": "prepared"
+  },
+  "notes": [
+    {
+      "text": "你拥有一个主人提前灌注的机关术，可以在需要时自行使用。已知法术及准备位由DM配置，必须先装载；本施法表复用机关术师的法术及环级。",
+      "category": "noncombat"
+    }
+  ]
+}

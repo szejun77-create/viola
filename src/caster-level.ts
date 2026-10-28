@@ -1,0 +1,7 @@
+import {castingBaseLevel} from './casting-sources';
+import type {Mechanics} from './mechanics';
+import {stackGroups} from './bonuses';
+import type {EffectGroup} from './calculator';
+import type {ModuleEffect,RuleState} from './rule-types';
+export function calculateCasterLevel(levels:string[],classId:string,effects:ModuleEffect[]=[],state:RuleState,config?:Mechanics){const base=config?castingBaseLevel(levels,classId,config,state):levels.filter(id=>id===classId).length,manual=state.casterLevelEffects?.[classId]??{long:[],short:[]},applicable=effects.filter(e=>e.target==='casterLevel'&&(!e.casterClass||e.casterClass===classId)),stack=stackGroups([...manual.long,...applicable],manual.short);return {base,total:Math.max(0,Math.floor(base+stack.total)),stack}}
+export function validateCasterAdjustments(state:RuleState){if(state.casterLevelEffects===undefined)return;const value=state.casterLevelEffects;if(!value||typeof value!=='object'||Array.isArray(value)||Object.keys(value).length>200)throw Error('施法者等级调整格式无效');for(const [id,g]of Object.entries(value)){if(!/^[a-z][a-z0-9-]{0,79}$/.test(id)||!g||!Array.isArray(g.long)||!Array.isArray(g.short)||g.long.length+g.short.length>100)throw Error('施法者等级来源格式无效');for(const e of [...g.long,...g.short]){if(!e||typeof e.id!=='string'||typeof e.name!=='string'||e.name.length>100||!Number.isFinite(e.value)||typeof e.enabled!=='boolean')throw Error('施法者等级调整需为有效来源');}stackGroups(g.long,g.short)}}

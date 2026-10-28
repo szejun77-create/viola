@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import ts from 'typescript';
+const compiled=ts.transpileModule(readFileSync(new URL('./character-model.ts',import.meta.url),'utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
+const {classes,classSummary,levelRanges,normalizeCharacter}=await import('data:text/javascript;base64,'+Buffer.from(compiled).toString('base64'));
+assert.deepEqual(classes.map(c=>c.name),['机关术师','十字军','巫女','战刃','重骑兵','牧师']);
+const levels=[...Array(5).fill('crusader'),...Array(3).fill('warblade'),'crusader'];
+assert.equal(classSummary(levels),'十字军 6 / 战刃 3');
+assert.deepEqual(levelRanges(levels),[{start:1,end:5,classId:'crusader'},{start:6,end:8,classId:'warblade'},{start:9,end:9,classId:'crusader'}]);
+assert.equal(classSummary([]),'职业待分配');
+const known=normalizeCharacter({class_name:'牧师',level:3,strength:16,notes:'保留'});
+assert.deepEqual(known.class_levels,['cleric','cleric','cleric']);assert.equal(known.strength,16);assert.equal(known.notes,'保留');assert.equal(known.ability_temporary.strength,0);
+const unknown=normalizeCharacter({class_name:'旧自定义职业',level:5});assert.deepEqual(unknown.class_levels,[]);assert.equal(unknown.class_name,'旧自定义职业');
+const saved=normalizeCharacter({...known,class_levels:levels,ability_permanent:{...known.ability_permanent,strength:2}});assert.deepEqual(saved.class_levels,levels);assert.equal(saved.ability_permanent.strength,2);
+console.log('7 character model checks passed');

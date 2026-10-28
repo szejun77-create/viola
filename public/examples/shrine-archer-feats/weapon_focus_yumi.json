@@ -1,0 +1,21 @@
+{
+  "id": "weapon_focus_yumi",
+  "name": "专攻武器：和弓",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "ranged",
+      "value": "1",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "scope": "weapon"
+    }
+  ],
+  "weaponRequirement": {
+    "type": "yumi",
+    "name": "和弓",
+    "effectText": "使用和弓时，命中+1。"
+  }
+}

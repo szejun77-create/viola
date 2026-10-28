@@ -1,0 +1,14 @@
+{
+  "id": "inscribe_infusion",
+  "name": "刻印法纹",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以制造蕴含一个机关术的刻印法纹。",
+      "category": "noncombat"
+    }
+  ]
+}

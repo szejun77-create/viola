@@ -1,0 +1,53 @@
+{
+  "id": "riding_boots",
+  "name": "骑乘靴",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "feet",
+  "parameters": {},
+  "weaponRequirement": {
+    "tags": [
+      "melee"
+    ],
+    "effectText": "拥有奋力冲刺并骑冲时，普通近战伤害×3；Lance伤害×4。"
+  },
+  "outputs": [
+    {
+      "target": "skill.ride",
+      "value": "5",
+      "duration": "short",
+      "bonusType": "competence"
+    },
+    {
+      "target": "damageMultiplier",
+      "value": "3",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "scope": "weapon",
+      "attackMode": "melee",
+      "requiresOwnedModule": "spirited_charge",
+      "when": "conditions.charge && conditions.mounted_charge"
+    },
+    {
+      "target": "damageMultiplier",
+      "value": "4",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "scope": "weapon",
+      "attackMode": "melee",
+      "requiredWeaponType": "lance",
+      "requiresOwnedModule": "spirited_charge",
+      "when": "conditions.charge && conditions.mounted_charge"
+    }
+  ],
+  "notes": [
+    {
+      "text": "你在骑冲击中对手后，可以继续沿直线向前。",
+      "category": "combat"
+    },
+    {
+      "text": "拥有奋力冲刺且处于骑乘冲锋时，普通近战伤害变为3倍，Lance为4倍。武器区已计入倍率，不要再次手动乘算。",
+      "category": "combat"
+    }
+  ]
+}

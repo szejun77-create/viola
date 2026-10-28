@@ -1,0 +1,28 @@
+{
+  "id": "mounted_mobility",
+  "name": "骑乘灵活移动",
+  "category": "feat",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "defense",
+      "value": "4",
+      "duration": "short",
+      "bonusType": "dodge"
+    },
+    {
+      "target": "touchDefense",
+      "value": "4",
+      "duration": "short",
+      "bonusType": "dodge"
+    }
+  ],
+  "notes": [
+    {
+      "text": "你和坐骑因离开威胁范围而引发借机攻击时，获得+4闪避防御。符合条件时开启；坐骑数值由现场处理。",
+      "category": "combat"
+    }
+  ],
+  "defaultAccess": "toggle"
+}

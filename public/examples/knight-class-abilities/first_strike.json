@@ -1,0 +1,42 @@
+{
+  "id": "first_strike",
+  "name": "先声夺人",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "grantsModules": [
+    "first_strike_buff"
+  ],
+  "resources": {
+    "first_strike": {
+      "label": "先声夺人",
+      "initial": 1,
+      "min": "0",
+      "max": "1",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "actions": [
+    {
+      "id": "use",
+      "label": "使用先声夺人",
+      "playerUsable": true,
+      "when": "resources.first_strike >= 1",
+      "changes": [
+        {
+          "target": "resources.first_strike",
+          "value": "resources.first_strike - 1"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "先声夺人",
+        "text": "伤害额外增加{MAX(0, 2 * FLOOR((level - 5) / 2))}d8；使用后立即生效，下一次回合刷新结束。",
+        "remaining": "1",
+        "category": "combat",
+        "activateModule": "first_strike_buff"
+      }
+    }
+  ]
+}

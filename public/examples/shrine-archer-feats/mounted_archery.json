@@ -1,0 +1,22 @@
+{
+  "id": "mounted_archery",
+  "name": "骑乘射击",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "ranged",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "when": "conditions.mounted"
+    }
+  ],
+  "notes": [
+    {
+      "text": "上马后的远程命中减值由-4改为-2。",
+      "category": "combat"
+    }
+  ]
+}

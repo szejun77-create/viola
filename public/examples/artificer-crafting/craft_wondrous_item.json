@@ -1,0 +1,14 @@
+{
+  "id": "craft_wondrous_item",
+  "name": "制造奇物",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以制造满足条件的奇物。",
+      "category": "noncombat"
+    }
+  ]
+}

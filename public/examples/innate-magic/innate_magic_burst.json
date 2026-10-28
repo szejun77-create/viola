@@ -1,0 +1,24 @@
+{
+  "id": "innate_magic_burst",
+  "name": "天生魔力爆发",
+  "category": "other",
+  "mode": "toggle",
+  "timedOnly": true,
+  "requiresOwnedModule": "innate_magic",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damageDice",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "1",
+      "die": 6
+    },
+    {
+      "target": "damage",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2"
+    }
+  ]
+}

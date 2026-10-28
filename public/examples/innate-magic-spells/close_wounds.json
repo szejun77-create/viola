@@ -1,0 +1,15 @@
+{
+  "id": "close_wounds",
+  "name": "闭合伤口",
+  "category": "spell",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "闭合伤口（Close Wounds）\n咒法系（医疗）\n等级：牧师2，天生魔力2\n法术成分：言语\n施法时间：直觉动作\n距离：{25 + 5 * FLOOR(caster.level / 2)}尺\n目标：一个生物\n持续时间：立即\n豁免检定：意志，通过则减半（无害）；见正文\n法术抗力：可（无害）\n治疗1d4+{MIN(caster.level, 5)}点伤害。若在目标遭受伤害时以直觉动作施放，可有效预防这部分伤害，使生命刚降到-10的目标保持存活；即使生命仍为负值，也使伤势稳定。\n对不死生物改为造成伤害，意志豁免成功则减半。由现场手动结算。",
+  "spell": {
+    "classLevels": {
+      "cleric": 2,
+      "innate-magic": 2
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "id": "circlet_of_persuasion",
+  "name": "劝诱头饰",
+  "category": "item",
+  "equipmentSlot": "head",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "skill.military_command",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2"
+    },
+    {
+      "target": "skill.iaijutsu",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2"
+    },
+    {
+      "target": "skill.bluff",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2"
+    },
+    {
+      "target": "skill.handle_animal",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2"
+    },
+    {
+      "target": "skill.intimidate",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2"
+    },
+    {
+      "target": "skill.diplomacy",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2"
+    },
+    {
+      "target": "skill.perform",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2"
+    },
+    {
+      "target": "skill.disguise",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2"
+    },
+    {
+      "target": "skill.use_magic_device",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2"
+    },
+    {
+      "target": "skill.gather_information",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "2"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "griffon_beak",
+  "name": "狮鹫的喙",
+  "category": "item",
+  "equipmentSlot": "weapon",
+  "mode": "passive",
+  "description": "大型起点，单手近战天生武器，伤害2d6，重击20／×2。放在主武器位置。",
+  "tags": [
+    "melee",
+    "natural_weapon",
+    "one_handed"
+  ],
+  "parameters": {},
+  "outputs": [],
+  "weapon": {
+    "type": "griffon_beak",
+    "baseDamage": "2d6",
+    "sizeDamage": "2d6",
+    "damage": "2d6",
+    "size": "大型",
+    "criticalWidth": 1,
+    "criticalMultiplier": 2,
+    "enhancement": 0
+  }
+}

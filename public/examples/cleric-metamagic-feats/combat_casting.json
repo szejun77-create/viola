@@ -1,0 +1,17 @@
+{
+  "id": "combat_casting",
+  "name": "战斗施法",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "skill.concentration",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "4",
+      "context": "防御式施法、被压制或擒抱时"
+    }
+  ],
+  "description": "防御式施法、被压制或擒抱时，你的专注检定+4。只用于这些情境，不提高平时的专注检定。"
+}

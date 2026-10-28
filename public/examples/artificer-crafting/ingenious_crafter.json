@@ -1,0 +1,14 @@
+{
+  "id": "ingenious_crafter",
+  "name": "独具匠心",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以在单一物品上附加至多{{FLOOR(skills.craft_repair.ranks / 3)}}条特殊能力。",
+      "category": "noncombat"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+import type {RuleState} from './rule-types';
+type Character={rule_state?:RuleState;resources:{name:string;current:number}[]};
+import {conditionCatalog} from './conditions';
+import type {Mechanics} from './mechanics';
+import type {ResourceActionRequest} from './resource-engine';
+export type AuditEntry={id:string;time:string;text:string};
+export function auditChanges(before:Character,after:Character,config:Mechanics,action?:ResourceActionRequest){const messages:string[]=[],old=before.rule_state,next=after.rule_state,names=(id:string)=>config.modules?.[id]?.name??id;
+ for(const item of next?.instances??[]){const prior=old?.instances.find(i=>i.id===item.id);if(prior&&prior.enabled!==item.enabled)messages.push(`${item.enabled?'开启':'关闭'} ${names(item.moduleId)}`)}
+ for(const [id,values]of Object.entries(next?.resourceValues??{}))for(const [key,value]of Object.entries(values)){const prior=old?.resourceValues?.[id]?.[key];if(prior!==undefined&&prior!==value)messages.push(`${names(next?.instances.find(i=>i.id===id)?.moduleId??id)} · ${key}：${prior} → ${value}`)}
+ for(const key of ['potentialPoints','temporaryHp'] as const)if(next?.[key]!==old?.[key]&&next?.[key]!==undefined)messages.push(`${key==='potentialPoints'?'潜能点':'临时生命'}：${old?.[key]??'初始'} → ${next[key]}`);
+ if(action){const instance=next?.instances.find(i=>i.id===action.instanceId);messages.push(action.event==='spell'?`施放法术：${names(instance?.moduleId??action.spell?.spellInstanceId??action.instanceId)}（${action.spell?.classId??''}）`:action.event?`操作：${({round:'回合刷新',battle:'战斗刷新',day:'全天恢复',heal:'恢复满血',potential:'消耗潜能点',cast:'施法'} as Record<string,string>)[action.event]??action.event}`:`使用：${names(instance?.moduleId??action.instanceId)} · ${config.modules?.[instance?.moduleId??'']?.actions?.find(a=>a.id===action.actionId)?.label??action.actionId}`)}
+ if(!action&&JSON.stringify(old?.spellSlotUses)!==JSON.stringify(next?.spellSlotUses))messages.push('手动调整法术位');
+ for(const r of after.resources){const prior=before.resources.find(x=>x.name===r.name);if(prior&&prior.current!==r.current)messages.push(`${r.name}：${prior.current} → ${r.current}`)}
+ for(const [key,value]of Object.entries(next?.conditions??{}))if(value!==old?.conditions?.[key])messages.push(`${value?'进入':'解除'}状态：${conditionCatalog(config).find(c=>c.id===key)?.name??key}`);
+ for(const [key,value]of Object.entries(next?.acceptedEffects??{}))if(value!==old?.acceptedEffects?.[key])messages.push(`${value?'接受':'关闭'}收到的效果：${key}`);
+ for(const [slot,id]of Object.entries(next?.equipment??{}))if(id!==old?.equipment?.[slot])messages.push(`切换装备／架势：${slot} → ${id?names(next?.instances.find(i=>i.id===id)?.moduleId??id):'无'}`);
+ for(const [id,row]of Object.entries(next?.receivedResources??{}))for(const [key,value]of Object.entries(row.values??{})){const prior=old?.receivedResources?.[id]?.values?.[key];if(value!==prior)messages.push(`收到的资源 ${key}：${prior??'初始'} → ${value}`)}
+ if(JSON.stringify(old?.dmBuffs??[])!==JSON.stringify(next?.dmBuffs??[]))messages.push('DM调整来源已更新');
+ if(!action&&JSON.stringify(old?.spellPreparations)!==JSON.stringify(next?.spellPreparations))messages.push('调整法术装载／消耗准备法术');
+ const entries=action&&messages.length?[messages.join('；')]:messages;
+ return entries.map(text=>({id:crypto.randomUUID(),time:new Date().toISOString(),text}));}

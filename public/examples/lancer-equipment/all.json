@@ -1,0 +1,285 @@
+[
+  {
+    "id": "ornate_serrated_impact_lance",
+    "name": "＋2冲击·稳架·锯齿·奢丽长戟",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "weapon",
+    "tags": [
+      "melee",
+      "two_handed",
+      "长枪",
+      "magic_weapon"
+    ],
+    "parameters": {
+      "braced": {
+        "label": "稳架：抵抗敌方冲锋",
+        "type": "boolean",
+        "default": false,
+        "playerEditable": true
+      }
+    },
+    "outputs": [
+      {
+        "target": "melee",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "scope": "weapon"
+      },
+      {
+        "target": "ranged",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "scope": "weapon"
+      },
+      {
+        "target": "damage",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "scope": "weapon"
+      },
+      {
+        "target": "damageDice",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "scope": "weapon",
+        "die": 6,
+        "when": "conditions.mounted_charge",
+        "damageType": "impact_charge"
+      },
+      {
+        "target": "melee",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "scope": "weapon",
+        "when": "params.braced"
+      },
+      {
+        "target": "skill.intimidate",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "unnamed"
+      }
+    ],
+    "weapon": {
+      "type": "lance",
+      "baseDamage": "1d10",
+      "sizeDamage": "1d10",
+      "damage": "1d10",
+      "size": "中型",
+      "criticalWidth": 1,
+      "criticalMultiplier": 3,
+      "enhancement": 2
+    },
+    "defaultAccess": "parameters",
+    "notes": [
+      {
+        "text": "稳架：抵抗敌方冲锋时可手动开启，获得+2命中。",
+        "category": "combat"
+      },
+      {
+        "text": "锯齿：敌方受到持续1d4轮的伤害，每轮1点；轮数及伤害由现场记录。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "warhammer",
+    "name": "战锤",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "weapon",
+    "tags": [
+      "melee",
+      "one_handed"
+    ],
+    "parameters": {},
+    "outputs": [],
+    "weapon": {
+      "type": "warhammer",
+      "baseDamage": "1d8",
+      "sizeDamage": "1d8",
+      "damage": "1d8",
+      "size": "中型",
+      "criticalWidth": 1,
+      "criticalMultiplier": 3,
+      "enhancement": 0
+    }
+  },
+  {
+    "id": "masterwork_longsword",
+    "name": "精致长剑",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "weapon",
+    "tags": [
+      "melee",
+      "one_handed"
+    ],
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "melee",
+        "value": "1",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "scope": "weapon"
+      },
+      {
+        "target": "ranged",
+        "value": "1",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "scope": "weapon"
+      }
+    ],
+    "weapon": {
+      "type": "longsword",
+      "baseDamage": "1d8",
+      "sizeDamage": "1d8",
+      "damage": "1d8",
+      "size": "中型",
+      "criticalWidth": 2,
+      "criticalMultiplier": 2,
+      "enhancement": 0
+    }
+  },
+  {
+    "id": "renowned_reinforced_hinged_breastplate",
+    "name": "名望精致·强固·铰接·蔽害胸甲＋2",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "armor",
+    "tags": [
+      "masterwork",
+      "renowned",
+      "reinforced",
+      "hinged"
+    ],
+    "parameters": {},
+    "outputs": [],
+    "description": "护甲基础AC6（已含强固），附魔增强+2；最大敏捷调整4，技能检定减值0。铰接及名望精致仅保留标记，不另加数值。",
+    "armor": {
+      "category": "medium",
+      "size": "按穿戴者体型",
+      "baseArmor": 6,
+      "enhancement": 2,
+      "dexCap": 4,
+      "checkPenalty": 0,
+      "speedPenalties": {},
+      "contexts": [
+        {
+          "id": "critical_confirmation",
+          "label": "对抗重击确认",
+          "value": 2,
+          "defenses": [
+            "defense",
+            "flatDefense"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "riding_boots",
+    "name": "骑乘靴",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "feet",
+    "parameters": {},
+    "weaponRequirement": {
+      "tags": [
+        "melee"
+      ],
+      "effectText": "拥有奋力冲刺并骑冲时，普通近战伤害×3；Lance伤害×4。"
+    },
+    "outputs": [
+      {
+        "target": "skill.ride",
+        "value": "5",
+        "duration": "short",
+        "bonusType": "competence"
+      },
+      {
+        "target": "damageMultiplier",
+        "value": "3",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "scope": "weapon",
+        "attackMode": "melee",
+        "requiresOwnedModule": "spirited_charge",
+        "when": "conditions.charge && conditions.mounted_charge"
+      },
+      {
+        "target": "damageMultiplier",
+        "value": "4",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "scope": "weapon",
+        "attackMode": "melee",
+        "requiredWeaponType": "lance",
+        "requiresOwnedModule": "spirited_charge",
+        "when": "conditions.charge && conditions.mounted_charge"
+      }
+    ],
+    "notes": [
+      {
+        "text": "你在骑冲击中对手后，可以继续沿直线向前。",
+        "category": "combat"
+      },
+      {
+        "text": "拥有奋力冲刺且处于骑乘冲锋时，普通近战伤害变为3倍，Lance为4倍。武器区已计入倍率，不要再次手动乘算。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "banner_of_galloping",
+    "name": "奔马之旗帜",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "special",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "melee",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "unnamed"
+      },
+      {
+        "target": "ranged",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "unnamed"
+      }
+    ],
+    "grant": {
+      "name": "奔马之旗帜",
+      "group": "ally",
+      "mode": "all",
+      "includeSelf": false,
+      "defaultAccepted": true,
+      "recipientWhen": "conditions.charge",
+      "outputs": [
+        {
+          "target": "melee",
+          "value": "2",
+          "duration": "short",
+          "bonusType": "unnamed"
+        },
+        {
+          "target": "ranged",
+          "value": "2",
+          "duration": "short",
+          "bonusType": "unnamed"
+        }
+      ]
+    }
+  }
+]

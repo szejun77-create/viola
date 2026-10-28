@@ -1,0 +1,14 @@
+{
+  "id": "craft_rod",
+  "name": "制造权杖",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以制造权杖。",
+      "category": "noncombat"
+    }
+  ]
+}

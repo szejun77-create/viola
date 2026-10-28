@@ -1,0 +1,24 @@
+{
+  "category": "spell",
+  "equipmentSlot": "stance",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damageDice",
+      "value": "1",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "die": 6,
+      "attackMode": "melee"
+    },
+    {
+      "target": "defenseCommon",
+      "value": "-2",
+      "duration": "short",
+      "bonusType": "unnamed"
+    }
+  ],
+  "id": "punishing_stance",
+  "name": "惩戒姿态"
+}

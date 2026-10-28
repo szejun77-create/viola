@@ -1,0 +1,14 @@
+{
+  "id": "store_infusion",
+  "name": "储存机关术",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以让你的部属自行使用一个机关术，必须由你提前灌注好。",
+      "category": "noncombat"
+    }
+  ]
+}

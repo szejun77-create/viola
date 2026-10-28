@@ -1,0 +1,27 @@
+{
+  "id": "nimble_body",
+  "name": "身法灵活",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "speed",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "10"
+    },
+    {
+      "target": "skill.tumble",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "2"
+    }
+  ],
+  "notes": [
+    {
+      "category": "noncombat",
+      "text": "坠落前20尺不受伤害，30尺开始受到瘀伤。"
+    }
+  ]
+}

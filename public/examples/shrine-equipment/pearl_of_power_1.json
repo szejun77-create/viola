@@ -1,0 +1,20 @@
+{
+  "id": "pearl_of_power_1",
+  "name": "法力再生珍珠：1环",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "special",
+  "parameters": {},
+  "outputs": [],
+  "description": "你可以恢复一环法术一次，具体法术位由现场手动恢复。",
+  "resources": {
+    "spell_recovery_1": {
+      "label": "1环法术再生",
+      "initial": 1,
+      "min": "0",
+      "max": "1",
+      "integer": true,
+      "playerEditable": true
+    }
+  }
+}

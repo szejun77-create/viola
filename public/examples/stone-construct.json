@@ -1,0 +1,67 @@
+{
+  "id": "stone_construct",
+  "name": "石化构装体",
+  "category": "spell",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [],
+  "description": "石化构装体（Stone Construct）\n变化系\n等级：机关术师3\n法术成分：姿势，材料\n施法时间：1轮\n距离：接触\n目标：自己的从属构装体（构装体条件由现场判断）\n持续时间：每等级10分钟（共{100 * caster.level}轮），或吸收池达到上限并确认结束\n效果：目标获得伤害减免10／精金，总共可以吸收{MIN(10 * caster.level, 150)}点伤害。玩家手动增加已吸收伤害，满后点击“已满”结束本次效果。\n材料成分：花岗岩碎屑和价值250金币的钻石粉。",
+  "spell": {
+    "classLevels": {
+      "artificer": 3
+    },
+    "castAction": "cast"
+  },
+  "grant": {
+    "name": "石化构装体",
+    "group": "ally",
+    "mode": "companions",
+    "includeSelf": false,
+    "defaultAccepted": true,
+    "outputs": [
+      {
+        "target": "damageReduction",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "10"
+      }
+    ],
+    "notes": [
+      {
+        "text": "伤害减免10／精金：精金攻击可穿透。已吸收伤害由玩家手动记录，累计上限{MIN(10 * caster.level, 150)}；池满后点击“已满”结束此效果。不自动扣血。",
+        "category": "combat"
+      }
+    ],
+    "resources": {
+      "absorbed_damage": {
+        "label": "已吸收伤害",
+        "initial": 0,
+        "min": "0",
+        "max": "MIN(10 * caster.level, 150)",
+        "integer": true,
+        "playerEditable": true,
+        "endEffectWhenFull": "已满"
+      }
+    }
+  },
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放石化构装体",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "石化构装体",
+        "text": "从属获得伤害减免10／精金；可吸收{MIN(10 * caster.level, 150)}点伤害，持续{100 * caster.level}轮。每个从属在自己的玩家资源中记录已吸收量。",
+        "remaining": "100 * caster.level",
+        "expiresModule": true,
+        "category": "combat"
+      }
+    }
+  ]
+}

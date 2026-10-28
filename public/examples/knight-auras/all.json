@@ -1,0 +1,225 @@
+[
+  {
+    "id": "motivate_attack",
+    "name": "激发进攻",
+    "category": "spell",
+    "equipmentSlot": "stance",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "主要光环：全体友军（含自身）获得+{IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))}命中环境加值。按光环持有者角色总等级：1—6级1，7—13级2，14—19级3，20级及以上4。",
+    "grant": {
+      "name": "激发进攻",
+      "group": "ally",
+      "mode": "all",
+      "includeSelf": true,
+      "defaultAccepted": true,
+      "outputs": [
+        {
+          "target": "melee",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))"
+        },
+        {
+          "target": "ranged",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))"
+        }
+      ]
+    }
+  },
+  {
+    "id": "resilient_troops",
+    "name": "韧性部队",
+    "category": "spell",
+    "equipmentSlot": "stance",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "主要光环：全体友军（含自身）三项豁免获得+{IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))}环境加值；等级按光环持有者角色总等级。",
+    "grant": {
+      "name": "韧性部队",
+      "group": "ally",
+      "mode": "all",
+      "includeSelf": true,
+      "defaultAccepted": true,
+      "outputs": [
+        {
+          "target": "fortitude",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))"
+        },
+        {
+          "target": "reflex",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))"
+        },
+        {
+          "target": "will",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))"
+        }
+      ]
+    }
+  },
+  {
+    "id": "motivate_focus",
+    "name": "激发专注",
+    "category": "spell",
+    "equipmentSlot": "stance",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "主要光环：全体友军（含自身）普通、接触及措手不及防御获得+{IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))}环境加值；等级按光环持有者角色总等级。",
+    "grant": {
+      "name": "激发专注",
+      "group": "ally",
+      "mode": "all",
+      "includeSelf": true,
+      "defaultAccepted": true,
+      "outputs": [
+        {
+          "target": "defenseCommon",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))"
+        }
+      ]
+    }
+  },
+  {
+    "id": "accurate_strike",
+    "name": "精确打击",
+    "category": "spell",
+    "equipmentSlot": "secondary_stance",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "次要光环：全体友军（含自身）的重击确认命中获得{mod.charisma}环境加值；读取光环持有者的魅力调整值，不改变普通命中。",
+    "grant": {
+      "name": "精确打击",
+      "group": "ally",
+      "mode": "all",
+      "includeSelf": true,
+      "defaultAccepted": true,
+      "outputs": [
+        {
+          "target": "criticalConfirmation",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        }
+      ]
+    }
+  },
+  {
+    "id": "over_the_top",
+    "name": "冲过头",
+    "category": "spell",
+    "equipmentSlot": "secondary_stance",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "次要光环：进入冲锋状态的友军伤害获得{mod.charisma}环境加值；读取光环持有者的魅力调整值，冲锋状态分别按接收者判断。",
+    "grant": {
+      "name": "冲过头",
+      "group": "ally",
+      "mode": "all",
+      "includeSelf": true,
+      "defaultAccepted": true,
+      "outputs": [
+        {
+          "target": "damage",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        }
+      ],
+      "recipientWhen": "conditions.charge"
+    }
+  },
+  {
+    "id": "motivate_dexterity",
+    "name": "激发敏捷",
+    "category": "spell",
+    "equipmentSlot": "secondary_stance",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "次要光环：全体友军（含自身）的先攻及平衡、解除装置、开锁、骑术、手上功夫、脱逃、躲藏、翻滚、绳技获得{mod.charisma}环境加值；读取光环持有者的魅力调整值。",
+    "grant": {
+      "name": "激发敏捷",
+      "group": "ally",
+      "mode": "all",
+      "includeSelf": true,
+      "defaultAccepted": true,
+      "outputs": [
+        {
+          "target": "initiative",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        },
+        {
+          "target": "skill.balance",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        },
+        {
+          "target": "skill.disable_device",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        },
+        {
+          "target": "skill.open_lock",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        },
+        {
+          "target": "skill.ride",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        },
+        {
+          "target": "skill.sleight_of_hand",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        },
+        {
+          "target": "skill.escape_artist",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        },
+        {
+          "target": "skill.hide",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        },
+        {
+          "target": "skill.tumble",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        },
+        {
+          "target": "skill.use_rope",
+          "duration": "short",
+          "bonusType": "circumstance",
+          "value": "mod.charisma"
+        }
+      ]
+    }
+  }
+]

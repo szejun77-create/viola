@@ -1,0 +1,55 @@
+{
+  "id": "leading_attack",
+  "name": "领导攻击",
+  "category": "spell",
+  "description": "攻击已经被你命中的单位时，友方命中＋4。适用时由友方自行接受；持续1回合。",
+  "mode": "toggle",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "crusader"
+    ],
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [],
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放领导攻击",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "领导攻击",
+        "text": "攻击已经被你命中的单位时，友方命中＋4。适用时由友方自行接受；持续1回合。",
+        "remaining": "1",
+        "expiresModule": true
+      }
+    }
+  ],
+  "grant": {
+    "name": "领导攻击：攻击已被来源命中的单位",
+    "group": "ally",
+    "mode": "all",
+    "includeSelf": false,
+    "outputs": [
+      {
+        "target": "melee",
+        "value": "4",
+        "duration": "short",
+        "bonusType": "morale"
+      },
+      {
+        "target": "ranged",
+        "value": "4",
+        "duration": "short",
+        "bonusType": "morale"
+      }
+    ]
+  }
+}

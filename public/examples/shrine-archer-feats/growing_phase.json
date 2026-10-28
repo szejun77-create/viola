@@ -1,0 +1,9 @@
+{
+  "id": "growing_phase",
+  "name": "发育期",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "你的专长的敏捷先决条件比正常情况下多1。"
+}

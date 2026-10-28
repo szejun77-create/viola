@@ -1,0 +1,22 @@
+{
+  "id": "weapon_focus_greatsword",
+  "name": "武器专攻：巨剑",
+  "category": "feat",
+  "description": "使用巨剑攻击时，命中获得＋1无名加值。",
+  "mode": "passive",
+  "parameters": {},
+  "weaponRequirement": {
+    "type": "greatsword",
+    "name": "巨剑",
+    "effectText": "该武器命中＋1（无名）"
+  },
+  "outputs": [
+    {
+      "scope": "weapon",
+      "target": "melee",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "1"
+    }
+  ]
+}

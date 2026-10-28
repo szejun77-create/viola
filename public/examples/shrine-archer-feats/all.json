@@ -1,0 +1,249 @@
+[
+  {
+    "id": "shrine_upbringing",
+    "name": "神社长大",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "你擅长使用和弓。"
+  },
+  {
+    "id": "growing_phase",
+    "name": "发育期",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "你的专长的敏捷先决条件比正常情况下多1。"
+  },
+  {
+    "id": "weapon_focus_yumi",
+    "name": "专攻武器：和弓",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "ranged",
+        "value": "1",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      }
+    ],
+    "weaponRequirement": {
+      "type": "yumi",
+      "name": "和弓",
+      "effectText": "使用和弓时，命中+1。"
+    }
+  },
+  {
+    "id": "divine_child",
+    "name": "神稚儿",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你有15%的概率将增益法术的目标随机改写为敌军；由现场判断和处理。",
+        "category": "negative"
+      }
+    ]
+  },
+  {
+    "id": "spellfire_shield",
+    "name": "咒火护盾",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "resources": {
+      "fire_energy": {
+        "label": "火能量吸收",
+        "initial": 0,
+        "min": "0",
+        "max": "ability.constitution",
+        "integer": true,
+        "playerEditable": true
+      }
+    },
+    "notes": [
+      {
+        "text": "你可以吸收火属性法术的伤害，每级法术储存一点火能量；当前{resources.fire_energy}／{ability.constitution}。",
+        "category": "combat",
+        "when": "resources.fire_energy < ability.constitution"
+      },
+      {
+        "text": "你可以释放火能量，以400尺内远程接触攻击发射：每消耗1点能量造成1d6伤害，其中一半为火焰伤害；DC20反射成功伤害减半。也可近战接触，每消耗1点能量治疗2点伤害。消耗数量由你决定，手动修改资源。",
+        "category": "combat",
+        "when": "resources.fire_energy > 0"
+      }
+    ]
+  },
+  {
+    "id": "point_blank_shot",
+    "name": "近程射击",
+    "category": "feat",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "ranged",
+        "value": "1",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      },
+      {
+        "target": "damage",
+        "value": "1",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "scope": "weapon",
+        "attackMode": "ranged"
+      }
+    ],
+    "defaultAccess": "toggle",
+    "weaponRequirement": {
+      "tags": [
+        "ranged"
+      ],
+      "effectText": "仅限远程攻击；适用条件由玩家现场判断。"
+    },
+    "notes": [
+      {
+        "text": "使用远程武器攻击30尺内敌人时，命中、伤害各+1。符合距离条件时开启。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "dead_eye",
+    "name": "死亡之眼",
+    "category": "feat",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "damage",
+        "value": "mod.dexterity",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "scope": "weapon",
+        "attackMode": "ranged"
+      }
+    ],
+    "defaultAccess": "toggle",
+    "weaponRequirement": {
+      "tags": [
+        "ranged"
+      ],
+      "effectText": "仅限远程攻击；适用条件由玩家现场判断。"
+    },
+    "notes": [
+      {
+        "text": "使用具有对应武器专攻的远程武器、且目标在30尺内时，伤害加上敏捷调整值。武器专攻与距离由玩家核对后开启。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "spell_focus_fire",
+    "name": "火系专攻",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你的火系法术豁免DC+1；由现场手动结算。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "mounted_casting",
+    "name": "骑乘施法",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "骑乘状态下，施法专注不受影响。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "mounted_archery",
+    "name": "骑乘射击",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "ranged",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "when": "conditions.mounted"
+      }
+    ],
+    "notes": [
+      {
+        "text": "上马后的远程命中减值由-4改为-2。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "rapid_shot",
+    "name": "快速射击",
+    "category": "feat",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "attackCount",
+        "value": "1",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "scope": "weapon",
+        "attackMode": "ranged"
+      },
+      {
+        "target": "ranged",
+        "value": "-2",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "scope": "weapon"
+      }
+    ],
+    "defaultAccess": "toggle",
+    "weaponRequirement": {
+      "tags": [
+        "ranged"
+      ],
+      "effectText": "仅限远程攻击；适用条件由玩家现场判断。"
+    },
+    "description": "7级获得。开启后远程攻击次数+1，远程命中-2。",
+    "defaultAcquiredLevel": 7
+  },
+  {
+    "id": "greater_spell_focus_fire",
+    "name": "高等法术专攻：火",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你的火系法术豁免DC额外+1，可与火系专攻的+1叠加；两者均拥有时合计+2，由现场手动结算。",
+        "category": "combat"
+      }
+    ]
+  }
+]

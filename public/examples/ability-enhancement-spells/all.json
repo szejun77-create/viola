@@ -1,0 +1,302 @@
+[
+  {
+    "id": "bears_endurance",
+    "name": "熊之坚韧",
+    "category": "spell",
+    "mode": "toggle",
+    "description": "熊之坚韧（Bear’s Endurance）\n学派：变化系\n等级：牧师2、机关术师2、巫女2\n法术成分：言语、姿势、法器\n施法时间：一个标准动作\n距离：接触\n目标：接触的生物\n持续时间：每施法职业等级1分钟\n效果：受术者体质＋4增强加值（短效）。",
+    "spell": {
+      "classLevels": {
+        "cleric": 2,
+        "artificer": 2,
+        "shrine-maiden": 2
+      },
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [],
+    "grant": {
+      "name": "熊之坚韧",
+      "group": "ally",
+      "mode": "single",
+      "includeSelf": true,
+      "outputs": [
+        {
+          "target": "constitution",
+          "duration": "short",
+          "bonusType": "enhancement",
+          "value": "4"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放熊之坚韧",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "熊之坚韧",
+          "text": "指定受术者体质＋4短效增强加值。施放职业等级：{caster.level}。",
+          "remaining": "10 * caster.level",
+          "expiresModule": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "bulls_strength",
+    "name": "牛之力量",
+    "category": "spell",
+    "mode": "toggle",
+    "description": "牛之力量（Bull’s Strength）\n学派：变化系\n等级：牧师2、机关术师2、巫女2\n法术成分：言语、姿势、法器\n施法时间：一个标准动作\n距离：接触\n目标：接触的生物\n持续时间：每施法职业等级1分钟\n效果：受术者力量＋4增强加值（短效）。",
+    "spell": {
+      "classLevels": {
+        "cleric": 2,
+        "artificer": 2,
+        "shrine-maiden": 2
+      },
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [],
+    "grant": {
+      "name": "牛之力量",
+      "group": "ally",
+      "mode": "single",
+      "includeSelf": true,
+      "outputs": [
+        {
+          "target": "strength",
+          "duration": "short",
+          "bonusType": "enhancement",
+          "value": "4"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放牛之力量",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "牛之力量",
+          "text": "指定受术者力量＋4短效增强加值。施放职业等级：{caster.level}。",
+          "remaining": "10 * caster.level",
+          "expiresModule": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "cats_grace",
+    "name": "猫之优雅",
+    "category": "spell",
+    "mode": "toggle",
+    "description": "猫之优雅（Cat’s Grace）\n学派：变化系\n等级：牧师2、机关术师2、巫女2\n法术成分：言语、姿势、法器\n施法时间：一个标准动作\n距离：接触\n目标：接触的生物\n持续时间：每施法职业等级1分钟\n效果：受术者敏捷＋4增强加值（短效）。",
+    "spell": {
+      "classLevels": {
+        "cleric": 2,
+        "artificer": 2,
+        "shrine-maiden": 2
+      },
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [],
+    "grant": {
+      "name": "猫之优雅",
+      "group": "ally",
+      "mode": "single",
+      "includeSelf": true,
+      "outputs": [
+        {
+          "target": "dexterity",
+          "duration": "short",
+          "bonusType": "enhancement",
+          "value": "4"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放猫之优雅",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "猫之优雅",
+          "text": "指定受术者敏捷＋4短效增强加值。施放职业等级：{caster.level}。",
+          "remaining": "10 * caster.level",
+          "expiresModule": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "eagles_splendor",
+    "name": "鹰之威仪",
+    "category": "spell",
+    "mode": "toggle",
+    "description": "鹰之威仪（Eagle’s Splendor）\n学派：变化系\n等级：牧师2、机关术师2、巫女2\n法术成分：言语、姿势、法器\n施法时间：一个标准动作\n距离：接触\n目标：接触的生物\n持续时间：每施法职业等级1分钟\n效果：受术者魅力＋4增强加值（短效）。",
+    "spell": {
+      "classLevels": {
+        "cleric": 2,
+        "artificer": 2,
+        "shrine-maiden": 2
+      },
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [],
+    "grant": {
+      "name": "鹰之威仪",
+      "group": "ally",
+      "mode": "single",
+      "includeSelf": true,
+      "outputs": [
+        {
+          "target": "charisma",
+          "duration": "short",
+          "bonusType": "enhancement",
+          "value": "4"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放鹰之威仪",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "鹰之威仪",
+          "text": "指定受术者魅力＋4短效增强加值。施放职业等级：{caster.level}。",
+          "remaining": "10 * caster.level",
+          "expiresModule": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "foxs_cunning",
+    "name": "狐之狡黠",
+    "category": "spell",
+    "mode": "toggle",
+    "description": "狐之狡黠（Fox’s Cunning）\n学派：变化系\n等级：牧师2、机关术师2、巫女2\n法术成分：言语、姿势、法器\n施法时间：一个标准动作\n距离：接触\n目标：接触的生物\n持续时间：每施法职业等级1分钟\n效果：受术者智力＋4增强加值（短效）。",
+    "spell": {
+      "classLevels": {
+        "cleric": 2,
+        "artificer": 2,
+        "shrine-maiden": 2
+      },
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [],
+    "grant": {
+      "name": "狐之狡黠",
+      "group": "ally",
+      "mode": "single",
+      "includeSelf": true,
+      "outputs": [
+        {
+          "target": "intelligence",
+          "duration": "short",
+          "bonusType": "enhancement",
+          "value": "4"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放狐之狡黠",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "狐之狡黠",
+          "text": "指定受术者智力＋4短效增强加值。施放职业等级：{caster.level}。",
+          "remaining": "10 * caster.level",
+          "expiresModule": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "owls_wisdom",
+    "name": "枭之睿智",
+    "category": "spell",
+    "mode": "toggle",
+    "description": "枭之睿智（Owl’s Wisdom）\n学派：变化系\n等级：牧师2、机关术师2、巫女2\n法术成分：言语、姿势、法器\n施法时间：一个标准动作\n距离：接触\n目标：接触的生物\n持续时间：每施法职业等级1分钟\n效果：受术者感知＋4增强加值（短效）。",
+    "spell": {
+      "classLevels": {
+        "cleric": 2,
+        "artificer": 2,
+        "shrine-maiden": 2
+      },
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [],
+    "grant": {
+      "name": "枭之睿智",
+      "group": "ally",
+      "mode": "single",
+      "includeSelf": true,
+      "outputs": [
+        {
+          "target": "wisdom",
+          "duration": "short",
+          "bonusType": "enhancement",
+          "value": "4"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放枭之睿智",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "枭之睿智",
+          "text": "指定受术者感知＋4短效增强加值。施放职业等级：{caster.level}。",
+          "remaining": "10 * caster.level",
+          "expiresModule": true
+        }
+      }
+    ]
+  }
+]

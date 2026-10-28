@@ -1,0 +1,14 @@
+{
+  "id": "improved_bull_rush",
+  "name": "精通冲撞",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "进行冲撞时，防御者无法对你发动借机攻击；撞开防御者的力量对抗检定获得+4加值。",
+      "category": "combat"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "rabid_wolf_strike",
+  "name": "猛禽击",
+  "category": "spell",
+  "description": "Rabid wolf strike：1回合内命中＋4、伤害额外＋6d6。仅对比你体型大的生物使用，须先通过DC等于对手AC的跳跃检定。",
+  "mode": "toggle",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "warblade"
+    ],
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "melee",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "4"
+    },
+    {
+      "target": "ranged",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "4"
+    },
+    {
+      "target": "damageDice",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "6",
+      "die": 6
+    }
+  ],
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放猛禽击",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "猛禽击",
+        "text": "1回合内命中＋4、伤害额外＋6d6。仅对比你体型大的生物使用，须先通过DC等于对手AC的跳跃检定。",
+        "remaining": "1",
+        "expiresModule": true
+      }
+    }
+  ],
+  "notes": [
+    {
+      "text": "你需要对体型比你大的生物使用，并进行一次DC等于对手AC的跳跃检定，成功后才能生效。",
+      "category": "combat"
+    }
+  ]
+}

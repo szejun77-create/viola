@@ -1,0 +1,22 @@
+{
+  "category": "spell",
+  "equipmentSlot": "stance",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "skill.jump",
+      "value": "10",
+      "duration": "short",
+      "bonusType": "unnamed"
+    }
+  ],
+  "id": "leaping_dragon_stance",
+  "name": "腾龙势",
+  "notes": [
+    {
+      "text": "跳跃视为已助跑。",
+      "category": "noncombat"
+    }
+  ]
+}

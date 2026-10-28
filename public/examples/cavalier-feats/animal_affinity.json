@@ -1,0 +1,21 @@
+{
+  "id": "animal_affinity",
+  "name": "亲和动物",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "skill.handle_animal",
+      "value": "FLOOR(level / 2)",
+      "duration": "long",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "skill.ride",
+      "value": "FLOOR(level / 2)",
+      "duration": "long",
+      "bonusType": "unnamed"
+    }
+  ]
+}

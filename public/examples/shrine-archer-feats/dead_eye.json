@@ -1,0 +1,30 @@
+{
+  "id": "dead_eye",
+  "name": "死亡之眼",
+  "category": "feat",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damage",
+      "value": "mod.dexterity",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "scope": "weapon",
+      "attackMode": "ranged"
+    }
+  ],
+  "defaultAccess": "toggle",
+  "weaponRequirement": {
+    "tags": [
+      "ranged"
+    ],
+    "effectText": "仅限远程攻击；适用条件由玩家现场判断。"
+  },
+  "notes": [
+    {
+      "text": "使用具有对应武器专攻的远程武器、且目标在30尺内时，伤害加上敏捷调整值。武器专攻与距离由玩家核对后开启。",
+      "category": "combat"
+    }
+  ]
+}

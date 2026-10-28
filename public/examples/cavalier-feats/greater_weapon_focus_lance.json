@@ -1,0 +1,28 @@
+{
+  "id": "greater_weapon_focus_lance",
+  "name": "高等专攻武器：骑枪",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "melee",
+      "value": "1",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "scope": "weapon"
+    },
+    {
+      "target": "ranged",
+      "value": "1",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "scope": "weapon"
+    }
+  ],
+  "weaponRequirement": {
+    "type": "lance",
+    "name": "骑枪",
+    "effectText": "命中+1，伤害+0"
+  }
+}

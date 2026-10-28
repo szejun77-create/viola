@@ -1,0 +1,60 @@
+{
+  "id": "small_mithral_full_plate",
+  "name": "名望精致·秘银小型＋2全身甲·召回·避矢·酸濯·强固·避害",
+  "category": "item",
+  "equipmentSlot": "armor",
+  "mode": "passive",
+  "tags": [
+    "mithral",
+    "medium_armor",
+    "reinforced",
+    "acid_washed"
+  ],
+  "description": "基础护甲8，经强固后为9，另有护甲增强＋2；小型中甲。",
+  "armor": {
+    "category": "medium",
+    "size": "小型",
+    "baseArmor": 9,
+    "enhancement": 2,
+    "dexCap": 1,
+    "checkPenalty": 0,
+    "speedPenalties": {
+      "20": -5,
+      "30": -10
+    },
+    "contexts": [
+      {
+        "id": "ranged",
+        "label": "对抗远程武器",
+        "value": 5,
+        "defenses": [
+          "defense",
+          "flatDefense"
+        ]
+      },
+      {
+        "id": "critical_confirmation",
+        "label": "对抗重击确认",
+        "value": 2,
+        "defenses": [
+          "defense",
+          "flatDefense"
+        ]
+      }
+    ]
+  },
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "召回：可以通过一个迅捷动作，将未装备的盔甲装备上。",
+      "category": "noncombat",
+      "whileOwned": true
+    },
+    {
+      "text": "酸濯：对抗强酸、锈蚀、解离的物品豁免＋4。",
+      "category": "combat",
+      "whileOwned": true
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "banner_of_galloping",
+  "name": "奔马之旗帜",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "special",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "melee",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "ranged",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "unnamed"
+    }
+  ],
+  "grant": {
+    "name": "奔马之旗帜",
+    "group": "ally",
+    "mode": "all",
+    "includeSelf": false,
+    "defaultAccepted": true,
+    "recipientWhen": "conditions.charge",
+    "outputs": [
+      {
+        "target": "melee",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "unnamed"
+      },
+      {
+        "target": "ranged",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "unnamed"
+      }
+    ]
+  }
+}

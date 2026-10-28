@@ -1,0 +1,12 @@
+{
+  "id": "widen_spell",
+  "name": "法术扩展",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "你可以增加爆发（Burst）、散发（Emanation）、直线（Line）或扩散（Spread）形状法术的作用范围；有关作用范围的数值翻倍。占用高1环的法术位。系统计算+1环，范围数值由现场按描述加倍。",
+  "metamagic": {
+    "slotIncrease": 1
+  }
+}

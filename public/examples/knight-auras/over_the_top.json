@@ -1,0 +1,26 @@
+{
+  "id": "over_the_top",
+  "name": "冲过头",
+  "category": "spell",
+  "equipmentSlot": "secondary_stance",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "次要光环：进入冲锋状态的友军伤害获得{mod.charisma}环境加值；读取光环持有者的魅力调整值，冲锋状态分别按接收者判断。",
+  "grant": {
+    "name": "冲过头",
+    "group": "ally",
+    "mode": "all",
+    "includeSelf": true,
+    "defaultAccepted": true,
+    "outputs": [
+      {
+        "target": "damage",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      }
+    ],
+    "recipientWhen": "conditions.charge"
+  }
+}

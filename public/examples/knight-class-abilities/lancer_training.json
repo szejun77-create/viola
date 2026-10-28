@@ -1,0 +1,56 @@
+{
+  "id": "lancer_training",
+  "name": "枪骑训练",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "melee",
+      "value": "FLOOR(level / 4)",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "when": "conditions.mounted"
+    },
+    {
+      "target": "ranged",
+      "value": "FLOOR(level / 4)",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "when": "conditions.mounted"
+    },
+    {
+      "target": "damage",
+      "value": "2 * FLOOR(level / 4)",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "when": "conditions.mounted"
+    }
+  ],
+  "grant": {
+    "name": "枪骑训练：坐骑防护",
+    "group": "ally",
+    "mode": "mount",
+    "defaultAccepted": true,
+    "outputs": [
+      {
+        "target": "defense",
+        "value": "FLOOR(level / 4)",
+        "duration": "short",
+        "bonusType": "dodge"
+      },
+      {
+        "target": "touchDefense",
+        "value": "FLOOR(level / 4)",
+        "duration": "short",
+        "bonusType": "dodge"
+      }
+    ],
+    "notes": [
+      {
+        "text": "骑手上马时，你的普通与接触防御获得+{FLOOR(level / 4)}闪避加值。随骑手下马或更换坐骑而结束。",
+        "category": "combat"
+      }
+    ]
+  }
+}

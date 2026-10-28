@@ -1,0 +1,43 @@
+{
+  "id": "turn_undead",
+  "name": "驱散不死生物",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "驱散次数：3+魅力调整值（最低0）。\n驱散检定：1d20 + ({mod.charisma}) = 驱散值。由你投骰并查下表。\n检定结果　　可影响不死生物的最高HD\n0或以下　　牧师等级-4 = {classes.cleric.level - 4}\n1—3　　　　牧师等级-3 = {classes.cleric.level - 3}\n4—6　　　　牧师等级-2 = {classes.cleric.level - 2}\n7—9　　　　牧师等级-1 = {classes.cleric.level - 1}\n10—12　　　牧师等级 = {classes.cleric.level}\n13—15　　　牧师等级+1 = {classes.cleric.level + 1}\n16—18　　　牧师等级+2 = {classes.cleric.level + 2}\n19—21　　　牧师等级+3 = {classes.cleric.level + 3}\n22及以上　 牧师等级+4 = {classes.cleric.level + 4}\n使用按钮只消耗1次；目标、驱散值和后续效果由现场判断，恢复由DM手动处理。",
+  "resources": {
+    "turns": {
+      "label": "驱散",
+      "initial": "MAX(0,3 + mod.charisma)",
+      "min": "0",
+      "max": "MAX(0,3 + mod.charisma)",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "actions": [
+    {
+      "id": "turn",
+      "label": "使用驱散",
+      "playerUsable": true,
+      "when": "resources.turns > 0",
+      "changes": [
+        {
+          "target": "resources.turns",
+          "value": "resources.turns - 1"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "text": "你可以驱散不死生物。驱散检定为1d20 + ({mod.charisma})；按能力描述中的表格判断可影响的最高HD，使用时消耗1次。",
+      "when": "resources.turns > 0",
+      "category": "combat"
+    }
+  ],
+  "tags": [
+    "turn_undead"
+  ]
+}

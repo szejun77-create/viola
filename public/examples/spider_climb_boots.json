@@ -1,0 +1,17 @@
+{
+  "id": "spider_climb_boots",
+  "name": "蛛行鞋",
+  "category": "item",
+  "equipmentSlot": "feet",
+  "mode": "toggle",
+  "description": "开启表示蛛行，移动速度减半；正常下地时关闭。",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "speedMultiplier",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "0.5"
+    }
+  ]
+}

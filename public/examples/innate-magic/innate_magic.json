@@ -1,0 +1,80 @@
+{
+  "id": "innate_magic",
+  "name": "天生的魔力",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "grantsCasting": {
+    "id": "innate-magic",
+    "name": "天生魔力"
+  },
+  "grantsModules": [
+    "innate_magic_madness",
+    "innate_magic_burst"
+  ],
+  "outputs": [
+    {
+      "target": "spellResistance",
+      "value": "10 + level",
+      "duration": "long",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "spellDamageReduction",
+      "value": "level",
+      "duration": "long",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "casterLevel",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed"
+    }
+  ],
+  "notes": [
+    {
+      "text": "你拥有永久存在的阅读魔法和侦测魔法。",
+      "category": "noncombat"
+    },
+    {
+      "text": "面对恐怖环境时，进行DC {15 + FLOOR(level / 2)}的意志检定。失败后，手动开启“临时疯狂”；恢复时手动关闭。",
+      "category": "combat"
+    },
+    {
+      "text": "天生魔力按角色总等级计算基础施法者等级，并享受+2施法者等级。自发施法，法术位由DM配置。魔力点的恢复由DM手动处理。",
+      "category": "noncombat"
+    }
+  ],
+  "resources": {
+    "magic_points": {
+      "label": "天生魔力点",
+      "initial": "level",
+      "min": "0",
+      "max": "level",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "actions": [
+    {
+      "id": "burst",
+      "label": "消耗1点：魔力爆发",
+      "playerUsable": true,
+      "when": "resources.magic_points >= 1",
+      "changes": [
+        {
+          "target": "resources.magic_points",
+          "value": "resources.magic_points - 1"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "天生魔力爆发",
+        "text": "本回合伤害额外增加1d6+2。",
+        "remaining": "1",
+        "category": "combat",
+        "activateModule": "innate_magic_burst"
+      }
+    }
+  ]
+}

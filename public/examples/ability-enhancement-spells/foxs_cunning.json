@@ -1,0 +1,50 @@
+{
+  "id": "foxs_cunning",
+  "name": "狐之狡黠",
+  "category": "spell",
+  "mode": "toggle",
+  "description": "狐之狡黠（Fox’s Cunning）\n学派：变化系\n等级：牧师2、机关术师2、巫女2\n法术成分：言语、姿势、法器\n施法时间：一个标准动作\n距离：接触\n目标：接触的生物\n持续时间：每施法职业等级1分钟\n效果：受术者智力＋4增强加值（短效）。",
+  "spell": {
+    "classLevels": {
+      "cleric": 2,
+      "artificer": 2,
+      "shrine-maiden": 2
+    },
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [],
+  "grant": {
+    "name": "狐之狡黠",
+    "group": "ally",
+    "mode": "single",
+    "includeSelf": true,
+    "outputs": [
+      {
+        "target": "intelligence",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "value": "4"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放狐之狡黠",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "狐之狡黠",
+        "text": "指定受术者智力＋4短效增强加值。施放职业等级：{caster.level}。",
+        "remaining": "10 * caster.level",
+        "expiresModule": true
+      }
+    }
+  ]
+}

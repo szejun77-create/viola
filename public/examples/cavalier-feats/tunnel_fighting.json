@@ -1,0 +1,14 @@
+{
+  "id": "tunnel_fighting",
+  "name": "隧道战斗",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "挤进或通过狭窄空间时，你不受攻击骰或AC上的减值。",
+      "category": "combat"
+    }
+  ]
+}

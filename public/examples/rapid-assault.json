@@ -1,0 +1,17 @@
+{
+  "id": "rapid_assault",
+  "name": "快速打击",
+  "category": "feat",
+  "description": "首次攻击一名新对手时，伤害额外增加1d6；适用时由玩家开启。",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damageDice",
+      "die": 6,
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "1"
+    }
+  ]
+}

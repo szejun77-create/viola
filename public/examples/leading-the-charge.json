@@ -1,0 +1,25 @@
+{
+  "category": "spell",
+  "equipmentSlot": "stance",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "id": "leading_the_charge",
+  "name": "领导冲锋",
+  "description": "其他队友冲锋时，伤害获得等于架势使用者角色总等级的无名加值。",
+  "grant": {
+    "name": "领导冲锋",
+    "group": "ally",
+    "mode": "all",
+    "includeSelf": false,
+    "recipientWhen": "conditions.charge",
+    "outputs": [
+      {
+        "target": "damage",
+        "value": "level",
+        "duration": "short",
+        "bonusType": "unnamed"
+      }
+    ]
+  }
+}

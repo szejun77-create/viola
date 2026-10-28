@@ -1,0 +1,50 @@
+{
+  "id": "commanding_charge",
+  "name": "领军冲锋",
+  "category": "spell",
+  "description": "1回合内，冲锋时伤害＋10，冲锋不引发借机攻击。",
+  "mode": "toggle",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "crusader"
+    ],
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damage",
+      "value": "10",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "when": "conditions.charge"
+    }
+  ],
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放领军冲锋",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "领军冲锋",
+        "text": "1回合内，冲锋时伤害＋10，冲锋不引发借机攻击。",
+        "remaining": "1",
+        "expiresModule": true
+      }
+    }
+  ],
+  "notes": [
+    {
+      "text": "你在冲锋中不会被借机。",
+      "category": "combat",
+      "when": "conditions.charge"
+    }
+  ]
+}

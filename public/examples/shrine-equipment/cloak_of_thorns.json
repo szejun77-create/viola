@@ -1,0 +1,28 @@
+{
+  "id": "cloak_of_thorns",
+  "name": "荆棘斗篷",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "shoulders",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "defense",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "natural_armor"
+    },
+    {
+      "target": "flatDefense",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "natural_armor"
+    }
+  ],
+  "notes": [
+    {
+      "text": "5尺内的近战敌人攻击你时，会受到1d4+3点穿刺反弹伤害；由现场结算。",
+      "category": "combat"
+    }
+  ]
+}

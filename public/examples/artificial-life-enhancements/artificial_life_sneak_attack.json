@@ -1,0 +1,23 @@
+{
+  "id": "artificial_life_sneak_attack",
+  "name": "人工生命强化：偷袭",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damageDice",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "1",
+      "die": 6,
+      "damageType": "sneak_attack"
+    }
+  ],
+  "notes": [
+    {
+      "text": "额外1d6伤害仅在满足偷袭条件时使用，由现场判断。",
+      "category": "combat"
+    }
+  ]
+}

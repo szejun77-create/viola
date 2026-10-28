@@ -1,0 +1,44 @@
+{
+  "id": "stone_dragon_strike",
+  "name": "石龙击",
+  "category": "spell",
+  "description": "1回合内获得额外4d6伤害，仅对物品。",
+  "mode": "toggle",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "crusader"
+    ],
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damageDice",
+      "value": "4",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "die": 6,
+      "damageType": "objects_only"
+    }
+  ],
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放石龙击",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "石龙击",
+        "text": "1回合内获得额外4d6伤害，仅对物品。",
+        "remaining": "1",
+        "expiresModule": true
+      }
+    }
+  ]
+}

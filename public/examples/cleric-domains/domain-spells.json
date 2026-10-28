@@ -1,0 +1,239 @@
+[
+  {
+    "id": "true_strike",
+    "name": "克敌机先",
+    "category": "spell",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "melee",
+        "duration": "short",
+        "bonusType": "insight",
+        "value": "20"
+      },
+      {
+        "target": "ranged",
+        "duration": "short",
+        "bonusType": "insight",
+        "value": "20"
+      }
+    ],
+    "description": "克敌机先(True Strike)\n预言系\n等级:巫女1,时间1（为日后牧师时间领域获得准备）\n法术成分:言语,器材\n施法时间:1个标准动作\n距离:个人\n目标:自己\n持续时间:见下文\n你暂时获得敏锐的洞察力,可以看出下回合攻击的时机。你的下一次攻击检定(必须在下一轮结束前)获得+20的洞察加值。除此之外,即便对手有隐蔽,你也不会有失手几率。",
+    "spell": {
+      "classLevels": {
+        "shrine-maiden": 1,
+        "time-domain": 1
+      },
+      "durationType": "timed",
+      "castAction": "cast"
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放克敌机先",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "克敌机先",
+          "text": "下一次攻击命中+20洞察，无视适用的隐蔽失手几率。仅下一次攻击有效，使用后立即删除本持续记录；最晚在下一轮结束前失效。默认2次角色回合刷新作提醒，时点由DM裁决。",
+          "remaining": "2",
+          "category": "combat",
+          "expiresModule": true,
+          "extendable": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "haste",
+    "name": "加速术",
+    "category": "spell",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [],
+    "description": "加速术(Haste)\n变化系\n等级:巫女3,时间3\n法术成分:言语,姿势,材料\n施法时间:1个标准动作\n距离:近距(25英尺+ 5英尺/每2等级)\n目标:彼此相距不超过30英尺的每级别一个生物\n持续时间:1轮/级别\n受术者的移动和动作速度远快于平时。动作的加快会带来以下效果。\n当作全力攻击时,加速后的生物会获得一次额外的攻击机会,该次攻击可以使用任何正在持用的武器做出。这次攻击使用该生物全部的基本攻击加值,附加任何符合该情况的调整值。(该效果无法与类似能力叠加,例如追击(speed)武器,也不会真的带来额外的动作,因此你也无法利用这效果每轮多行动或施法一次。)\n加速的生物在攻击上有+1的加值,并且在AC和反射检定上有+1的闪避加值。当你失去你AC的敏捷加值时,你失去该闪避加值。\n被加速生物的所有移动方式(包括地面移动、掘地、攀爬、飞行、游泳)上速度会增加30英尺,最高达到受术者该移动方式正常速度的两倍。增加的速度是增强加值,同时也会按正常方式影响该生物的跳跃距离。\n多个加速术无法叠加。加速术会反制或解除缓慢术(slow)。",
+    "spell": {
+      "classLevels": {
+        "shrine-maiden": 3,
+        "time-domain": 3
+      },
+      "durationType": "timed",
+      "castAction": "cast"
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放加速术",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "加速术",
+          "text": "加速术：全回合攻击额外1次攻击；命中、防御、反射各+1；移动增强加值最多+30且不超过正常速度翻倍。重复加速不叠加。",
+          "remaining": "caster.level",
+          "category": "combat",
+          "expiresModule": true
+        }
+      }
+    ],
+    "grant": {
+      "name": "加速术效果",
+      "group": "ally",
+      "mode": "multiple",
+      "includeSelf": true,
+      "outputs": [
+        {
+          "target": "attackCount",
+          "duration": "short",
+          "bonusType": "unnamed",
+          "value": "1",
+          "attackGroup": "magical_extra_attack"
+        },
+        {
+          "target": "melee",
+          "duration": "short",
+          "bonusType": "dodge",
+          "value": "1"
+        },
+        {
+          "target": "ranged",
+          "duration": "short",
+          "bonusType": "dodge",
+          "value": "1"
+        },
+        {
+          "target": "reflex",
+          "duration": "short",
+          "bonusType": "dodge",
+          "value": "1"
+        },
+        {
+          "target": "defense",
+          "duration": "short",
+          "bonusType": "dodge",
+          "value": "1",
+          "recipientWhen": "NOT(OR(conditions.blinded, conditions.cowering, conditions.flat_footed, conditions.grappling, conditions.stunned, conditions.helpless, conditions.unconscious, conditions.paralyzed, conditions.petrified))"
+        },
+        {
+          "target": "touchDefense",
+          "duration": "short",
+          "bonusType": "dodge",
+          "value": "1",
+          "recipientWhen": "NOT(OR(conditions.blinded, conditions.cowering, conditions.flat_footed, conditions.grappling, conditions.stunned, conditions.helpless, conditions.unconscious, conditions.paralyzed, conditions.petrified))"
+        },
+        {
+          "target": "speedCappedBonus",
+          "duration": "short",
+          "bonusType": "enhancement",
+          "value": "30"
+        }
+      ],
+      "notes": [
+        {
+          "text": "加速：全回合攻击额外1次；命中／反射+1闪避，普通／接触防御+1闪避（失去敏捷加值时失效，措手不及防御不含此项）。速度最多+30增强，且不超过原速度翻倍；重复加速不叠加。",
+          "category": "combat"
+        }
+      ],
+      "stackingKey": "haste"
+    }
+  },
+  {
+    "id": "fly",
+    "name": "飞行术",
+    "category": "spell",
+    "mode": "toggle",
+    "parameters": {
+      "flight_speed": {
+        "label": "本次飞行速度（中重甲／负载选40）",
+        "type": "choice",
+        "default": "60",
+        "options": [
+          "60",
+          "40"
+        ],
+        "playerEditable": true
+      }
+    },
+    "outputs": [],
+    "description": "飞行术（Fly）\n等级:巫女 3,旅行 3（之后牧师能力，旅行领域会用）\n法术成分:言语,姿势,器材/法器\n施法时间:一个标准动作\n距离:接触\n目标:接触的生物\n持续时间:1分钟/每等级\n受术者可以以60英尺的速度飞行(如果他穿戴中型或重型盔甲,或者负重达到中载或重载,那么速度为40英尺)。他可以以半速上升,也可以以倍速下降,他的飞行机动力为良好(good)。使用飞行术和在地面上行走一样,不需要额外的专注,因此受术者可以正常的攻击或施法。飞行术的受术者可以冲锋但不能奔跑,他的携带重量也不能超过它最大负重,加上其穿戴的所有盔甲。\n如果法术持续时间过期时受术者还在高处,这个魔法会缓慢的结束掉。受术者会漂浮着下降1d6轮,每轮60英尺。如果在此期间内他接触到了地面,那么他将安全着陆。如果没有,他会从剩余的高度处跌落,受到每10英尺坠落距离1d6的伤害。由于解除一个魔法实际上就是结束它,因此如果飞行术被解除掉,受术者依然可以以这种方式下降。但是如果是被反魔场(antimagic field)所抵消,那么将不会如此下降。",
+    "spell": {
+      "classLevels": {
+        "shrine-maiden": 3,
+        "travel-domain": 3
+      },
+      "durationType": "timed",
+      "castAction": "cast",
+      "castParameters": [
+        "flight_speed"
+      ]
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放飞行术",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "飞行术",
+          "text": "你获得飞行能力：先开启“飞行”状态，所选飞行速度才生效。默认+60；中／重甲或中／重载时选择+40。机动力良好，不能奔跑；效果结束时下降按说明由DM处理。",
+          "remaining": "10 * caster.level",
+          "category": "combat",
+          "expiresModule": true
+        }
+      }
+    ],
+    "grant": {
+      "name": "飞行术效果",
+      "group": "ally",
+      "mode": "single",
+      "includeSelf": true,
+      "outputs": [
+        {
+          "target": "speed",
+          "duration": "short",
+          "bonusType": "unnamed",
+          "value": "IF(params.flight_speed = \"40\",40,60)",
+          "recipientWhen": "conditions.fly"
+        }
+      ],
+      "notes": [
+        {
+          "text": "你获得飞行能力：先开启“飞行”状态，所选飞行速度才生效。默认+60；中／重甲或中／重载时选择+40。机动力良好，不能奔跑；效果结束时下降按说明由DM处理。",
+          "category": "combat"
+        }
+      ],
+      "stackingKey": "fly"
+    }
+  },
+  {
+    "id": "dimension_door",
+    "name": "任意门",
+    "category": "spell",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "任意门(Dimension Door)\n咒法系(传送)\n等级:巫女 4,旅行 4\n法术成分:言语\n施法时间: 一个标准动作\n距离:远距 (400英尺+40英尺/等级)\n目标:你和你接触到的物品,或其他被接触的自愿生物。\n持续时间:立即\n你可瞬间将自己传送到法术距离内的任何地方。你总是可以到达你想到达的位置——不管你是看到那地方还是仅仅声明了方向。使用完此法术后,直到下一轮之前不能再做任何动作。你可以携带不超过你最大负载能力的物品,每三级施法者等级可以带一个自愿的中体型或小体型生物(携带不超过其最大负载能力的装备、物品)或相当于此的生物。一个大型生物视作两个中型生物,一个超大型生物视作两个大型生物。被传送的生物之间必须相互接触,并且它们中至少有一个与你接触。\n若你传送到一个由固体占据的位置,你和随你旅行的每个生物都受到1d6点伤害,并被挤到100英尺内的固体表面的随机开放空间开口处。\n若100英尺内没有空地,你和随你旅行的生物都会受到额外的2d6点伤害,并被随机挤到1000英尺内的空地。若1000英尺内没有空地,你和随你旅行的生物都受到额外的4d6点伤害,并且施法失败。",
+    "spell": {
+      "classLevels": {
+        "shrine-maiden": 4,
+        "travel-domain": 4
+      },
+      "durationType": "instant"
+    }
+  }
+]

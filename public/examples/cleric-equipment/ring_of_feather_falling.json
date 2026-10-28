@@ -1,0 +1,16 @@
+{
+  "id": "ring_of_feather_falling",
+  "name": "羽落术戒指",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "ring",
+  "parameters": {},
+  "outputs": [],
+  "description": "坠落时自动获得羽落术效果。",
+  "notes": [
+    {
+      "text": "你在坠落时会自动获得羽落术。",
+      "category": "combat"
+    }
+  ]
+}

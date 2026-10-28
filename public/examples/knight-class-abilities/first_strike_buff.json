@@ -1,0 +1,18 @@
+{
+  "id": "first_strike_buff",
+  "name": "先声夺人效果",
+  "category": "other",
+  "mode": "toggle",
+  "timedOnly": true,
+  "requiresOwnedModule": "first_strike",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damageDice",
+      "die": 8,
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "MAX(0, 2 * FLOOR((level - 5) / 2))"
+    }
+  ]
+}

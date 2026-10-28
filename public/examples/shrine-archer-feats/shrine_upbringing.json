@@ -1,0 +1,9 @@
+{
+  "id": "shrine_upbringing",
+  "name": "神社长大",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "你擅长使用和弓。"
+}

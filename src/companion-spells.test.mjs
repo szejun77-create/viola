@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';import {loadTs} from './test-module.mjs';
+const {defaultMechanics,validateMechanics}=await loadTs('./mechanics.ts'),{performResourceAction}=await loadTs('./resource-engine.ts'),{buildEffectContext,prepareShared,effectAccepted}=await loadTs('./shared-effects.ts');
+const config=defaultMechanics();config.classes.artificer.spellcastingMode='spontaneous';config.classes.artificer.spellSlots={'3':{'1':5}};
+config.modules={companion_test:{id:'companion_test',name:'从属法术测试',category:'spell',mode:'toggle',parameters:{},outputs:[],spell:{classLevels:{artificer:1},castAction:'cast'},grant:{name:'从属强化',group:'ally',mode:'companions',defaultAccepted:true,outputs:[{target:'damage',duration:'short',bonusType:'unnamed',value:'caster.level'}],notes:[{text:'测试备注'}]},actions:[{id:'cast',label:'施放',playerUsable:true,changes:[{target:'module.enabled',value:'true'}],createTimedEffect:{name:'强化',text:'测试',remaining:'3',expiresModule:true}}]}};
+assert.equal(validateMechanics(config),true);
+const z={strength:0,dexterity:0,constitution:0,intelligence:0,wisdom:0,charisma:0},base={strength:10,dexterity:10,constitution:10,intelligence:10,wisdom:10,charisma:10,ability_permanent:z,ability_temporary:z,hp:10,race:'人类',class_levels:Array(3).fill('artificer'),editable_fields:[]};
+const source={...base,id:'s',name:'主人',rule_state:{weapon:{},instances:[{id:'spell',moduleId:'companion_test',enabled:false,access:'gm',params:{}}]}},pet={...base,id:'pet',master_id:'s',name:'机关人',rule_state:{weapon:{},instances:[]}},pet2={...pet,id:'pet2',name:'机关人二号'},other={...pet,id:'other',master_id:'someone_else'};
+const roster=[source,pet,pet2,other].map(c=>({id:c.id,name:c.name,master_id:c.master_id,team:'party'}));const choice={classId:'artificer',spellInstanceId:'spell',heighten:0,metamagic:[]};
+const cast=(cfg=config,targets)=>({...source,...performResourceAction(source,cfg,{event:'spell',instanceId:'spell',actionId:'cast',spell:{...choice,...(targets?{targets}:{})}},false,roster)});
+const result=cast();assert.equal(result.rule_state.timedEffects.length,2);assert.equal(result.rule_state.spellSlotUses.artificer[1],1);
+// Caller cannot redirect an automatic companion spell to someone else's companion.
+assert.deepEqual(cast(config,['other']).rule_state.timedEffects.map(t=>t.targetedGrant.targets[0]),['pet','pet2']);
+let ctx=buildEffectContext([result,pet,pet2,other],config);assert.equal(ctx.roster.find(p=>p.id==='pet').master_id,'s');assert.equal(ctx.incoming.other.length,0);
+const incoming=ctx.incoming.pet,key=incoming[0].key;assert.equal(effectAccepted(pet.rule_state,incoming[0]),true);assert.equal(prepareShared(pet,config,incoming).extras.damage.short[0].value,3);assert.ok(prepareShared(pet,config,incoming).notes.length);
+const off={...pet,rule_state:{...pet.rule_state,acceptedEffects:{[key]:false}}};assert.equal(prepareShared(off,config,incoming).extras.damage,undefined);assert.equal(prepareShared(off,config,incoming).notes.length,0);
+const on={...off,rule_state:{...off.rule_state,acceptedEffects:{[key]:true}}};assert.equal(prepareShared(on,config,incoming).extras.damage.short[0].value,3);
+const manual=structuredClone(config);delete manual.modules.companion_test.grant.defaultAccepted;ctx=buildEffectContext([cast(manual),pet],manual);assert.equal(prepareShared(pet,manual,ctx.incoming.pet).extras.damage,undefined);
+const single=structuredClone(config);single.modules.companion_test.grant.mode='single';ctx=buildEffectContext([cast(single,['pet']),pet],single);assert.equal(prepareShared(pet,single,ctx.incoming.pet).extras.damage.short[0].value,3);
+const expired={...result,rule_state:{...result.rule_state,timedEffects:result.rule_state.timedEffects.map(t=>({...t,remaining:0}))}};assert.equal(buildEffectContext([expired,pet],config).incoming.pet.length,0);
+assert.throws(()=>performResourceAction(source,config,{event:'spell',instanceId:'spell',actionId:'cast',spell:choice},false,roster.filter(p=>!p.master_id)),/目标/);
+console.log('Companion spells: automatic own targets, authoritative roster, multiple companions/one slot, independent default acceptance, explicit rejection/reacceptance, notes, expiry and no-target rejection passed');

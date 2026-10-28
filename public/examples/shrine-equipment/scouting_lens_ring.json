@@ -1,0 +1,23 @@
+{
+  "id": "scouting_lens_ring",
+  "name": "侦查透镜",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "ring",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "skill.search",
+      "value": "10",
+      "duration": "short",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "skill.survival",
+      "value": "10",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "context": "野外追查足迹"
+    }
+  ]
+}

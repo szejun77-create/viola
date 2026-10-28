@@ -1,0 +1,28 @@
+{
+  "id": "time_domain",
+  "name": "时间领域",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "initiative",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "4"
+    }
+  ],
+  "description": "获得精通先攻的效果：先攻+4。获得占星术作为本职技能。获得独立的时间领域法术表：自发施法，基础施法者等级为牧师等级，享受适用的施法者等级调整，法术位由DM配置。",
+  "grantsCasting": {
+    "id": "time-domain",
+    "name": "时间领域",
+    "levelClass": "cleric",
+    "spellcastingMode": "spontaneous"
+  },
+  "notes": [
+    {
+      "text": "占星术作为本职：请DM在牧师职业本职技能中勾选占星术。先攻+4已计算，视同精通先攻，不要再重复添加同一专长的+4。",
+      "category": "noncombat"
+    }
+  ]
+}

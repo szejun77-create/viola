@@ -1,0 +1,70 @@
+{
+  "id": "magic_weapon",
+  "name": "魔化武器",
+  "category": "spell",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [],
+  "description": "学派：变化系\n等级：机关术师1级\n法术成分：言语、姿势、法器\n施法时间：1个标准动作\n距离：接触\n目标：接触到的武器\n持续时间：每施法者等级10轮（共{10 * caster.level}轮）\n效果：使一把武器获得+1附魔。你不能将此法术施展在天生武器上，例如徒手攻击。武僧的徒手攻击被视为一种武器，所以可以被这个法术强化。\n授予效果：指定角色接受后，获得攻击命中+1增强加值及伤害+1增强加值。持续记录归零或删除时失效；具体强化哪把武器由现场判断。",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "artificer"
+    ],
+    "classLevels": {
+      "artificer": 1
+    },
+    "castAction": "cast"
+  },
+  "grant": {
+    "name": "魔化武器效果",
+    "group": "ally",
+    "mode": "single",
+    "includeSelf": true,
+    "outputs": [
+      {
+        "target": "melee",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "value": "1"
+      },
+      {
+        "target": "ranged",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "value": "1"
+      },
+      {
+        "target": "damage",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "value": "1"
+      }
+    ]
+  },
+  "notes": [
+    {
+      "text": "只强化指定的一把武器，不适用于天生武器；武僧徒手攻击例外。具体适用武器由现场判断。",
+      "category": "combat"
+    }
+  ],
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放魔化武器",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "魔化武器",
+        "text": "指定武器获得命中、伤害各+1增强加值；施放时持续{10 * caster.level}轮。",
+        "remaining": "10 * caster.level",
+        "expiresModule": true
+      }
+    }
+  ]
+}

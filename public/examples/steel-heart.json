@@ -1,0 +1,36 @@
+{
+  "id": "steel_heart",
+  "name": "心似钢铁",
+  "category": "class",
+  "mode": "passive",
+  "description": "常驻伤害缓冲池；结算时从当前生命扣除池内伤害，并将池清零。",
+  "parameters": {},
+  "outputs": [],
+  "resources": {
+    "damage_buffer": {
+      "label": "伤害缓冲池",
+      "initial": 0,
+      "min": "0",
+      "integer": true,
+      "playerEditable": true
+    }
+  },
+  "actions": [
+    {
+      "id": "settle_damage",
+      "label": "结算伤害",
+      "playerUsable": true,
+      "when": "resources.damage_buffer > 0",
+      "changes": [
+        {
+          "target": "current.hp",
+          "value": "current.hp - resources.damage_buffer"
+        },
+        {
+          "target": "resources.damage_buffer",
+          "value": "0"
+        }
+      ]
+    }
+  ]
+}

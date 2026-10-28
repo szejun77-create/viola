@@ -1,0 +1,15 @@
+{
+  "id": "artificial_life_durability",
+  "name": "人工生命强化：耐久",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "hp",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "10"
+    }
+  ]
+}

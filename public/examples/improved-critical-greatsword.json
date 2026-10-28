@@ -1,0 +1,21 @@
+{
+  "id": "improved_critical_greatsword",
+  "name": "重击精通：巨剑",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "weaponRequirement": {
+    "type": "greatsword",
+    "name": "巨剑",
+    "effectText": "巨剑重击范围×2"
+  },
+  "outputs": [
+    {
+      "scope": "weapon",
+      "target": "criticalRangeMultiplier",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "2"
+    }
+  ]
+}

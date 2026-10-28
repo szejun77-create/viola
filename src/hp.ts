@@ -1,0 +1,11 @@
+import {floorTotal} from './decimal';
+import {stackGroups,bonusType} from './bonuses';
+export interface HpEffect {context?:string;id:string;name:string;value:number;enabled:boolean;bonusType?:string;origin?:string}
+export function validHpEffects(effects:HpEffect[]){try{return Array.isArray(effects)&&effects.every(e=>typeof e.id==='string'&&e.id.length>0&&typeof e.name==='string'&&e.name.trim().length>0&&e.name.length<=100&&typeof e.value==='number'&&Number.isFinite(e.value)&&typeof e.enabled==='boolean'&&!!bonusType(e.bonusType))}catch{return false}}
+export function sumEffects(effects:HpEffect[]=[]){return stackGroups(effects).total}
+export function calculateHp(profession:number|null,constitutionTotal:number,level:number,longEffects:HpEffect[]=[],shortEffects:HpEffect[]=[]){
+ const modifier=Math.floor((constitutionTotal-10)/2);
+ const constitution=modifier*level;
+ const {long,short}=stackGroups(longEffects,shortEffects);
+ return {profession,constitution,modifier,long,short,total:profession===null?null:floorTotal(profession,constitution,long,short)};
+}

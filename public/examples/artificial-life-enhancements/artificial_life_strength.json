@@ -1,0 +1,15 @@
+{
+  "id": "artificial_life_strength",
+  "name": "人工生命强化：有力",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "strength",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "2"
+    }
+  ]
+}

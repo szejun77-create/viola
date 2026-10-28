@@ -1,0 +1,34 @@
+{
+  "id": "anklet_of_translocation",
+  "name": "移位脚镯",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "feet",
+  "parameters": {},
+  "outputs": [],
+  "description": "你可以瞬移两次，每次移动10尺，只需要迅捷动作。资源恢复由DM处理。",
+  "resources": {
+    "teleports": {
+      "label": "瞬移次数",
+      "initial": 2,
+      "min": "0",
+      "max": "2",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "actions": [
+    {
+      "id": "teleport",
+      "label": "迅捷瞬移10尺",
+      "playerUsable": true,
+      "when": "resources.teleports >= 1",
+      "changes": [
+        {
+          "target": "resources.teleports",
+          "value": "resources.teleports - 1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+// Decimal arithmetic for final-only rounding; avoids e.g. 0.34 × 50 falling below 17.
+type Decimal={n:bigint;s:number};
+function decimal(value:number):Decimal{if(!Number.isFinite(value))throw Error('数值必须有效');const [mantissa,exponent='0']=String(value).toLowerCase().split('e');const [whole,fraction='']=mantissa.split('.');let n=BigInt(whole+fraction),s=fraction.length-Number(exponent);if(s<0){n*=10n**BigInt(-s);s=0}return {n,s}}
+function add(a:Decimal,b:Decimal):Decimal{const s=Math.max(a.s,b.s);return {n:a.n*10n**BigInt(s-a.s)+b.n*10n**BigInt(s-b.s),s}}
+function asNumber(a:Decimal){return Number(a.n)/10**a.s}
+export function sumNumbers(values:readonly number[]){if(values.some(v=>!Number.isFinite(v)))return NaN;return asNumber(values.map(decimal).reduce(add,{n:0n,s:0}))}
+export function product(a:number,b:number){if(!Number.isFinite(a)||!Number.isFinite(b))return NaN;const x=decimal(a),y=decimal(b);return asNumber({n:x.n*y.n,s:x.s+y.s})}
+export function floorTotal(...values:number[]){if(values.some(v=>!Number.isFinite(v)))return NaN;const a=values.map(decimal).reduce(add,{n:0n,s:0}),denominator=10n**BigInt(a.s);return Number(a.n/denominator-(a.n<0n&&a.n%denominator!==0n?1n:0n))}

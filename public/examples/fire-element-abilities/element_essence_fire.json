@@ -1,0 +1,20 @@
+{
+  "id": "element_essence_fire",
+  "name": "五行精髓：火",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "metamagic": {
+    "slotIncrease": 0,
+    "slotReduction": 1,
+    "damageBonus": "mod.intelligence",
+    "conditionNote": "仅限本次火系法术，火系条件与额外伤害由现场判断"
+  },
+  "notes": [
+    {
+      "text": "施放火系法术时可在施法区开启五行精髓：火，超魔额外升环-1（最低0，不抵消单独的高环释放），本次法术伤害额外增加智力调整值。加值在施放后的一回合备注中显示，不增加武器伤害。",
+      "category": "combat"
+    }
+  ]
+}

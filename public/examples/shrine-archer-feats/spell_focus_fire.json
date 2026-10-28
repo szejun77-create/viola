@@ -1,0 +1,14 @@
+{
+  "id": "spell_focus_fire",
+  "name": "火系专攻",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你的火系法术豁免DC+1；由现场手动结算。",
+      "category": "combat"
+    }
+  ]
+}

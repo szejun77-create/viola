@@ -1,0 +1,36 @@
+{
+  "id": "renowned_reinforced_hinged_breastplate",
+  "name": "名望精致·强固·铰接·蔽害胸甲＋2",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "armor",
+  "tags": [
+    "masterwork",
+    "renowned",
+    "reinforced",
+    "hinged"
+  ],
+  "parameters": {},
+  "outputs": [],
+  "description": "护甲基础AC6（已含强固），附魔增强+2；最大敏捷调整4，技能检定减值0。铰接及名望精致仅保留标记，不另加数值。",
+  "armor": {
+    "category": "medium",
+    "size": "按穿戴者体型",
+    "baseArmor": 6,
+    "enhancement": 2,
+    "dexCap": 4,
+    "checkPenalty": 0,
+    "speedPenalties": {},
+    "contexts": [
+      {
+        "id": "critical_confirmation",
+        "label": "对抗重击确认",
+        "value": 2,
+        "defenses": [
+          "defense",
+          "flatDefense"
+        ]
+      }
+    ]
+  }
+}

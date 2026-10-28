@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {loadTs} from './test-module.mjs';
+const {allSkills,defaultClassSkills,classSkillsFor}=await loadTs('./skills.ts');
+const {defaultMechanics,validateMechanics,upgradeMechanicsRecord}=await loadTs('./mechanics.ts');
+const {calculateSkills,validateSkillState}=await loadTs('./skill-engine.ts');
+const config=defaultMechanics();for(const rule of Object.values(config.classes)){rule.baseStats={classSkill:20,crossSkill:20};rule.primary='intelligence'}
+const zero={strength:0,dexterity:0,constitution:0,intelligence:0,wisdom:0,charisma:0};
+const c={race:'人类',class_levels:['artificer','artificer',...Array(7).fill('shrine-maiden')],strength:10,dexterity:10,constitution:10,intelligence:16,wisdom:10,charisma:10,ability_permanent:zero,ability_temporary:zero,editable_fields:[],rule_state:{instances:[],weapon:{}}};
+const row=id=>calculateSkills(c,config).rows.find(s=>s.id===id);
+assert.equal(allSkills.length,57);assert.equal(new Set(allSkills.map(s=>s.id)).size,57);
+assert.equal(row('disable_device').classCap,5);assert.equal(row('perform').classCap,7);assert.equal(row('craft_repair').classCap,12);assert.equal(row('military_command').classCap,0);assert.equal(row('military_command').totalCap,12);
+const valid={...c.rule_state,skills:{disable_device:{class:5,cross:7},perform:{class:7,cross:5},craft_repair:{class:12,cross:0},military_command:{class:0,cross:12}}};validateSkillState(c,config,valid);
+assert.throws(()=>validateSkillState(c,config,{...valid,skills:{disable_device:{class:6,cross:0}}}),/本职/);
+assert.throws(()=>validateSkillState(c,config,{...valid,skills:{perform:{class:7,cross:6}}}),/总投入/);
+assert.throws(()=>validateSkillState(c,config,{...valid,skills:{military_command:{class:1,cross:0}}}),/本职/);
+validateSkillState(c,config,{...valid,skills:{disable_device:{class:0,cross:12}}});
+const low=structuredClone(config);for(const r of Object.values(low.classes)){r.baseStats={classSkill:0,crossSkill:0};r.primary='strength'}
+assert.throws(()=>validateSkillState(c,low,valid),/本职技能点投入超过/);
+const other={...c,rule_state:{instances:[],weapon:{}}};assert.equal(calculateSkills(other,config).usedClass,0);assert.equal(calculateSkills({...c,rule_state:valid},config).usedClass,24);
+assert.equal(row('knowledge_history').modifier,3);
+assert.deepEqual(defaultClassSkills.cavalier.includes('spot'),false);assert.equal(defaultClassSkills.cavalier.includes('survival'),false);assert.equal(defaultClassSkills.warblade.includes('siege_weapons'),true);
+assert.equal(defaultClassSkills['shrine-maiden'].filter(id=>id.startsWith('knowledge_')).length,10);
+assert.equal(new Set(defaultClassSkills.artificer).size,defaultClassSkills.artificer.length);
+const third={...c,class_levels:[...c.class_levels,'cleric','cleric']};assert.equal(calculateSkills(third,config).rows.find(s=>s.id==='craft_repair').classCap,14);
+const custom=structuredClone(config);custom.classes.cavalier.classSkills=[...classSkillsFor(config,'cavalier'),'spot'];custom.races['测试新种族']={size:'中型',speed:30,unit:'尺'};assert.equal(validateMechanics(custom),true);
+const broken=structuredClone(custom);broken.races['测试新种族'].speed=-1;assert.equal(validateMechanics(broken),false);
+const old=structuredClone(config);delete old.classes.cavalier.classSkills;const upgraded=upgradeMechanicsRecord({id:'campaign',version:8,config:old});assert.deepEqual(upgraded.config.classes.cavalier.classSkills,defaultClassSkills.cavalier);assert.equal(upgraded.version,8);
+const explicit=structuredClone(old);explicit.classes.cavalier.classSkills=[];assert.deepEqual(upgradeMechanicsRecord({id:'campaign',version:8,config:explicit}).config.classes.cavalier.classSkills,[]);
+assert.deepEqual(JSON.parse(JSON.stringify(valid)).skills,valid.skills);
+console.log('Skills: personal persistence, 5/7/12 multiclass caps, separate budgets, third class, 57 definitions, class lists, custom races and preserved edits passed');

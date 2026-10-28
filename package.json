@@ -1,0 +1,33 @@
+{
+  "name": "campaign-companion",
+  "version": "0.6.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test:db": "node supabase/permissions.test.mjs",
+    "test:model": "node src/character-model.test.mjs",
+    "test:mechanics": "node src/mechanics.test.mjs",
+    "test:assignment": "node supabase/assignment.test.mjs",
+    "test:formulas": "node src/calculator.test.mjs && node src/hp.test.mjs",
+    "test:stat-sources": "node supabase/stat-effects.test.mjs",
+    "test:modules": "node src/rules.test.mjs && node src/current-hp-notes.test.mjs && node src/note-categories.test.mjs && node src/resources.test.mjs && node src/cross-module.test.mjs && node src/condemnation.test.mjs && node src/shared-effects.test.mjs && node supabase/module-state.test.mjs",
+    "test:skills": "node src/skills.test.mjs && node src/skill-effects.test.mjs && node src/skill-synergies.test.mjs",
+    "test:conditions": "node src/conditions.test.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.0",
+    "@electric-sql/pglite": "^0.3.16"
+  },
+  "packageManager": "pnpm@10.32.1"
+}

@@ -1,0 +1,75 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {loadTs} from './test-module.mjs';
+const {defaultMechanics,validateMechanics}=await loadTs('./mechanics.ts');
+const {validateModule,ruleCatalog}=await loadTs('./rule-schema.ts');
+const {performResourceAction,resourceVisible,resourceContext,actionStatus}=await loadTs('./resource-engine.ts');
+const {prepareModules}=await loadTs('./rule-engine.ts');
+const {buildEffectContext,prepareShared}=await loadTs('./shared-effects.ts');
+const {armorSpeed}=await loadTs('./armor.ts');
+const {stackGroups}=await loadTs('./bonuses.ts');
+const {validateReceivedResources}=await loadTs('./grant-resources.ts');
+const {timedActive}=await loadTs('./module-effects.ts');
+const modules=JSON.parse(fs.readFileSync('exports/shrine-spells-2026-10-27/ready-to-import.json','utf8'));
+assert.equal(modules.length,67);assert.equal(new Set(modules.map(m=>m.id)).size,67);
+const innate=JSON.parse(fs.readFileSync('public/examples/innate-magic/all.json','utf8'));
+const extend=JSON.parse(fs.readFileSync('public/examples/extend-spell/extend_spell.json','utf8'));
+const config=defaultMechanics();config.modules=Object.fromEntries([...innate,extend,...modules].map(m=>[m.id,m]));
+for(const id of ['shrine-maiden','cleric']){config.classes[id].spellcastingMode='spontaneous';config.classes[id].spellSlots={[id==='cleric'?6:9]:Object.fromEntries(Array.from({length:6},(_,i)=>[i,100]))}}
+config.races['人类'].speed=20;
+assert.equal(validateMechanics(config),true);
+for(const m of modules){validateModule(m,{},config.modules);assert.ok(Number.isInteger(m.spell.classLevels['shrine-maiden']));assert.equal(m.spell.level,undefined);}
+assert.equal(config.modules.read_magic.spell.classLevels['innate-magic'],0);assert.equal(config.modules.mending.spell.classLevels.cleric,0);
+const z=Object.fromEntries(['strength','dexterity','constitution','intelligence','wisdom','charisma'].map(k=>[k,0]));
+const base={strength:10,dexterity:10,constitution:10,intelligence:10,wisdom:10,charisma:10,ability_permanent:z,ability_temporary:z,hp:20,race:'人类',class_levels:[...Array(9).fill('shrine-maiden'),...Array(6).fill('cleric')],editable_fields:[]};
+const source={...base,id:'s',name:'来源',rule_state:{weapon:{},instances:[...modules,extend].map(m=>({id:m.id,moduleId:m.id,enabled:m.mode==='passive',access:'gm',params:{}}))}};
+const target={...base,id:'t',name:'目标',rule_state:{weapon:{},instances:[]}};
+const roster=[source,target].map(c=>({id:c.id,name:c.name,team:'party'}));
+const cast=(id,c=source,classId='shrine-maiden',extra={})=>({...c,...performResourceAction(c,config,{event:'spell',instanceId:id,actionId:'',spell:{classId,spellInstanceId:id,heighten:0,metamagic:[],targets:['t'],...extra}},false,roster)});
+const act=(c,id,actionId)=>({...c,...performResourceAction(c,config,{instanceId:id,actionId},false,roster)});
+const round=c=>({...c,...performResourceAction(c,config,{event:'round',instanceId:'',actionId:''},false)});
+const defaults=m=>Object.fromEntries((m.spell.castParameters??[]).map(k=>[k,m.parameters[k].default]));
+for(const m of modules){try{const result=cast(m.id,source,'shrine-maiden',{parameters:defaults(m)});assert.equal(prepareModules(result,config).errors.catalog,undefined);if(m.spell.classLevels['shrine-maiden']===0)assert.equal(result.rule_state.spellSlotUses?.['shrine-maiden']?.[0],undefined);}catch(e){throw Error(`${m.id}: ${e.message}`)}}
+assert.equal(cast('shield').rule_state.timedEffects[0].remaining,90);
+assert.equal(cast('gaseous_form').rule_state.timedEffects[0].remaining,180);
+assert.equal(cast('resistance',source,'cleric').rule_state.timedEffects[0].remaining,10);
+assert.equal(cast('wall_of_dispel_magic',source,'cleric').rule_state.timedEffects[0].remaining,60);
+assert.match(cast('body_of_the_sun').rule_state.timedEffects[0].text,/4d4/);
+assert.equal(cast('charm_person').rule_state.timedEffects[0].remaining,5400);
+assert.equal(cast('charm_monster').rule_state.timedEffects[0].remaining,129600);
+assert.equal(cast('flare',source,'shrine-maiden',{metamagic:['extend_spell']}).rule_state.timedEffects[0].remaining,10);
+let concentrated=cast('hypnotic_pattern');for(let i=0;i<5;i++)concentrated=round(concentrated);
+assert.equal(concentrated.rule_state.timedEffects[0].concentration.after,2);assert.ok(prepareModules(concentrated,config).notes.some(n=>n.text.includes('专注维持中')));
+concentrated=act(concentrated,'hypnotic_pattern','stop_concentration');assert.equal(concentrated.rule_state.timedEffects[0].remaining,2);assert.equal(concentrated.rule_state.timedEffects[0].concentration,undefined);
+concentrated=round(round(concentrated));assert.ok(!prepareModules(concentrated,config).notes.some(n=>n.name==='催眠图纹'));
+let wall=cast('wall_of_fire',source,'shrine-maiden',{metamagic:['extend_spell']});wall=act(wall,'wall_of_fire','stop_concentration');assert.equal(wall.rule_state.timedEffects[0].remaining,9);
+let tele=cast('telekinesis',source,'shrine-maiden',{parameters:{use_mode:'combat'}});for(let i=0;i<9;i++)tele=round(tele);assert.ok(!prepareModules(tele,config).notes.some(n=>n.name==='心灵遥控'));
+assert.equal(cast('telekinesis',source,'shrine-maiden',{parameters:{use_mode:'violent_thrust'}}).rule_state.timedEffects?.length??0,0);
+tele=act(cast('telekinesis',source,'shrine-maiden',{parameters:{use_mode:'sustained'}}),'telekinesis','stop_concentration');assert.equal(tele.rule_state.timedEffects[0].remaining,0);
+const accept=(c,offers)=>({...c,rule_state:{...c.rule_state,acceptedEffects:Object.fromEntries(offers.map(o=>[o.key,true]))}});
+const flyingSource=cast('fly',{...source,rule_state:{...source.rule_state,conditions:{fly:true}}},'shrine-maiden',{parameters:{flight_speed:'60'}});
+let context=buildEffectContext([flyingSource,target],config),accepted=accept(target,context.incoming.t);
+assert.equal(armorSpeed(accepted.rule_state,20,config,prepareShared(accepted,config,context.incoming.t).extras),20);
+accepted={...accepted,rule_state:{...accepted.rule_state,conditions:{fly:true}}};context=buildEffectContext([flyingSource,accepted],config);
+assert.equal(armorSpeed(accepted.rule_state,20,config,prepareShared(accepted,config,context.incoming.t).extras),60);
+const deleted={...flyingSource,rule_state:{...flyingSource.rule_state,timedEffects:[]}};assert.equal(armorSpeed(accepted.rule_state,20,config,prepareShared(accepted,config,buildEffectContext([deleted,accepted],config).incoming.t).extras),0);
+let hurried=cast('haste');hurried=cast('haste',hurried);context=buildEffectContext([hurried,target],config);accepted=accept(target,context.incoming.t);let prep=prepareShared(accepted,config,context.incoming.t);
+assert.equal(stackGroups(prep.extras.attackCount.long,prep.extras.attackCount.short).total,1);assert.equal(armorSpeed(accepted.rule_state,20,config,prep.extras),40);
+const slow={...accepted,rule_state:{...accepted.rule_state,conditions:{climb:true}}};prep=prepareShared(slow,config,context.incoming.t);assert.equal(armorSpeed(slow.rule_state,20,config,prep.extras),10);
+const footed={...accepted,rule_state:{...accepted.rule_state,conditions:{flat_footed:true}}};prep=prepareShared(footed,config,context.incoming.t);assert.ok(!prep.extras.defense?.short?.length);assert.equal(stackGroups(prep.character.stat_effects.reflex?.long,prep.character.stat_effects.reflex?.short).total,1);
+const protectedSource=cast('protection_from_arrows');context=buildEffectContext([protectedSource,target],config);accepted=accept(target,context.incoming.t);const offer=context.incoming.t[0];
+assert.equal(offer.resources.absorbed_damage.max,90);assert.deepEqual(offer.resources.absorbed_damage.quickAdd,{label:'吸收10',amount:10});prep=prepareShared(accepted,config,context.incoming.t);assert.equal(prep.extras.rangedDamageReduction.short[0].value,10);assert.equal(prep.extras.damageReduction,undefined);
+assert.throws(()=>validateReceivedResources(accepted.rule_state,{...accepted.rule_state,receivedResources:{[offer.key]:{values:{absorbed_damage:10},ended:true}}},context.incoming.t,false),/尚未满/);
+const ended={...accepted,rule_state:{...accepted.rule_state,receivedResources:{[offer.key]:{values:{absorbed_damage:90},ended:true}}}};validateReceivedResources(accepted.rule_state,ended.rule_state,context.incoming.t,false);assert.equal(prepareShared(ended,config,context.incoming.t).extras.rangedDamageReduction,undefined);
+let dragon=cast('dragon_breath',source,'shrine-maiden',{parameters:{breath:'cone_cold'}});assert.equal(dragon.rule_state.resourceValues.dragon_breath.breaths,5);
+dragon={...dragon,rule_state:{...dragon.rule_state,resourceValues:{...dragon.rule_state.resourceValues,dragon_breath:{...dragon.rule_state.resourceValues.dragon_breath,cooldown_rounds:2}}}};
+dragon=act(dragon,'dragon_breath','breathe');assert.equal(dragon.rule_state.resourceValues.dragon_breath.breaths,4);assert.match(actionStatus(dragon,config,'dragon_breath','breathe',false),/冷却/);
+dragon=round(round(dragon));assert.equal(actionStatus(dragon,config,'dragon_breath','breathe',false),'');dragon=act(dragon,'dragon_breath','breathe');
+dragon={...dragon,rule_state:{...dragon.rule_state,timedEffects:dragon.rule_state.timedEffects.filter(t=>t.id!=='action:dragon_breath:cast')}};
+assert.ok(!dragon.rule_state.timedEffects.some(t=>timedActive(t,dragon.rule_state)));assert.ok(!resourceVisible(dragon.rule_state,'dragon_breath','breaths',config.modules.dragon_breath.resources.breaths,resourceContext(dragon,config)));assert.match(actionStatus(dragon,config,'dragon_breath','breathe',false),/持续效果/);
+
+// Haste and flight add to the receiver's flying speed, not to ground speed.
+let flyHaste=cast('haste',flyingSource);let flyingTarget={...target,rule_state:{...target.rule_state,conditions:{fly:true}}};context=buildEffectContext([flyHaste,flyingTarget],config);flyingTarget=accept(flyingTarget,context.incoming.t);assert.equal(armorSpeed(flyingTarget.rule_state,20,config,prepareShared(flyingTarget,config,context.incoming.t).extras),90);
+// Starting a new parent effect cannot revive a leftover cooldown from the old cast.
+const recastDragon=cast('dragon_breath',dragon,'shrine-maiden',{parameters:{breath:'line_fire'}});assert.equal(recastDragon.rule_state.timedEffects.filter(t=>t.parentEffectId).length,0);assert.equal(actionStatus(recastDragon,config,'dragon_breath','breathe',false),'');
+console.log('67 spells: schema/rings/all casts; source CL/durations/caps; concentration and stop/limits; recipient flight; haste nonstacking/speed caps/dodge; ranged-only DR/pool expiry; dragon uses/cooldown/parent expiry passed');

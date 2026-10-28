@@ -1,0 +1,89 @@
+{
+  "id": "ornate_serrated_impact_lance",
+  "name": "＋2冲击·稳架·锯齿·奢丽长戟",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "weapon",
+  "tags": [
+    "melee",
+    "two_handed",
+    "长枪",
+    "magic_weapon"
+  ],
+  "parameters": {
+    "braced": {
+      "label": "稳架：抵抗敌方冲锋",
+      "type": "boolean",
+      "default": false,
+      "playerEditable": true
+    }
+  },
+  "outputs": [
+    {
+      "target": "melee",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "scope": "weapon"
+    },
+    {
+      "target": "ranged",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "scope": "weapon"
+    },
+    {
+      "target": "damage",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "scope": "weapon"
+    },
+    {
+      "target": "damageDice",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "scope": "weapon",
+      "die": 6,
+      "when": "conditions.mounted_charge",
+      "damageType": "impact_charge"
+    },
+    {
+      "target": "melee",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "scope": "weapon",
+      "when": "params.braced"
+    },
+    {
+      "target": "skill.intimidate",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "unnamed"
+    }
+  ],
+  "weapon": {
+    "type": "lance",
+    "baseDamage": "1d10",
+    "sizeDamage": "1d10",
+    "damage": "1d10",
+    "size": "中型",
+    "criticalWidth": 1,
+    "criticalMultiplier": 3,
+    "enhancement": 2
+  },
+  "defaultAccess": "parameters",
+  "notes": [
+    {
+      "text": "稳架：抵抗敌方冲锋时可手动开启，获得+2命中。",
+      "category": "combat"
+    },
+    {
+      "text": "锯齿：敌方受到持续1d4轮的伤害，每轮1点；轮数及伤害由现场记录。",
+      "category": "combat"
+    }
+  ]
+}

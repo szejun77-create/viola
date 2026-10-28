@@ -1,0 +1,14 @@
+{
+  "id": "mounted_combat",
+  "name": "骑乘战斗",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以用一次骑术检定（1d20+{skills.ride.total}）代替坐骑的AC。",
+      "category": "combat"
+    }
+  ]
+}

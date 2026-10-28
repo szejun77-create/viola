@@ -1,0 +1,206 @@
+[
+  {
+    "id": "disguise_self",
+    "name": "易容术",
+    "category": "spell",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "skill.disguise",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "10"
+      }
+    ],
+    "description": "易容术（Disguise Self）\n幻术系（五官幻觉）\n等级：天生魔力1，巫女1\n法术成分：言语，姿势\n施法时间：一个标准动作\n距离：个人\n目标：自己\n持续时间：{100 * caster.level}轮（可解消）\n你使自己及服装、盔甲、武器和装备看上去不同，可以看起来变高或变矮一英尺，变胖或变瘦，但不能改变身体类型。你可以添加、掩饰外貌特征，或看起来完全变成另一个人。\n此法术不提供特殊能力或语言习惯，不改变你和装备的触感或声音。用于易容检定时获得+10加值。与你发生感官互动的生物可通过意志检定识破幻觉。",
+    "spell": {
+      "classLevels": {
+        "innate-magic": 1,
+        "shrine-maiden": 1
+      },
+      "castAction": "cast"
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放易容术",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "易容术",
+          "text": "易容术：易容检定+10。只改变外观，不改变触感、声音、身体类型或能力；感官互动者可用意志检定识破。",
+          "remaining": "100 * caster.level",
+          "category": "combat",
+          "expiresModule": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "cure_light_wounds",
+    "name": "治疗轻伤",
+    "category": "spell",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "治疗轻伤（Cure Light Wounds）\n咒法系（医疗）\n等级：牧师1，天生魔力1\n法术成分：言语，姿势\n施法时间：一个标准动作\n距离：接触\n目标：接触到的生物\n持续时间：立即\n以正能量治疗1d8+{MIN(caster.level, 5)}点伤害。\n对不死生物改为造成同量伤害；不死生物可用法术抗力抵抗，并以意志豁免将伤害减半。治疗与伤害均由现场手动结算。",
+    "spell": {
+      "classLevels": {
+        "cleric": 1,
+        "innate-magic": 1
+      }
+    }
+  },
+  {
+    "id": "baleful_transposition",
+    "name": "移形换影",
+    "category": "spell",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "移形换影（Baleful Transposition）\n咒法系（传送）\n等级：天生魔力2\n法术成分：言语\n施法时间：一个标准动作\n距离：{100 + 10 * caster.level}尺\n目标：体型在大型以下的两个生物\n持续时间：立即\n豁免检定：意志，通过则无效\n法术抗力：可\n两个目标（其中一个可以是你自己）立刻交换位置。双方必须接触同一固体，例如土地、桥或绳索，并都在法术距离内。物品可以随目标移动，至多为其最大负重；超重部分不会随行。移动不会引发借机攻击。若另一个生物通过意志检定，法术失效。具体位置和条件由现场判断。",
+    "spell": {
+      "classLevels": {
+        "innate-magic": 2
+      }
+    }
+  },
+  {
+    "id": "arcane_turmoil",
+    "name": "奥术波动",
+    "category": "spell",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "奥术波动（Arcane Turmoil）\n防护系\n等级：天生魔力2，巫女2\n法术成分：言语，姿势，材料\n施法时间：一个标准动作\n距离：{25 + 5 * FLOOR(caster.level / 2)}尺\n目标：一个生物\n持续时间：立即\n豁免检定：无，或意志通过则部分生效\n法术抗力：可\n对一个法术，或生物、物品上每个正在进行的法术，进行解除检定：1d20+{MIN(caster.level, 10)}，DC为11+目标法术的施法者等级。成功则解除，失败则保留。\n若目标是施法者且意志检定失败，随机失去一个最高等级法术位或已准备法术，视为当日已消耗。解除及资源变化由现场手动处理。",
+    "spell": {
+      "classLevels": {
+        "innate-magic": 2,
+        "shrine-maiden": 2
+      }
+    }
+  },
+  {
+    "id": "close_wounds",
+    "name": "闭合伤口",
+    "category": "spell",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "闭合伤口（Close Wounds）\n咒法系（医疗）\n等级：牧师2，天生魔力2\n法术成分：言语\n施法时间：直觉动作\n距离：{25 + 5 * FLOOR(caster.level / 2)}尺\n目标：一个生物\n持续时间：立即\n豁免检定：意志，通过则减半（无害）；见正文\n法术抗力：可（无害）\n治疗1d4+{MIN(caster.level, 5)}点伤害。若在目标遭受伤害时以直觉动作施放，可有效预防这部分伤害，使生命刚降到-10的目标保持存活；即使生命仍为负值，也使伤势稳定。\n对不死生物改为造成伤害，意志豁免成功则减半。由现场手动结算。",
+    "spell": {
+      "classLevels": {
+        "cleric": 2,
+        "innate-magic": 2
+      }
+    }
+  },
+  {
+    "id": "regroup",
+    "name": "战线重整",
+    "category": "spell",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "战线重整（Regroup）\n咒法系（传送）\n等级：天生魔力3\n法术成分：言语，姿势\n施法时间：一个标准动作\n距离：{25 + 5 * FLOOR(caster.level / 2)}尺\n目标：至多{caster.level}个自愿生物\n持续时间：立即\n法术抗力：不可\n将同伴传送到与你接邻的格子。若位置被占用或不能支撑生物，则尽可能放到离你最近、可以支撑该生物且未被占用的位置。传送由现场处理。",
+    "spell": {
+      "classLevels": {
+        "innate-magic": 3
+      }
+    }
+  },
+  {
+    "id": "cure_serious_wounds",
+    "name": "治疗重伤",
+    "category": "spell",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "治疗重伤（Cure Serious Wounds）\n咒法系（医疗）\n等级：牧师3，天生魔力3\n法术成分：言语，姿势\n施法时间：一个标准动作\n距离：接触\n目标：接触到的生物\n持续时间：立即\n以正能量治疗3d8+{MIN(caster.level, 15)}点伤害。\n对不死生物改为造成同量伤害；不死生物可用法术抗力抵抗，并以意志豁免将伤害减半。治疗与伤害均由现场手动结算。",
+    "spell": {
+      "classLevels": {
+        "cleric": 3,
+        "innate-magic": 3
+      }
+    }
+  },
+  {
+    "id": "sending",
+    "name": "短讯术",
+    "category": "spell",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [],
+    "description": "短讯术（Sending）\n塑能系\n等级：牧师4，天生魔力4，巫女5\n法术成分：言语，姿势，材料/法器\n施法时间：10分钟\n距离：见正文\n目标：一个生物\n持续时间：1轮；见正文\n豁免检定：无\n法术抗力：不可\n向熟识的生物发送不超过25字的信息。如果对方认识你，会认出你，并可立即回复类似长度的信息。智力低至1的生物也能理解，但反应受其智力限制。受术者没有义务依信息行动。\n奥术施法材料：一小段细铜线。",
+    "spell": {
+      "classLevels": {
+        "cleric": 4,
+        "innate-magic": 4,
+        "shrine-maiden": 5
+      },
+      "castAction": "cast"
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放短讯术",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "短讯术",
+          "text": "短讯术：向熟识生物发送不超过25字的信息，对方可立即回复。",
+          "remaining": "1",
+          "category": "combat",
+          "expiresModule": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "zone_of_revelation",
+    "name": "揭示之域",
+    "category": "spell",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [],
+    "description": "揭示之域（Zone Of Revelation）\n预言系\n等级：牧师5，天生魔力5\n法术成分：姿势，言语，材料/法器\n施法时间：一个标准动作\n距离：{25 + 5 * FLOOR(caster.level / 2)}尺\n区域：指定地点为中心，半径{5 * caster.level}尺的弥漫范围\n持续时间：{10 * caster.level}轮\n豁免检定：无\n法术抗力：可\n范围内的生物无所遁形，包括隐形生物及灵界、幽影界等相连位面的生物。原本生存在该位面的生物不丧失其他能力，但会显现身形。\n抑制隐形、同游灵界等效果，不解除它们；离开范围后恢复原状。灵界生物在区域内失去灵体化现象，直到离开。仅作提醒，具体效果由现场判断。",
+    "spell": {
+      "classLevels": {
+        "cleric": 5,
+        "innate-magic": 5
+      },
+      "castAction": "cast"
+    },
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放揭示之域",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "揭示之域",
+          "text": "揭示之域：半径{5 * caster.level}尺内，显露隐形及相连位面的生物；抑制相关效果而不解除，离开后恢复。",
+          "remaining": "10 * caster.level",
+          "category": "combat",
+          "expiresModule": true
+        }
+      }
+    ]
+  }
+]

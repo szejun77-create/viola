@@ -1,0 +1,38 @@
+{
+  "id": "rage_feat_buff",
+  "name": "狂暴效果",
+  "category": "other",
+  "mode": "toggle",
+  "timedOnly": true,
+  "requiresOwnedModule": "rage_feat",
+  "tags": [
+    "rage_feat"
+  ],
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "strength",
+      "value": "4",
+      "duration": "short",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "constitution",
+      "value": "4",
+      "duration": "short",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "will",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "morale"
+    },
+    {
+      "target": "defenseCommon",
+      "value": "-2",
+      "duration": "short",
+      "bonusType": "unnamed"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "artificial_life_fly",
+  "name": "人工生命强化：飞行",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "speed",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "20",
+      "when": "conditions.fly"
+    }
+  ],
+  "notes": [
+    {
+      "text": "飞行状态：原速度变为0后，获得20尺飞行速度。",
+      "category": "combat",
+      "when": "conditions.fly"
+    }
+  ]
+}

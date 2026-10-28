@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {loadTs} from './test-module.mjs';
+const {defaultMechanics}=await loadTs('./mechanics.ts');const {greatsword}=await loadTs('./equipment.ts');const {prepareModules}=await loadTs('./rule-engine.ts');const {ruleCatalog,validateModule}=await loadTs('./rule-schema.ts');const {weaponAttackRows}=await loadTs('./weapon-damage.ts');
+const range=JSON.parse(readFileSync('public/examples/improved-critical-greatsword.json')),bonus=JSON.parse(readFileSync('public/examples/critical-specialization-greatsword.json'));validateModule(range,{});validateModule(bonus,{});
+const cfg=defaultMechanics();cfg.modules={sword:{...greatsword,id:'sword',outputs:[],resourceMaxModifiers:[]},[range.id]:range,[bonus.id]:bonus};
+const z={strength:0,dexterity:0,constitution:0,intelligence:0,wisdom:0,charisma:0},c={...z,class_levels:[],ability_permanent:z,ability_temporary:z,editable_fields:[],race:'人类',rule_state:{instances:[{id:'s',moduleId:'sword',enabled:true,access:'gm',params:{}},{id:'r',moduleId:range.id,enabled:true,access:'gm',params:{}},{id:'b',moduleId:bonus.id,enabled:true,access:'gm',params:{}}],weapon:{},equipment:{weapon:'s'}}};
+function calc(character=c,config=cfg){const r=prepareModules(character,config);assert.deepEqual(r.errors,{});return weaponAttackRows(character.rule_state,ruleCatalog(config),'小型',r.extras,r.character,config,r.effects)[0]}
+let row=calc();assert.equal(row.criticalWidth,4);assert.equal(21-row.criticalWidth,17);assert.equal(row.criticalMultiplier,3);assert.equal(row.damageDice,'1d10');
+const other={...cfg,modules:{...cfg.modules,sword:{...cfg.modules.sword,weapon:{...greatsword.weapon,type:'crossbow'}}}};row=calc(c,other);assert.equal(row.criticalWidth,2);assert.equal(row.criticalMultiplier,2);
+const removed={...c,rule_state:{...c.rule_state,instances:c.rule_state.instances.filter(i=>i.id==='s')}};row=calc(removed);assert.equal(row.criticalWidth,2);assert.equal(row.criticalMultiplier,2);
+console.log('Critical abilities: native greatsword 19–20 becomes 17–20, ×2 becomes ×3; other weapon types and source removal remain unaffected');

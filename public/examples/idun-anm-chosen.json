@@ -1,0 +1,36 @@
+{
+  "id": "idun_anm_chosen",
+  "name": "伊敦·安姆的钦定者",
+  "category": "other",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "resources": {
+    "radiance": {
+      "label": "伊顿安姆的威光",
+      "initial": 1,
+      "min": "0",
+      "max": "1",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "actions": [
+    {
+      "id": "use_radiance",
+      "label": "使用伊顿安姆的威光",
+      "playerUsable": true,
+      "when": "resources.radiance > 0",
+      "changes": [
+        {"target": "resources.radiance", "value": "resources.radiance - 1"}
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "text": "以自身为中心，半径20尺内的所有邪魔、不死生物、邪龙受到{{level}}d6伤害。",
+      "category": "combat",
+      "when": "resources.radiance > 0"
+    }
+  ]
+}

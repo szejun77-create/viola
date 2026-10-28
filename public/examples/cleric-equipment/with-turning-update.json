@@ -1,0 +1,377 @@
+[
+  {
+    "id": "evil_outsider_bane_mace",
+    "name": "＋1破敌（邪恶异界）钉头锤",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "weapon",
+    "parameters": {
+      "evil_outsider": {
+        "label": "目标是邪恶异界敌人",
+        "type": "boolean",
+        "default": false,
+        "playerEditable": true
+      }
+    },
+    "outputs": [
+      {
+        "target": "melee",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "value": "IF(params.evil_outsider,3,1)",
+        "scope": "weapon"
+      },
+      {
+        "target": "damage",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "value": "IF(params.evil_outsider,3,1)",
+        "scope": "weapon"
+      },
+      {
+        "target": "damageDice",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "2",
+        "scope": "weapon",
+        "die": 6,
+        "attackMode": "melee",
+        "when": "params.evil_outsider"
+      }
+    ],
+    "description": "中型单手近战武器，基础伤害1d6，重击20／×2。通常命中与伤害各+1增强。目标是邪恶异界敌人时，开启条件参数，使本武器命中与伤害的增强加值改为+3，并获得2d6额外伤害。不是把+1和+2增强分别取高。",
+    "tags": [
+      "one_handed",
+      "melee",
+      "magic_weapon"
+    ],
+    "defaultAccess": "parameters",
+    "weapon": {
+      "type": "mace",
+      "baseDamage": "1d6",
+      "sizeDamage": "1d6",
+      "damage": "1d6",
+      "size": "中型",
+      "criticalWidth": 1,
+      "criticalMultiplier": 2,
+      "enhancement": 1
+    }
+  },
+  {
+    "id": "mithral_full_plate_recall_1",
+    "name": "＋1召回秘银全身甲",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "armor",
+    "parameters": {},
+    "outputs": [],
+    "description": "中型秘银全身甲，按中甲处理。基础护甲8，增强+1，最大敏捷调整3，防具检定减值-3；初始速度20减5，30减10。召回：一个迅捷动作可将未装备的盔甲装备上。",
+    "tags": [
+      "mithral",
+      "medium_armor"
+    ],
+    "armor": {
+      "category": "medium",
+      "size": "中型",
+      "baseArmor": 8,
+      "enhancement": 1,
+      "dexCap": 3,
+      "checkPenalty": -3,
+      "speedPenalties": {
+        "20": -5,
+        "30": -10
+      }
+    },
+    "notes": [
+      {
+        "text": "召回：通过一个迅捷动作，将未装备的这件盔甲装备上。",
+        "category": "noncombat",
+        "whileOwned": true
+      }
+    ]
+  },
+  {
+    "id": "mithral_heavy_shield_fortification_1",
+    "name": "＋1护命秘银重盾",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "shield",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "defense",
+        "duration": "short",
+        "bonusType": "shield",
+        "value": "3"
+      },
+      {
+        "target": "flatDefense",
+        "duration": "short",
+        "bonusType": "shield",
+        "value": "3"
+      }
+    ],
+    "description": "单手使用。基础盾牌防御+2，盾牌自身增强+1，总盾牌贡献+3，适用于普通／措手不及防御，不适用于接触。盾牌增强计入本盾的盾牌贡献，可与盔甲自身的增强叠加。护命：受到重击或偷袭时，有25%几率只承受普通攻击。",
+    "tags": [
+      "one_handed",
+      "heavy_shield",
+      "mithral"
+    ],
+    "notes": [
+      {
+        "text": "护命：受到重击或偷袭时，有25%几率只承受普通攻击；由现场判断和掷骰。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "bag_of_holding_2",
+    "name": "二级次元袋",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "special",
+    "parameters": {},
+    "outputs": [],
+    "description": "可以装入最多500磅、70立方英尺的物品。",
+    "notes": [
+      {
+        "text": "次元袋容量：500磅，70立方英尺。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "pearl_of_power_2",
+    "name": "法力再生珍珠：2环",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "special",
+    "parameters": {},
+    "outputs": [],
+    "description": "你可以恢复2环法术一次，具体法术位由现场手动恢复。",
+    "resources": {
+      "spell_recovery_2": {
+        "label": "2环法术再生",
+        "initial": 1,
+        "min": "0",
+        "max": "1",
+        "integer": true,
+        "playerEditable": true
+      }
+    }
+  },
+  {
+    "id": "pearl_of_power_3",
+    "name": "法力再生珍珠：3环",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "special",
+    "parameters": {},
+    "outputs": [],
+    "description": "你可以恢复3环法术一次，具体法术位由现场手动恢复。",
+    "resources": {
+      "spell_recovery_3": {
+        "label": "3环法术再生",
+        "initial": 1,
+        "min": "0",
+        "max": "1",
+        "integer": true,
+        "playerEditable": true
+      }
+    }
+  },
+  {
+    "id": "rod_of_extend_spell",
+    "name": "法术延时权杖",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "special",
+    "parameters": {},
+    "outputs": [],
+    "description": "拥有3点使用次数。可用它为一项法术应用延时超魔；按本团要求不在战场使用。这里只记录次数与提示，法术持续时间由你手动处理，不自动增加法术环位。",
+    "resources": {
+      "uses": {
+        "label": "延时权杖",
+        "initial": 3,
+        "min": "0",
+        "max": "3",
+        "integer": true,
+        "playerEditable": false
+      }
+    },
+    "actions": [
+      {
+        "id": "use",
+        "label": "使用延时权杖",
+        "playerUsable": true,
+        "when": "resources.uses > 0",
+        "changes": [
+          {
+            "target": "resources.uses",
+            "value": "resources.uses - 1"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      {
+        "text": "你可以用延时权杖为一项法术应用延时超魔；不在战场使用，使用后消耗1点，持续时间手动处理。",
+        "category": "combat",
+        "when": "resources.uses > 0"
+      }
+    ]
+  },
+  {
+    "id": "natural_armor_ring_2",
+    "name": "天生防御戒指＋2",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "ring",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "defense",
+        "duration": "short",
+        "bonusType": "natural_armor",
+        "value": "2"
+      },
+      {
+        "target": "flatDefense",
+        "duration": "short",
+        "bonusType": "natural_armor",
+        "value": "2"
+      }
+    ],
+    "description": "普通和措手不及防御获得+2天生防御，不适用于接触防御。"
+  },
+  {
+    "id": "ring_of_feather_falling",
+    "name": "羽落术戒指",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "ring",
+    "parameters": {},
+    "outputs": [],
+    "description": "坠落时自动获得羽落术效果。",
+    "notes": [
+      {
+        "text": "你在坠落时会自动获得羽落术。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "cloak_of_charisma_2",
+    "name": "魅力斗篷＋2",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "shoulders",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "charisma",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "value": "2"
+      }
+    ],
+    "description": "穿戴时，魅力获得+2短效增强加值。"
+  },
+  {
+    "id": "nightstick",
+    "name": "夜之杖",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "special",
+    "parameters": {},
+    "outputs": [],
+    "description": "若已有驱散资源，其上限和初始次数额外增加4；不单独创建驱散池。已有存档的当前剩余次数不自动补充，由DM手动调整。",
+    "resourceMaxModifiers": [
+      {
+        "tag": "turn_undead",
+        "resource": "turns",
+        "value": "4",
+        "bonusType": "unnamed",
+        "affectsInitial": true
+      }
+    ]
+  },
+  {
+    "id": "wand_of_lesser_rejuvenation",
+    "name": "次级回春术法杖",
+    "category": "item",
+    "mode": "passive",
+    "equipmentSlot": "special",
+    "parameters": {},
+    "outputs": [],
+    "description": "共50次充能，每次使用消耗1次，可以在11轮内逐渐恢复总计11点生命。按描述手动处理治疗，不自动改当前生命。充能为消耗型，不会被回合、战斗或未来的每日恢复补满。暂放特殊位置。",
+    "resources": {
+      "charges": {
+        "label": "回春术充能（不可自动恢复）",
+        "initial": 50,
+        "min": "0",
+        "max": "50",
+        "integer": true,
+        "playerEditable": false,
+        "rechargeable": false
+      }
+    },
+    "actions": [
+      {
+        "id": "use",
+        "label": "使用回春术充能（不可自动恢复）",
+        "playerUsable": true,
+        "when": "resources.charges > 0",
+        "changes": [
+          {
+            "target": "resources.charges",
+            "value": "resources.charges - 1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "turn_undead",
+    "name": "驱散不死生物",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "驱散次数：3+魅力调整值（最低0）。\n驱散检定：1d20 + ({mod.charisma}) = 驱散值。由你投骰并查下表。\n检定结果　　可影响不死生物的最高HD\n0或以下　　牧师等级-4 = {classes.cleric.level - 4}\n1—3　　　　牧师等级-3 = {classes.cleric.level - 3}\n4—6　　　　牧师等级-2 = {classes.cleric.level - 2}\n7—9　　　　牧师等级-1 = {classes.cleric.level - 1}\n10—12　　　牧师等级 = {classes.cleric.level}\n13—15　　　牧师等级+1 = {classes.cleric.level + 1}\n16—18　　　牧师等级+2 = {classes.cleric.level + 2}\n19—21　　　牧师等级+3 = {classes.cleric.level + 3}\n22及以上　 牧师等级+4 = {classes.cleric.level + 4}\n使用按钮只消耗1次；目标、驱散值和后续效果由现场判断，恢复由DM手动处理。",
+    "resources": {
+      "turns": {
+        "label": "驱散",
+        "initial": "MAX(0,3 + mod.charisma)",
+        "min": "0",
+        "max": "MAX(0,3 + mod.charisma)",
+        "integer": true,
+        "playerEditable": false
+      }
+    },
+    "actions": [
+      {
+        "id": "turn",
+        "label": "使用驱散",
+        "playerUsable": true,
+        "when": "resources.turns > 0",
+        "changes": [
+          {
+            "target": "resources.turns",
+            "value": "resources.turns - 1"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      {
+        "text": "你可以驱散不死生物。驱散检定为1d20 + ({mod.charisma})；按能力描述中的表格判断可影响的最高HD，使用时消耗1次。",
+        "when": "resources.turns > 0",
+        "category": "combat"
+      }
+    ],
+    "tags": [
+      "turn_undead"
+    ]
+  }
+]

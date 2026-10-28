@@ -1,0 +1,17 @@
+{
+  "id": "cloak_of_charisma_2",
+  "name": "魅力斗篷＋2",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "shoulders",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "charisma",
+      "duration": "short",
+      "bonusType": "enhancement",
+      "value": "2"
+    }
+  ],
+  "description": "穿戴时，魅力获得+2短效增强加值。"
+}

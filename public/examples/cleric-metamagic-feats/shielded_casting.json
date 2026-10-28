@@ -1,0 +1,16 @@
+{
+  "id": "shielded_casting",
+  "name": "持盾施法",
+  "category": "feat",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [],
+  "description": "当装备好轻盾、重盾或塔盾时，你在战斗中施法不会引发借机攻击。由玩家／DM手动判断条件后开启；只提供备忘，不自动判定盾牌。",
+  "defaultAccess": "toggle",
+  "notes": [
+    {
+      "text": "你装备好轻盾、重盾或塔盾时，在战斗中施法不会引发借机攻击。",
+      "category": "combat"
+    }
+  ]
+}

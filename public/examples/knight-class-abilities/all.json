@@ -1,0 +1,171 @@
+[
+  {
+    "id": "battle_standard_inspiration",
+    "name": "战旗鼓舞",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你获得主要光环与次要光环，可以各开启一项。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "lancer_training",
+    "name": "枪骑训练",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "melee",
+        "value": "FLOOR(level / 4)",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "when": "conditions.mounted"
+      },
+      {
+        "target": "ranged",
+        "value": "FLOOR(level / 4)",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "when": "conditions.mounted"
+      },
+      {
+        "target": "damage",
+        "value": "2 * FLOOR(level / 4)",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "when": "conditions.mounted"
+      }
+    ],
+    "grant": {
+      "name": "枪骑训练：坐骑防护",
+      "group": "ally",
+      "mode": "mount",
+      "defaultAccepted": true,
+      "outputs": [
+        {
+          "target": "defense",
+          "value": "FLOOR(level / 4)",
+          "duration": "short",
+          "bonusType": "dodge"
+        },
+        {
+          "target": "touchDefense",
+          "value": "FLOOR(level / 4)",
+          "duration": "short",
+          "bonusType": "dodge"
+        }
+      ],
+      "notes": [
+        {
+          "text": "骑手上马时，你的普通与接触防御获得+{FLOOR(level / 4)}闪避加值。随骑手下马或更换坐骑而结束。",
+          "category": "combat"
+        }
+      ]
+    }
+  },
+  {
+    "id": "first_strike",
+    "name": "先声夺人",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "grantsModules": [
+      "first_strike_buff"
+    ],
+    "resources": {
+      "first_strike": {
+        "label": "先声夺人",
+        "initial": 1,
+        "min": "0",
+        "max": "1",
+        "integer": true,
+        "playerEditable": false
+      }
+    },
+    "actions": [
+      {
+        "id": "use",
+        "label": "使用先声夺人",
+        "playerUsable": true,
+        "when": "resources.first_strike >= 1",
+        "changes": [
+          {
+            "target": "resources.first_strike",
+            "value": "resources.first_strike - 1"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "先声夺人",
+          "text": "伤害额外增加{MAX(0, 2 * FLOOR((level - 5) / 2))}d8；使用后立即生效，下一次回合刷新结束。",
+          "remaining": "1",
+          "category": "combat",
+          "activateModule": "first_strike_buff"
+        }
+      }
+    ]
+  },
+  {
+    "id": "leading_impact",
+    "name": "领导冲击",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "resources": {
+      "leading_attack": {
+        "label": "领导攻击",
+        "initial": 1,
+        "min": "0",
+        "max": "1",
+        "integer": true,
+        "playerEditable": false
+      }
+    },
+    "notes": [
+      {
+        "text": "你可以使用一次领导攻击，令队友对你的攻击目标发动一次全回合攻击；队友必须能够接触到该敌人。",
+        "category": "combat",
+        "when": "resources.leading_attack > 0"
+      }
+    ],
+    "actions": [
+      {
+        "id": "use",
+        "label": "使用领导攻击",
+        "playerUsable": true,
+        "when": "resources.leading_attack >= 1",
+        "changes": [
+          {
+            "target": "resources.leading_attack",
+            "value": "resources.leading_attack - 1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "first_strike_buff",
+    "name": "先声夺人效果",
+    "category": "other",
+    "mode": "toggle",
+    "timedOnly": true,
+    "requiresOwnedModule": "first_strike",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "damageDice",
+        "die": 8,
+        "duration": "short",
+        "bonusType": "unnamed",
+        "value": "MAX(0, 2 * FLOOR((level - 5) / 2))"
+      }
+    ]
+  }
+]

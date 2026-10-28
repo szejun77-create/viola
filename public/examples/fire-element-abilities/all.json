@@ -1,0 +1,64 @@
+[
+  {
+    "id": "spell_steadiness_charm_person",
+    "name": "法术稳健（魅惑人类）",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你的魅惑人类不需要姿势（动作）和言语（声音）成分。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "spell_steadiness_gaseous_form",
+    "name": "法术稳健（气化形体）",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你的气化形体不需要姿势（动作）和言语（声音）成分。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "element_specialization_fire",
+    "name": "专精五行：火",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "notes": [
+      {
+        "text": "你可以捕捉到{5 * classes.shrine_maiden.level}尺内的大火，即使两者之间有物品阻挡。你抄录带火或伤害关键词的法术时，开销减半。你可以将其他能量法术改为火能量法术。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "element_essence_fire",
+    "name": "五行精髓：火",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "metamagic": {
+      "slotIncrease": 0,
+      "slotReduction": 1,
+      "damageBonus": "mod.intelligence",
+      "conditionNote": "仅限本次火系法术，火系条件与额外伤害由现场判断"
+    },
+    "notes": [
+      {
+        "text": "施放火系法术时可在施法区开启五行精髓：火，超魔额外升环-1（最低0，不抵消单独的高环释放），本次法术伤害额外增加智力调整值。加值在施放后的一回合备注中显示，不增加武器伤害。",
+        "category": "combat"
+      }
+    ]
+  }
+]

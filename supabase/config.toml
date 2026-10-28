@@ -1,0 +1,6 @@
+project_id = "viola-campaign"
+
+[functions.module-state]
+enabled = true
+verify_jwt = true
+entrypoint = "./functions/module-state/index.ts"

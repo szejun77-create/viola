@@ -1,0 +1,43 @@
+{
+  "id": "disguise_self",
+  "name": "易容术",
+  "category": "spell",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "skill.disguise",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "10"
+    }
+  ],
+  "description": "易容术（Disguise Self）\n幻术系（五官幻觉）\n等级：天生魔力1，巫女1\n法术成分：言语，姿势\n施法时间：一个标准动作\n距离：个人\n目标：自己\n持续时间：{100 * caster.level}轮（可解消）\n你使自己及服装、盔甲、武器和装备看上去不同，可以看起来变高或变矮一英尺，变胖或变瘦，但不能改变身体类型。你可以添加、掩饰外貌特征，或看起来完全变成另一个人。\n此法术不提供特殊能力或语言习惯，不改变你和装备的触感或声音。用于易容检定时获得+10加值。与你发生感官互动的生物可通过意志检定识破幻觉。",
+  "spell": {
+    "classLevels": {
+      "innate-magic": 1,
+      "shrine-maiden": 1
+    },
+    "castAction": "cast"
+  },
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放易容术",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "易容术",
+        "text": "易容术：易容检定+10。只改变外观，不改变触感、声音、身体类型或能力；感官互动者可用意志检定识破。",
+        "remaining": "100 * caster.level",
+        "category": "combat",
+        "expiresModule": true
+      }
+    }
+  ]
+}

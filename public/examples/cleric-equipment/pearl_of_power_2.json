@@ -1,0 +1,20 @@
+{
+  "id": "pearl_of_power_2",
+  "name": "法力再生珍珠：2环",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "special",
+  "parameters": {},
+  "outputs": [],
+  "description": "你可以恢复2环法术一次，具体法术位由现场手动恢复。",
+  "resources": {
+    "spell_recovery_2": {
+      "label": "2环法术再生",
+      "initial": 1,
+      "min": "0",
+      "max": "1",
+      "integer": true,
+      "playerEditable": true
+    }
+  }
+}

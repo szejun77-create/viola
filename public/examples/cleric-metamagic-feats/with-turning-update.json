@@ -1,0 +1,160 @@
+[
+  {
+    "id": "extra_turning",
+    "name": "额外驱散",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "若已有驱散资源，其上限和初始次数增加4。不会凭空授予驱散能力。已有存档中的当前剩余次数不自动回满，需要DM按实际情况手动加4；新初始化的资源会包含此加成。",
+    "resourceMaxModifiers": [
+      {
+        "tag": "turn_undead",
+        "resource": "turns",
+        "value": "4",
+        "bonusType": "unnamed",
+        "affectsInitial": true
+      }
+    ]
+  },
+  {
+    "id": "combat_casting",
+    "name": "战斗施法",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "skill.concentration",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "value": "4",
+        "context": "防御式施法、被压制或擒抱时"
+      }
+    ],
+    "description": "防御式施法、被压制或擒抱时，你的专注检定+4。只用于这些情境，不提高平时的专注检定。"
+  },
+  {
+    "id": "shielded_casting",
+    "name": "持盾施法",
+    "category": "feat",
+    "mode": "toggle",
+    "parameters": {},
+    "outputs": [],
+    "description": "当装备好轻盾、重盾或塔盾时，你在战斗中施法不会引发借机攻击。由玩家／DM手动判断条件后开启；只提供备忘，不自动判定盾牌。",
+    "defaultAccess": "toggle",
+    "notes": [
+      {
+        "text": "你装备好轻盾、重盾或塔盾时，在战斗中施法不会引发借机攻击。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "quicken_spell",
+    "name": "法术瞬发",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "搭配本专长时，施展法术视为即时动作。同轮可进行另一个行动，甚至施展另一个法术；每轮只能施展一个瞬发法术。施法时间超过一整轮的法术不可搭配。瞬发施法不引发借机攻击。占用高4环的法术位。系统仅计算超魔+4环，其余由现场判断。",
+    "metamagic": {
+      "slotIncrease": 4
+    }
+  },
+  {
+    "id": "divine_metamagic_quicken",
+    "name": "神圣超魔：法术瞬发",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "你可以用驱散次数代替法术瞬发超魔的环位消耗。仅备注；驱散次数及相应法术位由你手动调整，不自动减免超魔升环或扣驱散。",
+    "notes": [
+      {
+        "text": "你可以用驱散次数代替法术瞬发超魔的环位消耗，次数和法术位由你手动处理。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "widen_spell",
+    "name": "法术扩展",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "你可以增加爆发（Burst）、散发（Emanation）、直线（Line）或扩散（Spread）形状法术的作用范围；有关作用范围的数值翻倍。占用高1环的法术位。系统计算+1环，范围数值由现场按描述加倍。",
+    "metamagic": {
+      "slotIncrease": 1
+    }
+  },
+  {
+    "id": "twin_spell",
+    "name": "法术孪生",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "你可以使法术在同一区域或单一对象上同时造成两次效果。可变特性（包括攻击掷骰）及目标、区域等决定同时应用于两份法术；目标分别接受每份法术的效果与豁免。在通常施展两次不会叠加的情况下，不因孪生而额外叠加或延长时效；例如孪生魅惑人类需要分别解除两份，反制则可解消整个孪生法术。占用高4环的法术位。\n系统会把本次生成的持续备忘各复制一份，分别计时、分别删除；伤害和豁免仍手动结算，不再消耗第二个法术位，也不把同一对持续数值增益翻倍。",
+    "metamagic": {
+      "slotIncrease": 4,
+      "timedEffectCopies": 2
+    }
+  },
+  {
+    "id": "enlarge_spell",
+    "name": "法术增远",
+    "category": "feat",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "你可以把近距离、中距离或远距离法术的施法距离翻倍。距离不为近、中、远的法术不可使用。占用高1环的法术位；系统只计算+1环，适用条件与距离由现场判断。",
+    "metamagic": {
+      "slotIncrease": 1
+    }
+  },
+  {
+    "id": "turn_undead",
+    "name": "驱散不死生物",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "驱散次数：3+魅力调整值（最低0）。\n驱散检定：1d20 + ({mod.charisma}) = 驱散值。由你投骰并查下表。\n检定结果　　可影响不死生物的最高HD\n0或以下　　牧师等级-4 = {classes.cleric.level - 4}\n1—3　　　　牧师等级-3 = {classes.cleric.level - 3}\n4—6　　　　牧师等级-2 = {classes.cleric.level - 2}\n7—9　　　　牧师等级-1 = {classes.cleric.level - 1}\n10—12　　　牧师等级 = {classes.cleric.level}\n13—15　　　牧师等级+1 = {classes.cleric.level + 1}\n16—18　　　牧师等级+2 = {classes.cleric.level + 2}\n19—21　　　牧师等级+3 = {classes.cleric.level + 3}\n22及以上　 牧师等级+4 = {classes.cleric.level + 4}\n使用按钮只消耗1次；目标、驱散值和后续效果由现场判断，恢复由DM手动处理。",
+    "resources": {
+      "turns": {
+        "label": "驱散",
+        "initial": "MAX(0,3 + mod.charisma)",
+        "min": "0",
+        "max": "MAX(0,3 + mod.charisma)",
+        "integer": true,
+        "playerEditable": false
+      }
+    },
+    "actions": [
+      {
+        "id": "turn",
+        "label": "使用驱散",
+        "playerUsable": true,
+        "when": "resources.turns > 0",
+        "changes": [
+          {
+            "target": "resources.turns",
+            "value": "resources.turns - 1"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      {
+        "text": "你可以驱散不死生物。驱散检定为1d20 + ({mod.charisma})；按能力描述中的表格判断可影响的最高HD，使用时消耗1次。",
+        "when": "resources.turns > 0",
+        "category": "combat"
+      }
+    ],
+    "tags": [
+      "turn_undead"
+    ]
+  }
+]

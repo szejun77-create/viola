@@ -1,0 +1,14 @@
+{
+  "id": "spell_steadiness_gaseous_form",
+  "name": "法术稳健（气化形体）",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你的气化形体不需要姿势（动作）和言语（声音）成分。",
+      "category": "combat"
+    }
+  ]
+}

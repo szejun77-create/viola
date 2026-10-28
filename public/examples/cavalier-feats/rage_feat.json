@@ -1,0 +1,51 @@
+{
+  "id": "rage_feat",
+  "name": "狂暴（专长版）",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "消耗狂暴次数，获得开启前体质调整值+3轮的狂暴。力量、体质+4无名，意志+2士气，AC-2。结束后疲乏，直到手动解除。",
+      "category": "combat"
+    }
+  ],
+  "grantsModules": [
+    "rage_feat_buff"
+  ],
+  "resources": {
+    "uses": {
+      "label": "狂暴次数",
+      "initial": "1 + FLOOR(level / 4)",
+      "min": "0",
+      "max": "1 + FLOOR(level / 4)",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "actions": [
+    {
+      "id": "rage",
+      "label": "消耗1次：狂暴",
+      "playerUsable": true,
+      "when": "resources.uses >= 1 && !tags.rage_feat.active",
+      "changes": [
+        {
+          "target": "resources.uses",
+          "value": "resources.uses - 1"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "狂暴",
+        "text": "狂暴：力量、体质+4无名，意志+2士气，AC-2。不能使用除平衡、脱逃、威吓、骑术外的魅力、敏捷、智力技能，以及需要耐心或专注的技能和能力；不能使用指令触发魔法物品、寓守于攻、造物品专长或超魔专长。上述行为限制由现场判断。",
+        "remaining": "mod.constitution + 3",
+        "category": "combat",
+        "activateModule": "rage_feat_buff",
+        "onExpireConditions": [
+          "fatigued"
+        ]
+      }
+    }
+  ]
+}

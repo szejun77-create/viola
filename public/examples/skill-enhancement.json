@@ -1,0 +1,50 @@
+{
+  "id": "skill_enhancement",
+  "name": "技能强化",
+  "category": "spell",
+  "mode": "toggle",
+  "description": "技能强化（Skill Enhancement）\n变化系\n等级：机关术师1\n法术成分：姿势，材料\n施法时间：1轮\n距离：接触\n目标：接触到的物品\n持续时间：每等级10分钟（共{100 * caster.level}轮）\n通过此机关术强化的物品能对装备者的某项技能（由施法者决定）提供＋{FLOOR(caster.level / 2) + 2}环境加值。\n施放时选择一个友军和一项技能，具体物品由现场判断。",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "artificer"
+    ],
+    "classLevels": {
+      "artificer": 1
+    },
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [],
+  "grant": {
+    "name": "技能强化",
+    "group": "ally",
+    "mode": "single",
+    "includeSelf": false,
+    "outputs": [],
+    "skillChoice": {
+      "value": "FLOOR(caster.level / 2) + 2",
+      "duration": "short",
+      "bonusType": "circumstance"
+    }
+  },
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放技能强化",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "技能强化",
+        "text": "通过物品，为施放时选定的友军技能提供＋{FLOOR(caster.level / 2) + 2}环境加值。",
+        "remaining": "100 * caster.level",
+        "expiresModule": true
+      }
+    }
+  ]
+}

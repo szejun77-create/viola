@@ -1,0 +1,68 @@
+{
+  "id": "ring_of_silence",
+  "name": "沉默术戒指",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "ring",
+  "parameters": {},
+  "outputs": [],
+  "description": "消耗一次沉默领域使用次数，开启以自己为中心、半径20尺的沉默领域，持续10倍所选施法者等级轮。你在本次领域中的前三个法术不受其影响，逐次消耗默发法术资源。",
+  "resources": {
+    "silence_fields": {
+      "label": "沉默领域",
+      "initial": 3,
+      "min": "0",
+      "max": "3",
+      "integer": true,
+      "playerEditable": false
+    },
+    "silent_spells": {
+      "label": "默发的法术",
+      "initial": 3,
+      "min": "0",
+      "max": "3",
+      "integer": true,
+      "playerEditable": false,
+      "whileEffect": "silence",
+      "hideWhenZero": true
+    }
+  },
+  "actions": [
+    {
+      "id": "silence",
+      "label": "开启沉默领域",
+      "usesCasterLevel": true,
+      "playerUsable": true,
+      "when": "resources.silence_fields >= 1",
+      "changes": [
+        {
+          "target": "resources.silence_fields",
+          "value": "resources.silence_fields - 1"
+        },
+        {
+          "target": "resources.silent_spells",
+          "value": "3"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "沉默领域",
+        "text": "以你为中心、半径20尺的范围受到沉默术影响。本次领域中你施放的前三个法术不受此影响，请逐次使用“默发的法术”资源。",
+        "remaining": "10 * caster.level",
+        "category": "combat"
+      }
+    },
+    {
+      "id": "use_silent_spell",
+      "label": "使用1次默发法术",
+      "whileEffect": "silence",
+      "playerUsable": true,
+      "when": "resources.silent_spells > 0",
+      "changes": [
+        {
+          "target": "resources.silent_spells",
+          "value": "resources.silent_spells - 1"
+        }
+      ]
+    }
+  ]
+}

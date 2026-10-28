@@ -1,0 +1,51 @@
+{
+  "id": "chill_metal",
+  "name": "冻寒金属",
+  "category": "spell",
+  "mode": "toggle",
+  "description": "冻寒金属（Chill Metal）\n变化系［寒冷］\n等级：机关术师2\n法术成分：言语，姿势，法器\n施法时间：一个标准动作\n距离：近距（{25 + 5 * FLOOR(caster.level / 2)}英尺）\n目标：{FLOOR(caster.level / 2)}个生物身上的金属装备，所有被选定的生物任意两个间距不超过30英尺；或者{25 * caster.level}的金属，这些金属之间的间距不超过30英尺（数量单位按现场约定）。\n持续时间：通常7轮，可调整总轮数\n豁免检定：意志，通过则无效（物体）\n法术抗力：可（物体）\n\n未被持有的非魔法金属不能豁免；魔法金属可以豁免。生物拥有的物品使用持有者与物品自身两者较高的豁免加值。\n盔甲或正在持有、接触、穿着、携带的金属重量达到生物体重的1/5时，生物受到全部伤害；没有金属盔甲且金属重量不足体重1/5时，取最低伤害。若对象为武器，取最低伤害。\n寒冷与灼热伤害可1点对1点抵消。冻寒金属与灼热金属可以互相反制或解除。\n本模块只显示本轮伤害备忘，不自动扣血；目标、豁免、重量和武器条件均由现场判断。\n水下冻寒金属不造成伤害；冰层立即覆盖受影响的金属，使其产生浮力。\n施放后，阶段与伤害提醒记录在施法者自己的战斗备忘中，用于追踪敌方效果；无需选择友军或等待接受。\n法术延时使总持续时间翻倍，开始阶段仍固定2轮，仅延长中间阶段。",
+  "spell": {
+    "classLevels": {
+      "artificer": 2
+    },
+    "castAction": "cast"
+  },
+  "parameters": {
+    "duration": {
+      "label": "总持续回合（包含开始阶段2轮）",
+      "type": "number",
+      "default": 7,
+      "min": "3",
+      "max": "10000",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "outputs": [],
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放冻寒金属",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "冻寒金属",
+        "text": "敌方效果追踪：冻寒金属持续阶段；伤害以动态备注为准。",
+        "dynamicText": "敌方效果追踪：持续阶段：本轮造成{IF(timer.remaining >= 3, '2d4', IF(timer.remaining = 2, '1d4', '0'))}点寒冷伤害。若对象为武器，自动按最低伤害结算。",
+        "remaining": "params.duration",
+        "category": "combat",
+        "expiresModule": true,
+        "opening": {
+          "remaining": "2",
+          "dynamicText": "敌方效果追踪：开始阶段：本轮造成{IF(timer.remaining >= 2, '0', '1d4')}点寒冷伤害。若对象为武器，自动按最低伤害结算。",
+          "extendable": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "adaptive_weapon",
+  "name": "适应武器",
+  "category": "class",
+  "description": "仅供DM裁决：开启时列出角色已获得的特定武器能力及文字效果，不自动修改任何数值或武器适用条件。",
+  "mode": "toggle",
+  "weaponAbilityMemo": true,
+  "parameters": {},
+  "outputs": []
+}

@@ -1,0 +1,12 @@
+{
+  "id": "enlarge_spell",
+  "name": "法术增远",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "你可以把近距离、中距离或远距离法术的施法距离翻倍。距离不为近、中、远的法术不可使用。占用高1环的法术位；系统只计算+1环，适用条件与距离由现场判断。",
+  "metamagic": {
+    "slotIncrease": 1
+  }
+}

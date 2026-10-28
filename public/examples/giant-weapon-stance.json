@@ -1,0 +1,16 @@
+{
+  "id": "giant_weapon_stance",
+  "name": "巨武招式",
+  "category": "feat",
+  "mode": "passive",
+  "description": "武器伤害计算时，使用者的武器等效体型增加一档；不改变额外伤害骰。",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "weaponSize",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "value": "1"
+    }
+  ]
+}

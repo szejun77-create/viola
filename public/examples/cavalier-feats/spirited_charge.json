@@ -1,0 +1,44 @@
+{
+  "id": "spirited_charge",
+  "name": "奋力冲刺",
+  "category": "feat",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damageMultiplier",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "scope": "weapon",
+      "attackMode": "melee",
+      "when": "conditions.charge && conditions.mounted_charge"
+    },
+    {
+      "target": "damageMultiplier",
+      "value": "3",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "scope": "weapon",
+      "attackMode": "melee",
+      "requiredWeaponTags": [
+        "长枪"
+      ],
+      "when": "conditions.charge && conditions.mounted_charge"
+    }
+  ],
+  "notes": [
+    {
+      "text": "同时开启冲锋、骑冲（骑马冲锋）及本能力时，近战武器全部伤害骰与固定加值×2；带“长枪”tag时改为×3。武器区已显示乘算后的结果，不要再次按骑冲备注手动翻倍。",
+      "category": "combat"
+    }
+  ],
+  "defaultAccess": "toggle",
+  "weaponRequirement": {
+    "tags": [
+      "melee"
+    ],
+    "name": "近战武器；长枪tag时三倍",
+    "effectText": "骑乘冲锋时全部伤害×2；长枪×3"
+  }
+}

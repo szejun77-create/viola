@@ -1,0 +1,49 @@
+{
+  "id": "mountain_breaker",
+  "name": "巨山破",
+  "category": "spell",
+  "description": "1回合内获得额外2d6伤害，无视任何硬度和伤害减免。",
+  "mode": "toggle",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "crusader"
+    ],
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damageDice",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "die": 6
+    }
+  ],
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放巨山破",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "巨山破",
+        "text": "1回合内获得额外2d6伤害，无视任何硬度和伤害减免。",
+        "remaining": "1",
+        "expiresModule": true
+      }
+    }
+  ],
+  "notes": [
+    {
+      "text": "无视任何硬度和伤害减免。",
+      "category": "combat"
+    }
+  ]
+}

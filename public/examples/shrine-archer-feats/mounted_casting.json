@@ -1,0 +1,14 @@
+{
+  "id": "mounted_casting",
+  "name": "骑乘施法",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "骑乘状态下，施法专注不受影响。",
+      "category": "combat"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "bag_of_holding_2",
+  "name": "二级次元袋",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "special",
+  "parameters": {},
+  "outputs": [],
+  "description": "可以装入最多500磅、70立方英尺的物品。",
+  "notes": [
+    {
+      "text": "次元袋容量：500磅，70立方英尺。",
+      "category": "noncombat"
+    }
+  ]
+}

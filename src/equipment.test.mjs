@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {loadTs} from './test-module.mjs';
+const {equipmentSlots,equipmentRows,selectEquipment,validateEquipment}=await loadTs('./equipment.ts');
+const catalog={weaponVariables:{},modules:{a:{category:'item',equipmentSlot:'ring'},b:{category:'item',equipmentSlot:'ring'},s:{category:'item',equipmentSlot:'weapon'}}};
+const state={instances:[{id:'ring-a',moduleId:'a'},{id:'ring-b',moduleId:'b'},{id:'sword',moduleId:'s'}],weapon:{},equipment:{left_ring:'ring-a',right_ring:'ring-b',weapon:'sword',special_extra:''}};
+const switched=selectEquipment(state,catalog,'right_ring','ring-a');
+assert.equal(switched.equipment.left_ring,'ring-b');assert.equal(switched.equipment.right_ring,'ring-a');assert.equal(state.equipment.left_ring,'ring-a');validateEquipment(switched,catalog);
+const moved=selectEquipment(state,catalog,'secondary_weapon','sword');assert.equal(moved.equipment.weapon,'');assert.equal(moved.equipment.secondary_weapon,'sword');validateEquipment(moved,catalog);
+assert.throws(()=>validateEquipment({...state,equipment:{head:'ring-a'}},catalog),/符合位置/);
+assert.throws(()=>validateEquipment({...state,equipment:{left_ring:'ring-a',right_ring:'ring-a'}},catalog),/同时/);
+assert.throws(()=>validateEquipment({...state,equipment:{weapon:'another-characters-item'}},catalog),/角色已有/);
+assert.equal(equipmentSlots.length,19);assert.equal(equipmentRows(state.equipment).length,20);validateEquipment({...state,equipment:JSON.parse(JSON.stringify(state.equipment))},catalog);
+console.log('Equipment slots: ring swaps, weapon moves, unique instances, assigned-item validation and extra slots passed');
+
+const {greatsword,twoHanded,weaponCritical}=await loadTs('./equipment.ts');
+const {validateModule}=await loadTs('./rule-schema.ts');
+const {defaultMechanics}=await loadTs('./mechanics.ts');
+const {ruleContext}=await loadTs('./rule-engine.ts');
+validateModule(greatsword,{});assert.equal(weaponCritical(greatsword.weapon),'19–20');
+const magicManual=structuredClone(greatsword);magicManual.tags=magicManual.tags.filter(t=>t!=='magic_weapon');validateModule(magicManual,{}); // DM may correct tags independently.
+const gsCatalog={...catalog,modules:{...catalog.modules,gs:greatsword}};
+const armed={...state,instances:[...state.instances,{id:'gs-instance',moduleId:'gs'}],equipment:{weapon:'sword',secondary_weapon:'',left_ring:'ring-a'}};
+const selected=selectEquipment(armed,gsCatalog,'weapon','gs-instance');validateEquipment(selected,gsCatalog);assert.equal(selected.equipment.secondary_weapon,'');assert.equal(selected.equipment.left_ring,'ring-a');assert.equal(twoHanded(gsCatalog.modules.gs),true);
+assert.throws(()=>selectEquipment(selected,gsCatalog,'secondary_weapon','sword'),/占用/);
+assert.throws(()=>validateEquipment({...selected,equipment:{...selected.equipment,secondary_weapon:'sword'}},gsCatalog),/占用/);
+const cleared=selectEquipment(selected,gsCatalog,'weapon','');validateEquipment(selectEquipment(cleared,gsCatalog,'secondary_weapon','sword'),gsCatalog);
+const zero={strength:0,dexterity:0,constitution:0,intelligence:0,wisdom:0,charisma:0},config=defaultMechanics();config.modules=gsCatalog.modules;
+const char={...zero,hp:10,race:'人类',class_levels:[],ability_permanent:zero,ability_temporary:zero,editable_fields:[],rule_state:{...selected,weapon:{two_handed:false}}};assert.equal(ruleContext(char,config)['weapon.two_handed'],true);
+assert.throws(()=>validateModule({...greatsword,weapon:{...greatsword.weapon,criticalWidth:21}},{}),/暴击/);
+console.log('Greatsword: editable magic tag, critical range, offhand occupancy, unequipping and weapon context passed');

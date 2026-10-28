@@ -1,0 +1,36 @@
+{
+  "id": "zone_of_revelation",
+  "name": "揭示之域",
+  "category": "spell",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [],
+  "description": "揭示之域（Zone Of Revelation）\n预言系\n等级：牧师5，天生魔力5\n法术成分：姿势，言语，材料/法器\n施法时间：一个标准动作\n距离：{25 + 5 * FLOOR(caster.level / 2)}尺\n区域：指定地点为中心，半径{5 * caster.level}尺的弥漫范围\n持续时间：{10 * caster.level}轮\n豁免检定：无\n法术抗力：可\n范围内的生物无所遁形，包括隐形生物及灵界、幽影界等相连位面的生物。原本生存在该位面的生物不丧失其他能力，但会显现身形。\n抑制隐形、同游灵界等效果，不解除它们；离开范围后恢复原状。灵界生物在区域内失去灵体化现象，直到离开。仅作提醒，具体效果由现场判断。",
+  "spell": {
+    "classLevels": {
+      "cleric": 5,
+      "innate-magic": 5
+    },
+    "castAction": "cast"
+  },
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放揭示之域",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "揭示之域",
+        "text": "揭示之域：半径{5 * caster.level}尺内，显露隐形及相连位面的生物；抑制相关效果而不解除，离开后恢复。",
+        "remaining": "10 * caster.level",
+        "category": "combat",
+        "expiresModule": true
+      }
+    }
+  ]
+}

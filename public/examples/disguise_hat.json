@@ -1,0 +1,15 @@
+{
+  "id": "disguise_hat",
+  "name": "易容帽",
+  "category": "item",
+  "equipmentSlot": "head",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "可以释放易容术。",
+      "category": "noncombat"
+    }
+  ]
+}

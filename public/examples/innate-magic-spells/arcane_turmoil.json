@@ -1,0 +1,15 @@
+{
+  "id": "arcane_turmoil",
+  "name": "奥术波动",
+  "category": "spell",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "奥术波动（Arcane Turmoil）\n防护系\n等级：天生魔力2，巫女2\n法术成分：言语，姿势，材料\n施法时间：一个标准动作\n距离：{25 + 5 * FLOOR(caster.level / 2)}尺\n目标：一个生物\n持续时间：立即\n豁免检定：无，或意志通过则部分生效\n法术抗力：可\n对一个法术，或生物、物品上每个正在进行的法术，进行解除检定：1d20+{MIN(caster.level, 10)}，DC为11+目标法术的施法者等级。成功则解除，失败则保留。\n若目标是施法者且意志检定失败，随机失去一个最高等级法术位或已准备法术，视为当日已消耗。解除及资源变化由现场手动处理。",
+  "spell": {
+    "classLevels": {
+      "innate-magic": 2,
+      "shrine-maiden": 2
+    }
+  }
+}

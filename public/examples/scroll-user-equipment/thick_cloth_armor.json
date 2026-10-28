@@ -1,0 +1,19 @@
+{
+  "id": "thick_cloth_armor",
+  "name": "厚布甲",
+  "category": "item",
+  "equipmentSlot": "armor",
+  "mode": "passive",
+  "description": "护甲AC+1，最大敏捷调整值8，防具检定减值0。",
+  "parameters": {},
+  "outputs": [],
+  "armor": {
+    "category": "light",
+    "size": "按穿戴者体型",
+    "baseArmor": 1,
+    "enhancement": 0,
+    "dexCap": 8,
+    "checkPenalty": 0,
+    "speedPenalties": {}
+  }
+}

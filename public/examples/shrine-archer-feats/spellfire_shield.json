@@ -1,0 +1,30 @@
+{
+  "id": "spellfire_shield",
+  "name": "咒火护盾",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "resources": {
+    "fire_energy": {
+      "label": "火能量吸收",
+      "initial": 0,
+      "min": "0",
+      "max": "ability.constitution",
+      "integer": true,
+      "playerEditable": true
+    }
+  },
+  "notes": [
+    {
+      "text": "你可以吸收火属性法术的伤害，每级法术储存一点火能量；当前{resources.fire_energy}／{ability.constitution}。",
+      "category": "combat",
+      "when": "resources.fire_energy < ability.constitution"
+    },
+    {
+      "text": "你可以释放火能量，以400尺内远程接触攻击发射：每消耗1点能量造成1d6伤害，其中一半为火焰伤害；DC20反射成功伤害减半。也可近战接触，每消耗1点能量治疗2点伤害。消耗数量由你决定，手动修改资源。",
+      "category": "combat",
+      "when": "resources.fire_energy > 0"
+    }
+  ]
+}

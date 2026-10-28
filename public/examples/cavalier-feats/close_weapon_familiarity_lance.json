@@ -1,0 +1,35 @@
+{
+  "id": "close_weapon_familiarity_lance",
+  "name": "近程武器熟稔：骑枪",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "melee",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "scope": "weapon"
+    },
+    {
+      "target": "ranged",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "scope": "weapon"
+    },
+    {
+      "target": "damage",
+      "value": "2",
+      "duration": "long",
+      "bonusType": "unnamed",
+      "scope": "weapon"
+    }
+  ],
+  "weaponRequirement": {
+    "type": "lance",
+    "name": "骑枪",
+    "effectText": "命中+2，伤害+2"
+  }
+}

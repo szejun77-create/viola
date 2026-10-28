@@ -1,0 +1,43 @@
+{
+  "id": "divine_surge",
+  "name": "神力澎湃",
+  "category": "spell",
+  "description": "1回合内获得额外8d6伤害。",
+  "mode": "toggle",
+  "spell": {
+    "level": 1,
+    "classes": [
+      "crusader"
+    ],
+    "castAction": "cast"
+  },
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "damageDice",
+      "value": "8",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "die": 6
+    }
+  ],
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放神力澎湃",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "神力澎湃",
+        "text": "1回合内获得额外8d6伤害。",
+        "remaining": "1",
+        "expiresModule": true
+      }
+    }
+  ]
+}

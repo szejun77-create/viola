@@ -1,0 +1,34 @@
+{
+  "id": "mithral_heavy_shield_fortification_1",
+  "name": "＋1护命秘银重盾",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "shield",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "defense",
+      "duration": "short",
+      "bonusType": "shield",
+      "value": "3"
+    },
+    {
+      "target": "flatDefense",
+      "duration": "short",
+      "bonusType": "shield",
+      "value": "3"
+    }
+  ],
+  "description": "单手使用。基础盾牌防御+2，盾牌自身增强+1，总盾牌贡献+3，适用于普通／措手不及防御，不适用于接触。盾牌增强计入本盾的盾牌贡献，可与盔甲自身的增强叠加。护命：受到重击或偷袭时，有25%几率只承受普通攻击。",
+  "tags": [
+    "one_handed",
+    "heavy_shield",
+    "mithral"
+  ],
+  "notes": [
+    {
+      "text": "护命：受到重击或偷袭时，有25%几率只承受普通攻击；由现场判断和掷骰。",
+      "category": "combat"
+    }
+  ]
+}

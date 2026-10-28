@@ -1,0 +1,37 @@
+{
+  "id": "resilient_troops",
+  "name": "韧性部队",
+  "category": "spell",
+  "equipmentSlot": "stance",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "主要光环：全体友军（含自身）三项豁免获得+{IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))}环境加值；等级按光环持有者角色总等级。",
+  "grant": {
+    "name": "韧性部队",
+    "group": "ally",
+    "mode": "all",
+    "includeSelf": true,
+    "defaultAccepted": true,
+    "outputs": [
+      {
+        "target": "fortitude",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))"
+      },
+      {
+        "target": "reflex",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))"
+      },
+      {
+        "target": "will",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "IF(level >= 20, 4, IF(level >= 14, 3, IF(level >= 7, 2, 1)))"
+      }
+    ]
+  }
+}

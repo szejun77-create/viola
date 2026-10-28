@@ -1,0 +1,14 @@
+{
+  "id": "regroup",
+  "name": "战线重整",
+  "category": "spell",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "战线重整（Regroup）\n咒法系（传送）\n等级：天生魔力3\n法术成分：言语，姿势\n施法时间：一个标准动作\n距离：{25 + 5 * FLOOR(caster.level / 2)}尺\n目标：至多{caster.level}个自愿生物\n持续时间：立即\n法术抗力：不可\n将同伴传送到与你接邻的格子。若位置被占用或不能支撑生物，则尽可能放到离你最近、可以支撑该生物且未被占用的位置。传送由现场处理。",
+  "spell": {
+    "classLevels": {
+      "innate-magic": 3
+    }
+  }
+}

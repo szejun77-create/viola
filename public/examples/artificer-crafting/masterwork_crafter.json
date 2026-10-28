@@ -1,0 +1,14 @@
+{
+  "id": "masterwork_crafter",
+  "name": "大师之作",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你可以为物品附加更强的精制效果。",
+      "category": "noncombat"
+    }
+  ]
+}

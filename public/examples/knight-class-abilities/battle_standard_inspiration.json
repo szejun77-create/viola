@@ -1,0 +1,14 @@
+{
+  "id": "battle_standard_inspiration",
+  "name": "战旗鼓舞",
+  "category": "class",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你获得主要光环与次要光环，可以各开启一项。",
+      "category": "noncombat"
+    }
+  ]
+}

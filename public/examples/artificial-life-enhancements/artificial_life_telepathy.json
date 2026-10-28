@@ -1,0 +1,14 @@
+{
+  "id": "artificial_life_telepathy",
+  "name": "人工生命强化：传心范围",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "拥有{level}英里范围的心灵感应（按本构装体自身等级）。",
+      "category": "noncombat"
+    }
+  ]
+}

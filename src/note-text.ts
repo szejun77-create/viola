@@ -1,0 +1,4 @@
+import {evaluateExpression,type Value} from './rule-expression';
+const placeholders=/\{\{([^{}]+)\}\}|\{([^{}]+)\}/g;
+export function noteExpressions(text:string){const matches=[...text.matchAll(placeholders)],rest=text.replace(placeholders,'');if(rest.includes('{')||rest.includes('}'))throw Error('文本变量请写成{表达式}或{{表达式}}');return matches.map(m=>(m[1]??m[2]).trim())}
+export function renderNoteText(text:string,read:(name:string)=>Value){noteExpressions(text);return text.replace(placeholders,(_,double:string,single:string)=>String(evaluateExpression((double??single).trim(),read)))}

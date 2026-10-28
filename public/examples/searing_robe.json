@@ -1,0 +1,54 @@
+{
+  "id": "searing_robe",
+  "name": "炽热之袍",
+  "category": "item",
+  "equipmentSlot": "inner_robe",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "fireResistance",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "5"
+    },
+    {
+      "target": "damageDice",
+      "die": 6,
+      "damageType": "fire",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "1"
+    }
+  ],
+  "resources": {
+    "fire_shield": {
+      "label": "火焰护盾",
+      "initial": 1,
+      "min": "0",
+      "max": "1",
+      "integer": true,
+      "playerEditable": false
+    }
+  },
+  "actions": [
+    {
+      "id": "fire_shield",
+      "label": "使用火焰护盾",
+      "playerUsable": true,
+      "when": "resources.fire_shield >= 1",
+      "changes": [
+        {
+          "target": "resources.fire_shield",
+          "value": "resources.fire_shield - 1"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "火焰护盾",
+        "remaining": "5",
+        "category": "combat",
+        "text": "5尺内以近战攻击伤害你的敌人，被反弹1d6＋9火焰伤害。你受到的寒冷伤害减半；反射豁免成功的寒冷伤害无效。反弹与寒冷防护由现场结算。"
+      }
+    }
+  ]
+}

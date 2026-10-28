@@ -1,0 +1,9 @@
+import {useState} from 'react';
+import {moduleTargets,type RuleState} from './rule-types';
+import {effectAccepted,type SharedEffect} from './shared-effects';
+import {bonusTypes} from './bonuses';
+export function ReceivedEffects({incoming,state,onChange,busy}:{incoming:SharedEffect[];state:RuleState;onChange:(s:RuleState)=>void;busy:boolean}){
+ incoming=incoming.filter(e=>!state.receivedResources?.[e.key]?.ended);
+ const[selected,setSelected]=useState<string|null>(null),active=incoming.find(e=>e.key===selected);
+ return <section className="received-effects"><h3>收到的效果</h3>{(['ally','other'] as const).map(group=><div key={group}><h4>{group==='ally'?'友军':'其他'}</h4><div className="operation-grid">{incoming.filter(e=>e.group===group).map(effect=><div className="operation-tag" key={effect.key}><button type="button" className={`operation-chip has-toggle${selected===effect.key?' selected':''}${effectAccepted(state,effect)?' enabled':''}`} title={`来源：${effect.sourceName}`} onClick={()=>setSelected(effect.key)}>{effect.name}</button><label className="operation-corner"><input type="checkbox" aria-label={`接受${effect.sourceName}的${effect.name}`} checked={effectAccepted(state,effect)} disabled={busy||!!effect.error} onChange={e=>{setSelected(effect.key);onChange({...state,acceptedEffects:{...state.acceptedEffects,[effect.key]:e.target.checked}})}}/></label></div>)}</div>{!incoming.some(e=>e.group===group)&&<small className="muted">暂无效果</small>}</div>)}{active&&<div className="received-detail"><strong>{active.name} · 来源：{active.sourceName}</strong>{active.error?<p className="module-error">{active.error}</p>:active.outputs.map((o,i)=><p key={i}>{moduleTargets.find(([key])=>key===o.target)?.[1]} {o.value>=0?'+':''}{o.value} · {bonusTypes.find(([key])=>key===o.bonusType)?.[1]}{o.context&&` · 仅在${o.context}`}</p>)}{!active.error&&active.notes?.map((note,i)=><p className="prewrap" key={`note-${i}`}>{note.text}</p>)}</div>}</section>
+}

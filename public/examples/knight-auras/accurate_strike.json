@@ -1,0 +1,25 @@
+{
+  "id": "accurate_strike",
+  "name": "精确打击",
+  "category": "spell",
+  "equipmentSlot": "secondary_stance",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "description": "次要光环：全体友军（含自身）的重击确认命中获得{mod.charisma}环境加值；读取光环持有者的魅力调整值，不改变普通命中。",
+  "grant": {
+    "name": "精确打击",
+    "group": "ally",
+    "mode": "all",
+    "includeSelf": true,
+    "defaultAccepted": true,
+    "outputs": [
+      {
+        "target": "criticalConfirmation",
+        "duration": "short",
+        "bonusType": "circumstance",
+        "value": "mod.charisma"
+      }
+    ]
+  }
+}

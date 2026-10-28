@@ -1,0 +1,14 @@
+{
+  "id": "special_mount_feat",
+  "name": "专用坐骑（专长版）",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "每天一次，可用一个整轮动作召唤一只狮鹫，持续{level * 2}小时。",
+      "category": "combat"
+    }
+  ]
+}

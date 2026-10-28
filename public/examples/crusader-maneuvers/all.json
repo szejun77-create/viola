@@ -1,0 +1,396 @@
+[
+  {
+    "id": "leading_attack",
+    "name": "领导攻击",
+    "category": "spell",
+    "description": "攻击已经被你命中的单位时，友方命中＋4。适用时由友方自行接受；持续1回合。",
+    "mode": "toggle",
+    "spell": {
+      "level": 1,
+      "classes": [
+        "crusader"
+      ],
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [],
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放领导攻击",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "领导攻击",
+          "text": "攻击已经被你命中的单位时，友方命中＋4。适用时由友方自行接受；持续1回合。",
+          "remaining": "1",
+          "expiresModule": true
+        }
+      }
+    ],
+    "grant": {
+      "name": "领导攻击：攻击已被来源命中的单位",
+      "group": "ally",
+      "mode": "all",
+      "includeSelf": false,
+      "outputs": [
+        {
+          "target": "melee",
+          "value": "4",
+          "duration": "short",
+          "bonusType": "morale"
+        },
+        {
+          "target": "ranged",
+          "value": "4",
+          "duration": "short",
+          "bonusType": "morale"
+        }
+      ]
+    }
+  },
+  {
+    "id": "stone_dragon_strike",
+    "name": "石龙击",
+    "category": "spell",
+    "description": "1回合内获得额外4d6伤害，仅对物品。",
+    "mode": "toggle",
+    "spell": {
+      "level": 1,
+      "classes": [
+        "crusader"
+      ],
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "damageDice",
+        "value": "4",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "die": 6,
+        "damageType": "objects_only"
+      }
+    ],
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放石龙击",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "石龙击",
+          "text": "1回合内获得额外4d6伤害，仅对物品。",
+          "remaining": "1",
+          "expiresModule": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "fearless_strike",
+    "name": "无畏打击",
+    "category": "spell",
+    "description": "攻击已经被你命中的单位时，友方命中＋4。适用时由友方自行接受；持续1回合。",
+    "mode": "toggle",
+    "spell": {
+      "level": 1,
+      "classes": [
+        "crusader"
+      ],
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [],
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放无畏打击",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "无畏打击",
+          "text": "攻击已经被你命中的单位时，友方命中＋4。适用时由友方自行接受；持续1回合。",
+          "remaining": "1",
+          "expiresModule": true
+        }
+      }
+    ],
+    "grant": {
+      "name": "无畏打击：攻击已被来源命中的单位",
+      "group": "ally",
+      "mode": "all",
+      "includeSelf": false,
+      "outputs": [
+        {
+          "target": "melee",
+          "value": "4",
+          "duration": "short",
+          "bonusType": "unnamed"
+        },
+        {
+          "target": "ranged",
+          "value": "4",
+          "duration": "short",
+          "bonusType": "unnamed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "commanding_charge",
+    "name": "领军冲锋",
+    "category": "spell",
+    "description": "1回合内，冲锋时伤害＋10，冲锋不引发借机攻击。",
+    "mode": "toggle",
+    "spell": {
+      "level": 1,
+      "classes": [
+        "crusader"
+      ],
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "damage",
+        "value": "10",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "when": "conditions.charge"
+      }
+    ],
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放领军冲锋",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "领军冲锋",
+          "text": "1回合内，冲锋时伤害＋10，冲锋不引发借机攻击。",
+          "remaining": "1",
+          "expiresModule": true
+        }
+      }
+    ],
+    "notes": [
+      {
+        "text": "你在冲锋中不会被借机。",
+        "category": "combat",
+        "when": "conditions.charge"
+      }
+    ]
+  },
+  {
+    "id": "mountain_breaker",
+    "name": "巨山破",
+    "category": "spell",
+    "description": "1回合内获得额外2d6伤害，无视任何硬度和伤害减免。",
+    "mode": "toggle",
+    "spell": {
+      "level": 1,
+      "classes": [
+        "crusader"
+      ],
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "damageDice",
+        "value": "2",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "die": 6
+      }
+    ],
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放巨山破",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "巨山破",
+          "text": "1回合内获得额外2d6伤害，无视任何硬度和伤害减免。",
+          "remaining": "1",
+          "expiresModule": true
+        }
+      }
+    ],
+    "notes": [
+      {
+        "text": "无视任何硬度和伤害减免。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "bonesplitter",
+    "name": "碎骨者",
+    "category": "spell",
+    "description": "1回合内获得额外4d6伤害；目标强韧豁免失败时，你的重击确认命中额外＋10。",
+    "mode": "toggle",
+    "spell": {
+      "level": 1,
+      "classes": [
+        "crusader"
+      ],
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "damageDice",
+        "value": "4",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "die": 6
+      }
+    ],
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放碎骨者",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "碎骨者",
+          "text": "1回合内获得额外4d6伤害；目标强韧豁免失败时，你的重击确认命中额外＋10。",
+          "remaining": "1",
+          "expiresModule": true
+        }
+      }
+    ],
+    "notes": [
+      {
+        "text": "若对方在DC {{13 + mod.strength}}的强韧豁免中失败，你的重击确认命中额外＋10。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "divine_surge",
+    "name": "神力澎湃",
+    "category": "spell",
+    "description": "1回合内获得额外8d6伤害。",
+    "mode": "toggle",
+    "spell": {
+      "level": 1,
+      "classes": [
+        "crusader"
+      ],
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "damageDice",
+        "value": "8",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "die": 6
+      }
+    ],
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放神力澎湃",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "神力澎湃",
+          "text": "1回合内获得额外8d6伤害。",
+          "remaining": "1",
+          "expiresModule": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "ancient_mountain_breaker",
+    "name": "远古巨山破",
+    "category": "spell",
+    "description": "1回合内获得额外6d6伤害，无视任何硬度和伤害减免。",
+    "mode": "toggle",
+    "spell": {
+      "level": 1,
+      "classes": [
+        "crusader"
+      ],
+      "castAction": "cast"
+    },
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "damageDice",
+        "value": "6",
+        "duration": "short",
+        "bonusType": "unnamed",
+        "die": 6
+      }
+    ],
+    "actions": [
+      {
+        "id": "cast",
+        "label": "施放远古巨山破",
+        "playerUsable": true,
+        "changes": [
+          {
+            "target": "module.enabled",
+            "value": "true"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "远古巨山破",
+          "text": "1回合内获得额外6d6伤害，无视任何硬度和伤害减免。",
+          "remaining": "1",
+          "expiresModule": true
+        }
+      }
+    ],
+    "notes": [
+      {
+        "text": "无视任何硬度和伤害减免。",
+        "category": "combat"
+      }
+    ]
+  }
+]

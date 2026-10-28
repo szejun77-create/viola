@@ -1,0 +1,14 @@
+{
+  "id": "greater_spell_focus_fire",
+  "name": "高等法术专攻：火",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [],
+  "notes": [
+    {
+      "text": "你的火系法术豁免DC额外+1，可与火系专攻的+1叠加；两者均拥有时合计+2，由现场手动结算。",
+      "category": "combat"
+    }
+  ]
+}

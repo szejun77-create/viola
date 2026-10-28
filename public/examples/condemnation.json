@@ -1,0 +1,62 @@
+{
+  "id": "condemnation",
+  "name": "定罪",
+  "category": "class",
+  "mode": "toggle",
+  "resourceMode": "always",
+  "description": "次数池常驻。使用定罪消耗1次并开启增益；关闭增益不清空次数，不自动恢复。",
+  "parameters": {},
+  "resources": {
+    "uses": {
+      "label": "定罪次数",
+      "initial": "mod.charisma + FLOOR(classes.crusader.level / 4)",
+      "min": "0",
+      "max": "mod.charisma + FLOOR(classes.crusader.level / 4)",
+      "integer": true,
+      "playerEditable": true
+    }
+  },
+  "actions": [
+    {
+      "id": "use",
+      "label": "使用定罪",
+      "playerUsable": true,
+      "when": "resources.uses >= 1",
+      "changes": [
+        {
+          "target": "resources.uses",
+          "value": "resources.uses - 1"
+        },
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "target": "melee",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "mod.charisma"
+    },
+    {
+      "target": "ranged",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "mod.charisma"
+    },
+    {
+      "target": "damageReduction",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "classes.crusader.level * 2"
+    }
+  ],
+  "notes": [
+    {
+      "text": "对目标额外＋1借机次数"
+    }
+  ]
+}

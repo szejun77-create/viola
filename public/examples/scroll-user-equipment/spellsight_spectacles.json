@@ -1,0 +1,25 @@
+{
+  "id": "spellsight_spectacles",
+  "name": "法术视觉镜片",
+  "category": "item",
+  "equipmentSlot": "face",
+  "mode": "passive",
+  "description": "法术视觉镜片（Spellsight Spectacles）：对象为卷轴时，使用魔法装置与辨识法术检定各+5表现加值。",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "skill.use_magic_device",
+      "duration": "short",
+      "bonusType": "competence",
+      "value": "5",
+      "context": "对象为卷轴"
+    },
+    {
+      "target": "skill.spellcraft",
+      "duration": "short",
+      "bonusType": "competence",
+      "value": "5",
+      "context": "对象为卷轴"
+    }
+  ]
+}

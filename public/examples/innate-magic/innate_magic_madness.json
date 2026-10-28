@@ -1,0 +1,38 @@
+{
+  "id": "innate_magic_madness",
+  "name": "临时疯狂",
+  "category": "other",
+  "mode": "toggle",
+  "defaultAccess": "toggle",
+  "requiresOwnedModule": "innate_magic",
+  "parameters": {},
+  "activeConditions": [
+    "confused"
+  ],
+  "outputs": [
+    {
+      "target": "intelligence",
+      "value": "-2",
+      "duration": "short",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "wisdom",
+      "value": "-2",
+      "duration": "short",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "charisma",
+      "value": "-2",
+      "duration": "short",
+      "bonusType": "unnamed"
+    }
+  ],
+  "notes": [
+    {
+      "text": "临时疯狂：你处于困惑状态，智力、感知、魅力各-2。恢复时关闭此操作。",
+      "category": "negative"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "comet_strike",
+  "name": "彗星撞击",
+  "category": "feat",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "melee",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "ranged",
+      "value": "2",
+      "duration": "short",
+      "bonusType": "unnamed"
+    },
+    {
+      "target": "damage",
+      "value": "4",
+      "duration": "short",
+      "bonusType": "unnamed"
+    }
+  ],
+  "notes": [
+    {
+      "text": "你可以提前计划冲锋你的敌人，并获得彗星撞击的加强效果；实际攻击符合条件时开启。",
+      "category": "combat",
+      "whileOwned": true
+    }
+  ],
+  "defaultAccess": "toggle"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "nightstick",
+  "name": "夜之杖",
+  "category": "item",
+  "mode": "passive",
+  "equipmentSlot": "special",
+  "parameters": {},
+  "outputs": [],
+  "description": "若已有驱散资源，其上限和初始次数额外增加4；不单独创建驱散池。已有存档的当前剩余次数不自动补充，由DM手动调整。",
+  "resourceMaxModifiers": [
+    {
+      "tag": "turn_undead",
+      "resource": "turns",
+      "value": "4",
+      "bonusType": "unnamed",
+      "affectsInitial": true
+    }
+  ]
+}

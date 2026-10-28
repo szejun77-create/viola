@@ -1,0 +1,69 @@
+{
+  "id": "greater_magic_weapon",
+  "name": "高等魔化武器",
+  "category": "spell",
+  "mode": "toggle",
+  "parameters": {},
+  "outputs": [],
+  "description": "高等魔化武器（Magic Weapon, Greater）\n变化系\n等级：牧师4，机关术师3，巫女3\n法术成分：言语，姿势，材料/法器\n施法时间：1个标准动作\n距离：{25 + 5 * FLOOR(caster.level / 2)}尺\n目标：一把武器或五十枚射击物（所有射击物在施法时必须彼此接触）\n持续时间：{600 * caster.level}轮\n效果：所选角色的指定武器或射击物获得{FLOOR(caster.level / 4)}点命中与伤害增强加值。具体强化对象由现场指定；本效果不代表所有武器都获得附魔。",
+  "spell": {
+    "classLevels": {
+      "cleric": 4,
+      "artificer": 3,
+      "shrine-maiden": 3
+    },
+    "castAction": "cast"
+  },
+  "grant": {
+    "name": "高等魔化武器效果",
+    "group": "ally",
+    "mode": "single",
+    "includeSelf": true,
+    "outputs": [
+      {
+        "target": "melee",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "value": "FLOOR(caster.level / 4)"
+      },
+      {
+        "target": "ranged",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "value": "FLOOR(caster.level / 4)"
+      },
+      {
+        "target": "damage",
+        "duration": "short",
+        "bonusType": "enhancement",
+        "value": "FLOOR(caster.level / 4)"
+      }
+    ],
+    "notes": [
+      {
+        "text": "指定的一把武器或五十枚彼此接触的射击物获得命中、伤害各+{FLOOR(caster.level / 4)}增强加值；仅用于本次选定的武器或射击物，适用条件由现场判断。",
+        "category": "combat"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "id": "cast",
+      "label": "施放高等魔化武器",
+      "playerUsable": true,
+      "changes": [
+        {
+          "target": "module.enabled",
+          "value": "true"
+        }
+      ],
+      "createTimedEffect": {
+        "name": "高等魔化武器",
+        "text": "指定武器或射击物：命中与伤害各+{FLOOR(caster.level / 4)}增强加值；持续{600 * caster.level}轮。",
+        "remaining": "600 * caster.level",
+        "expiresModule": true,
+        "category": "combat"
+      }
+    }
+  ]
+}

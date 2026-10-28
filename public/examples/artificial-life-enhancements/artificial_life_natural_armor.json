@@ -1,0 +1,27 @@
+{
+  "id": "artificial_life_natural_armor",
+  "name": "人工生命强化：天生防御",
+  "category": "feat",
+  "mode": "passive",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "defense",
+      "duration": "long",
+      "bonusType": "natural_armor",
+      "value": "2 * FLOOR(level / 3)"
+    },
+    {
+      "target": "flatDefense",
+      "duration": "long",
+      "bonusType": "natural_armor",
+      "value": "2 * FLOOR(level / 3)"
+    }
+  ],
+  "notes": [
+    {
+      "text": "每3级可获得一项不同的人工生命强化，当前可选{FLOOR(level / 3)}项。由DM手动分配与核对；技能强化可重复选择。",
+      "category": "noncombat"
+    }
+  ]
+}

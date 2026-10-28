@@ -1,0 +1,139 @@
+[
+  {
+    "id": "time_domain",
+    "name": "时间领域",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [
+      {
+        "target": "initiative",
+        "duration": "long",
+        "bonusType": "unnamed",
+        "value": "4"
+      }
+    ],
+    "description": "获得精通先攻的效果：先攻+4。获得占星术作为本职技能。获得独立的时间领域法术表：自发施法，基础施法者等级为牧师等级，享受适用的施法者等级调整，法术位由DM配置。",
+    "grantsCasting": {
+      "id": "time-domain",
+      "name": "时间领域",
+      "levelClass": "cleric",
+      "spellcastingMode": "spontaneous"
+    },
+    "notes": [
+      {
+        "text": "占星术作为本职：请DM在牧师职业本职技能中勾选占星术。先攻+4已计算，视同精通先攻，不要再重复添加同一专长的+4。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "travel_domain",
+    "name": "旅行领域",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "获得生存作为本职技能。获得旅行领域独立法术表：自发施法，基础施法者等级为牧师等级，法术位由DM配置。行动自如次数为角色总等级，每次消耗1次，生成1轮行动自如备忘；适用条件由现场判断，恢复由DM手动处理。",
+    "grantsCasting": {
+      "id": "travel-domain",
+      "name": "旅行领域",
+      "levelClass": "cleric",
+      "spellcastingMode": "spontaneous"
+    },
+    "resources": {
+      "freedom_of_movement": {
+        "label": "行动自如",
+        "initial": "level",
+        "min": "0",
+        "max": "level",
+        "integer": true,
+        "playerEditable": false
+      }
+    },
+    "actions": [
+      {
+        "id": "use_freedom",
+        "label": "使用行动自如",
+        "playerUsable": true,
+        "when": "resources.freedom_of_movement > 0",
+        "changes": [
+          {
+            "target": "resources.freedom_of_movement",
+            "value": "resources.freedom_of_movement - 1"
+          }
+        ],
+        "createTimedEffect": {
+          "name": "行动自如",
+          "text": "你获得行动自如法术的效果，持续1回合。具体适用条件与结算由现场判断。",
+          "remaining": "1",
+          "category": "combat"
+        }
+      }
+    ],
+    "notes": [
+      {
+        "text": "生存作为本职：请DM在牧师职业本职技能中勾选生存。",
+        "category": "noncombat"
+      }
+    ]
+  },
+  {
+    "id": "spell_conversion",
+    "name": "法术转换",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "你可以随时消耗任意已准备的法术位，施展适用的治疗伤害法术或领域法术。法术位的环级、可转换范围与条件由DM现场判断。本能力仅提供备注：手动减少相应法术位，并删除不适用的备忘，不自动转换或额外生成效果。",
+    "notes": [
+      {
+        "text": "你可以消耗任意已准备的法术位，改施展适用的治疗伤害法术或领域法术；手动扣除对应法术位并处理／删除相应备忘。",
+        "category": "combat"
+      }
+    ]
+  },
+  {
+    "id": "turn_undead",
+    "name": "驱散不死生物",
+    "category": "class",
+    "mode": "passive",
+    "parameters": {},
+    "outputs": [],
+    "description": "驱散次数：3+魅力调整值（最低0）。\n驱散检定：1d20 + ({mod.charisma}) = 驱散值。由你投骰并查下表。\n检定结果　　可影响不死生物的最高HD\n0或以下　　牧师等级-4 = {classes.cleric.level - 4}\n1—3　　　　牧师等级-3 = {classes.cleric.level - 3}\n4—6　　　　牧师等级-2 = {classes.cleric.level - 2}\n7—9　　　　牧师等级-1 = {classes.cleric.level - 1}\n10—12　　　牧师等级 = {classes.cleric.level}\n13—15　　　牧师等级+1 = {classes.cleric.level + 1}\n16—18　　　牧师等级+2 = {classes.cleric.level + 2}\n19—21　　　牧师等级+3 = {classes.cleric.level + 3}\n22及以上　 牧师等级+4 = {classes.cleric.level + 4}\n使用按钮只消耗1次；目标、驱散值和后续效果由现场判断，恢复由DM手动处理。",
+    "resources": {
+      "turns": {
+        "label": "驱散",
+        "initial": "MAX(0,3 + mod.charisma)",
+        "min": "0",
+        "max": "MAX(0,3 + mod.charisma)",
+        "integer": true,
+        "playerEditable": false
+      }
+    },
+    "actions": [
+      {
+        "id": "turn",
+        "label": "使用驱散",
+        "playerUsable": true,
+        "when": "resources.turns > 0",
+        "changes": [
+          {
+            "target": "resources.turns",
+            "value": "resources.turns - 1"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      {
+        "text": "你可以驱散不死生物。驱散检定为1d20 + ({mod.charisma})；按能力描述中的表格判断可影响的最高HD，使用时消耗1次。",
+        "when": "resources.turns > 0",
+        "category": "combat"
+      }
+    ],
+    "tags": [
+      "turn_undead"
+    ]
+  }
+]

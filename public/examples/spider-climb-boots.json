@@ -1,0 +1,18 @@
+{
+  "id": "spider_climb_boots",
+  "name": "蛛行鞋",
+  "category": "item",
+  "equipmentSlot": "feet",
+  "mode": "passive",
+  "description": "穿着时，攀爬状态下的基础移动速度由原速的四分之一改为二分之一；正常行走不受影响。",
+  "parameters": {},
+  "outputs": [
+    {
+      "target": "climbSpeedMultiplier",
+      "duration": "short",
+      "bonusType": "unnamed",
+      "value": "0.5",
+      "when": "conditions.climb"
+    }
+  ]
+}
